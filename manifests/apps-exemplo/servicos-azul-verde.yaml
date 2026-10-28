@@ -1,0 +1,126 @@
+# Trilha 06: dois backends httpd ("azul" e "verde"), cada um servindo uma página com o nome da cor.
+# Ambos têm o rótulo app=loja; a cor fica no rótulo "cor". Nenhum Service é criado aqui: os exercícios criam.
+#   oc apply --dry-run=server -f manifests/apps-exemplo/servicos-azul-verde.yaml -n ac06-servicos
+#   oc apply -f manifests/apps-exemplo/servicos-azul-verde.yaml -n ac06-servicos
+# Limpeza: oc delete -f manifests/apps-exemplo/servicos-azul-verde.yaml -n ac06-servicos
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pagina-azul
+  labels:
+    academy.openshift.dev/managed-by: academia
+data:
+  index.html: "azul\n"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-azul
+  labels:
+    app: loja
+    cor: azul
+    academy.openshift.dev/managed-by: academia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loja
+      cor: azul
+  template:
+    metadata:
+      labels:
+        app: loja
+        cor: azul
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            periodSeconds: 5
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+              readOnly: true
+          resources:
+            requests: {cpu: 20m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      volumes:
+        - name: pagina
+          configMap:
+            name: pagina-azul
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pagina-verde
+  labels:
+    academy.openshift.dev/managed-by: academia
+data:
+  index.html: "verde\n"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-verde
+  labels:
+    app: loja
+    cor: verde
+    academy.openshift.dev/managed-by: academia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loja
+      cor: verde
+  template:
+    metadata:
+      labels:
+        app: loja
+        cor: verde
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            periodSeconds: 5
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+              readOnly: true
+          resources:
+            requests: {cpu: 20m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      volumes:
+        - name: pagina
+          configMap:
+            name: pagina-verde

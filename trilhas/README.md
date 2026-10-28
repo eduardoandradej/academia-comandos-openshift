@@ -1,6 +1,6 @@
 # Trilhas
 
-> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 05. As demais são **planejadas**: as pastas só passam a
+> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 06. As demais são **planejadas**: as pastas só passam a
 > existir quando o conteúdo estiver escrito — nada aqui finge estar pronto.
 
 | ID | Trilha | Status | Foco | Dependências do HomeLab |
@@ -11,7 +11,7 @@
 | 03 | [Projetos e metadados](03-projetos/README.md) | **disponível** (15) | labels, annotations, seletores, ownerReferences, finalizers (leitura) | imagem externa (a partir do PRJ-008) |
 | 04 | [Pods e contêineres](04-pods/README.md) | **disponível** (15) | run, logs, exec, rsh, cp, attach, port-forward, debug, QoS | imagem externa |
 | 05 | [Deployments e workloads](05-deployments/README.md) | **disponível** (15) | rollout, revisões, undo, set, estratégias, Job, CronJob, DaemonSet | imagem externa |
-| 06 | Services e DNS | planejada | ClusterIP, EndpointSlices, DNS interno | — |
+| 06 | [Services e DNS](06-servicos/README.md) | **disponível** (15) | ClusterIP, portas, EndpointSlices, DNS, azul/verde, headless, diagnóstico | imagem externa |
 | 07 | Routes e Ingress | planejada | expose, TLS edge/passthrough/reencrypt | wildcard `*.apps` no cliente |
 | 08 | ConfigMaps e Secrets | planejada | envFrom, volumes, set env | — |
 | 09 | Storage | planejada | emptyDir, PV/PVC, StatefulSet | **StorageClass ausente** |

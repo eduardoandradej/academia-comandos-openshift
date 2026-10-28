@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 90 | 300+ |
-| Cenários de troubleshooting | 18 | 40+ |
-| Fichas de comando | 26 | uma por família de comando |
-| Trilhas completas | 6 de 21 | 21 |
+| Microexercícios originais | 105 | 300+ |
+| Cenários de troubleshooting | 21 | 40+ |
+| Fichas de comando | 27 | uma por família de comando |
+| Trilhas completas | 7 de 21 | 21 |
 
 ## Matriz por família
 
@@ -35,7 +35,8 @@
 | Pods: recursos e QoS | POD-012 | POD-012 | POD-012 | TS-015 | POD-015 | imagem externa | AMARELO |
 | Deployments e rollout | DEP-001, DEP-003, DEP-007 | DEP-008, DEP-014 | DEP-001 a DEP-007, DEP-013 | DEP-014, TS-016, TS-018 | DEP-015 | imagem externa | AMARELO |
 | Jobs, CronJobs, DaemonSets | DEP-010 a DEP-012 | DEP-012 | DEP-009 a DEP-012 | DEP-010, TS-017 | DEP-015 | imagem externa | AMARELO |
-| Services, Routes, DNS | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
+| Services e DNS | SVC-001, SVC-002, SVC-005 | SVC-003, SVC-005, SVC-007 | SVC-001, SVC-002, SVC-006, SVC-008 a SVC-012 | SVC-014, TS-019 a TS-021 | SVC-015 | imagem externa | AMARELO |
+| Routes e Ingress | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
 | ConfigMaps e Secrets | — | — | — | — | — | — | AMARELO |
 | Storage | — | — | — | — | — | **StorageClass/PV: NÃO DISPONÍVEL NO HOME LAB ATUAL** | AMARELO |
 | Imagens e registry | — | — | — | — | — | registry interno sem storage (verificar `managementState`) | AMARELO |
@@ -51,7 +52,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-05]
+    ID --> T00[Trilhas 00-06]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

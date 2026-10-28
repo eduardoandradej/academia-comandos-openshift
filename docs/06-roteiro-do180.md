@@ -12,7 +12,7 @@
 | Observabilidade (eventos, saúde, métricas) | 00 (ORI-005 a ORI-008), 02 (CON-012, CON-014) | disponível |
 | Pods e contêineres | 04 | disponível |
 | Deployments e aplicações gerenciadas | 05 | disponível |
-| Services e Routes | 06, 07 | planejada |
+| Services e Routes | 06 (disponível), 07 (planejada) | parcial |
 | Configuração e dados (ConfigMaps, Secrets, storage) | 08, 09 | planejada (09 depende de StorageClass) |
 | Confiabilidade (probes, recursos, escala) | 11 | planejada |
 | Atualizações de aplicações (imagens, rollout) | 05 (disponível), 10 (planejada) | parcial |

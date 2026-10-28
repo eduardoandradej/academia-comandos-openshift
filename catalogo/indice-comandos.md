@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–05 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–06 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -133,21 +133,21 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 090 | `oc get services -n <ns>` | Listar Services | VERDE | developer | 06 | [oc-get](fichas/oc-get.md) |  |
-| 091 | `oc expose deployment demo --port=8080 -n <ns>` | Gerar Service para Deployment | AMARELO | developer | 06 | — |  |
+| 090 | `oc get services -n <ns>` | Listar Services | VERDE | developer | [06](../trilhas/06-servicos/README.md) | [oc-expose-service](fichas/oc-expose-service.md) |  |
+| 091 | `oc expose deployment demo --port=8080 -n <ns>` | Gerar Service para Deployment | AMARELO | developer | [06](../trilhas/06-servicos/README.md) | [oc-expose-service](fichas/oc-expose-service.md) |  |
 | 092 | `oc expose svc/demo -n <ns>` | Criar Route HTTP | AMARELO | developer | 07 | — |  |
 | 093 | `oc get routes -n <ns>` | Ver rotas externas | VERDE | developer | 07 | [oc-get](fichas/oc-get.md) |  |
 | 094 | `oc describe route demo -n <ns>` | Ver destino/terminação | VERDE | developer | 07 | — |  |
-| 095 | `oc get endpoints -n <ns>` | Ver endpoints legados | VERDE | developer | 06 | — | Endpoints está obsoleto em favor de EndpointSlice nas versões recentes do Kubernetes; preferir 096 |
-| 096 | `oc get endpointslices -n <ns>` | Ver EndpointSlices | VERDE | developer | 06 | — |  |
-| 097 | `oc get svc/demo -o yaml -n <ns>` | Inspecionar selector e targetPort | VERDE | developer | 06 | — |  |
+| 095 | `oc get endpoints -n <ns>` | Ver endpoints legados | VERDE | developer | [06](../trilhas/06-servicos/README.md) | [oc-expose-service](fichas/oc-expose-service.md) | Endpoints está obsoleto em favor de EndpointSlice nas versões recentes do Kubernetes; preferir 096 |
+| 096 | `oc get endpointslices -n <ns>` | Ver EndpointSlices | VERDE | developer | [06](../trilhas/06-servicos/README.md) | [oc-expose-service](fichas/oc-expose-service.md) |  |
+| 097 | `oc get svc/demo -o yaml -n <ns>` | Inspecionar selector e targetPort | VERDE | developer | [06](../trilhas/06-servicos/README.md) | [oc-expose-service](fichas/oc-expose-service.md) |  |
 | 098 | `oc get route demo -o jsonpath='{.spec.host}{"\n"}' -n <ns>` | Obter hostname da Route | VERDE | developer | 07 | — |  |
 | 099 | `curl -vk https://console-openshift-console.apps.ocp.example.lab` | Testar HTTPS do Console e cadeia TLS | VERDE | local | 07 | — | no Windows sem wildcard no hosts, cada Route precisa de entrada própria |
-| 100 | `curl -ksS https://api.ocp.example.lab:6443/readyz` | Testar prontidão da API | VERDE | local | 06 | — | mesma forma do 224 |
-| 101 | `dig @192.168.10.25 api.ocp.example.lab A +short` | Consultar DNS local | VERDE | local | 06 | — |  |
-| 102 | `dig @192.168.10.25 console-openshift-console.apps.ocp.example.lab A +short` | Consultar DNS wildcard | VERDE | local | 06 | — |  |
-| 103 | `getent ahostsv4 api.ocp.example.lab` | Testar resolvedor do cliente | VERDE | local | 06 | — |  |
-| 104 | `oc get networkpolicy -n <ns>` | Consultar políticas de rede | VERDE | developer | 06 | — | mesma forma do 192 |
+| 100 | `curl -ksS https://api.ocp.example.lab:6443/readyz` | Testar prontidão da API | VERDE | local | [06](../trilhas/06-servicos/README.md) | — | mesma forma do 224 |
+| 101 | `dig @192.168.10.25 api.ocp.example.lab A +short` | Consultar DNS local | VERDE | local | [06](../trilhas/06-servicos/README.md) | — |  |
+| 102 | `dig @192.168.10.25 console-openshift-console.apps.ocp.example.lab A +short` | Consultar DNS wildcard | VERDE | local | [06](../trilhas/06-servicos/README.md) | — |  |
+| 103 | `getent ahostsv4 api.ocp.example.lab` | Testar resolvedor do cliente | VERDE | local | [06](../trilhas/06-servicos/README.md) | — |  |
+| 104 | `oc get networkpolicy -n <ns>` | Consultar políticas de rede | VERDE | developer | [06](../trilhas/06-servicos/README.md) | — | mesma forma do 192 |
 
 ## 07 — ConfigMaps, Secrets e service accounts
 

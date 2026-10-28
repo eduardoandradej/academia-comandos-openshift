@@ -1,0 +1,60 @@
+# Cenário TS-021: backend cuja readiness probe nunca passa (caminho inexistente).
+# O pod roda, mas nunca fica "Ready" — e por isso não recebe tráfego do Service.
+#   oc apply -f manifests/apps-exemplo/cenario-nao-pronto.yaml -n ac06-servicos
+# Limpeza: oc delete -f manifests/apps-exemplo/cenario-nao-pronto.yaml -n ac06-servicos
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-lento
+  labels:
+    app: lento
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-021
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lento
+  template:
+    metadata:
+      labels:
+        app: lento
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/cenario: ts-021
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /saude-que-nao-existe
+              port: 8080
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 20m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-lento
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-021
+spec:
+  selector:
+    app: lento
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

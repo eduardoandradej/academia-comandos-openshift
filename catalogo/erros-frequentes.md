@@ -35,7 +35,9 @@
 | `field label not supported` | campo não indexado para `--field-selector` | use jsonpath/jq no cliente | — | CON-006 |
 | JSONPath sem saída e sem erro | caminho ou caixa errados; faltou `.items` | `-o json \| jq 'keys'` | — | [TS-008](../cenarios/troubleshooting/TS-008.md) |
 | Projeto em `Terminating` por muito tempo | conteúdo/finalizers ainda sendo removidos | condições do namespace (admin) | remover finalizers à mão | ORI-015, [TS-011](../cenarios/troubleshooting/TS-011.md) |
-| `Endpoints: <none>` no Service | seletor não casa com os pods (ou pods não prontos) | `oc get pods -l <seletor do svc>` | apontar o Service para IPs fixos | [TS-010](../cenarios/troubleshooting/TS-010.md) |
+| `Endpoints: <none>` no Service | seletor não casa com os pods (ou pods não prontos) | `oc get pods -l <seletor do svc>` | apontar o Service para IPs fixos | [TS-010](../cenarios/troubleshooting/TS-010.md), [TS-021](../cenarios/troubleshooting/TS-021.md) |
+| `Connection refused` com endpoints prontos | `targetPort` diferente da porta do contêiner | `targetPort` × `containerPort` | — | [TS-019](../cenarios/troubleshooting/TS-019.md) |
+| nome de Service não resolve (`getent` vazio) | nome curto usado em outro namespace | `grep search /etc/resolv.conf` no pod | — | [TS-020](../cenarios/troubleshooting/TS-020.md) |
 | `already has a value ..., and --overwrite is false` | proteção contra sobrescrita de rótulo/anotação | `oc label <obj> --list` | usar `--overwrite` em lote sem conferir | [TS-012](../cenarios/troubleshooting/TS-012.md) |
 | `Invalid value: ... a valid label must be ...` | chave/valor com caractere inválido ou longo demais | releia a regex da mensagem | — | TS-012, PRJ-003 |
 

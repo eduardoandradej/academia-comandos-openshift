@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 18 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 21 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -25,5 +25,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-016](TS-016.md) | Rollout travado: a versão nova nunca fica pronta | 05 | MUTAÇÃO LOCAL |
 | [TS-017](TS-017.md) | Job que desiste: BackoffLimitExceeded | 05 | MUTAÇÃO LOCAL |
 | [TS-018](TS-018.md) | Deployment com menos pods que o pedido: a quota barrou | 05 | MUTAÇÃO LOCAL |
+| [TS-019](TS-019.md) | Service com endpoints, mas conexão recusada | 06 | MUTAÇÃO LOCAL |
+| [TS-020](TS-020.md) | O nome do Service não resolve em outro projeto | 06 | MUTAÇÃO LOCAL |
+| [TS-021](TS-021.md) | Service sem tráfego: o pod roda, mas nunca fica pronto | 06 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).
