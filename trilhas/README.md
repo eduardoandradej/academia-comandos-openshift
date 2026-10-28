@@ -1,6 +1,6 @@
 # Trilhas
 
-> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 13. As demais são **planejadas**: as pastas só passam a
+> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 14. As demais são **planejadas**: as pastas só passam a
 > existir quando o conteúdo estiver escrito — nada aqui finge estar pronto.
 
 | ID | Trilha | Status | Foco | Dependências do HomeLab |
@@ -19,7 +19,7 @@
 | 11 | [Resiliência](11-resiliencia/README.md) | **disponível** (15) | requests/limits, probes, autocura, preStop, rollout sem queda, HPA, PDB | Metrics API (HPA) |
 | 12 | [Manifestos declarativos](12-declarativo/README.md) | **disponível** (15) | gerar, validar, apply, diff, 3 vias, SSA, replace, patch, prune | — |
 | 13 | [Kustomize e Templates](13-kustomize/README.md) | **disponível** (15) | base, overlays, geradores, images, patches, oc process, new-app --template | — |
-| 14 | Helm | planejada | template, install, upgrade, rollback | cliente `helm` |
+| 14 | [Helm](14-helm/README.md) | **disponível** (15) | template, install, upgrade, valores, rollback, test, atomic | cliente `helm` ([docs/11](../docs/11-preparacao-helm.md)) |
 | 15 | Usuários, identidade e RBAC | planejada | HTPasswd, grupos, roles, can-i | perfil admin |
 | 16 | Rede e isolamento | planejada | NetworkPolicy, TLS, DNS | — |
 | 17 | Administração de recursos | planejada | quotas, limit ranges, SA, SCC (observação) | perfil admin |

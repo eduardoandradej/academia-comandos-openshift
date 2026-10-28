@@ -73,7 +73,7 @@ fi
 for tool in kubectl jq; do
   if ac_have "$tool"; then ac_ok "$tool encontrado"; else ac_warn "$tool não encontrado (alguns exercícios dependem dele)"; fi
 done
-if ac_have helm; then ac_info "helm encontrado (necessário apenas na Trilha 14)"; else ac_info "helm ausente — REQUER PREPARAÇÃO só na Trilha 14"; fi
+if ac_have helm; then ac_info "helm encontrado (Trilha 14)"; else ac_info "helm ausente — Trilha 14 REQUER PREPARAÇÃO (docs/11-preparacao-helm.md)"; fi
 
 ac_title "2. Kubeconfig (sem ler o conteúdo)"
 if [[ -z "${KUBECONFIG:-}" ]]; then

@@ -49,6 +49,8 @@
 | `the namespace from the provided object ... does not match` | `-n` diferente do `namespace` do overlay | `grep namespace kustomization.yaml` | trocar o namespace do overlay | [TS-040](../cenarios/troubleshooting/TS-040.md) |
 | `failed to find unique target for patch` | alvo do patch renomeado/inexistente | `oc kustomize <base> \| grep -A1 kind:` | apagar o patch | [TS-041](../cenarios/troubleshooting/TS-041.md) |
 | `cannot unmarshal string into ... int32` | `${X}` em campo numérico de Template | `oc process ... -o json \| jq` | — | [TS-042](../cenarios/troubleshooting/TS-042.md) |
+| `another operation (install/upgrade/rollback) is in progress` | release Helm presa em `pending-*` | `helm history <release>` | apagar Secrets da release à mão | [TS-043](../cenarios/troubleshooting/TS-043.md) |
+| `invalid ownership metadata` (Helm) | objeto com o mesmo nome criado fora do Helm | rótulos/anotações do objeto | apagar o objeto sem verificar | [TS-044](../cenarios/troubleshooting/TS-044.md) |
 | `field is immutable` | seletor, `clusterIP` ou outro campo imutável alterado | `oc diff -f <arquivo>` | `oc replace --force` sem janela | [TS-037](../cenarios/troubleshooting/TS-037.md) |
 | `strict decoding error: unknown field` | campo com nome errado | `oc explain <tipo>.<campo>` | `--validate=false` | DCL-002 |
 | `Apply failed with N conflict(s)` | server-side apply: campo de outro gerenciador | `--show-managed-fields` | `--force-conflicts` permanente | [TS-039](../cenarios/troubleshooting/TS-039.md) |

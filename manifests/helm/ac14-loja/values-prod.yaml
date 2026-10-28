@@ -1,0 +1,13 @@
+# Valores de "produção" do chart ac14-loja: use com -f.
+replicaCount: 2
+pagina:
+  conteudo: "loja da academia (helm, prod)"
+env:
+  AMBIENTE: prod
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

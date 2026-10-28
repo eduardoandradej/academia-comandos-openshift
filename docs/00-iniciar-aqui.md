@@ -41,7 +41,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 12. [Trilha 11](../trilhas/11-resiliencia/README.md) — Resiliência.
 13. [Trilha 12](../trilhas/12-declarativo/README.md) — Manifestos declarativos.
 14. [Trilha 13](../trilhas/13-kustomize/README.md) — Kustomize e Templates.
-15. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-042 intercalados, conforme a trilha.
+15. [Trilha 14](../trilhas/14-helm/README.md) — Helm (cliente: [preparação](11-preparacao-helm.md)).
+16. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-045 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 
@@ -67,3 +68,4 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 | [08-troubleshooting.md](08-troubleshooting.md) | método de diagnóstico |
 | [09-backup-e-recuperacao.md](09-backup-e-recuperacao.md) | o que protege o HomeLab e o que esta Academia não faz |
 | [10-preparacao-storage.md](10-preparacao-storage.md) | REQUER PREPARAÇÃO da Trilha 09: NFS + PVs estáticos ou LVM Storage |
+| [11-preparacao-helm.md](11-preparacao-helm.md) | REQUER PREPARAÇÃO da Trilha 14: cliente `helm` para o usuário `student` |

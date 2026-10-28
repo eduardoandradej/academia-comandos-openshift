@@ -19,6 +19,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [11 — Resiliência](11-resiliencia.md) | requests/limits, `oc adm top`, readiness/liveness/startup, autocura, preStop, rollout sem queda, HPA, PDB |
 | [12 — Manifestos declarativos](12-declarativo.md) | gerar, validar, `apply`, `diff`, merge de três vias, server-side apply, `replace`, `patch`, prune |
 | [13 — Kustomize e Templates](13-kustomize.md) | base e overlays, geradores com hash, images/replicas, patches, `oc process`, `new-app --template` |
+| [14 — Helm](14-helm.md) | identidade do Helm, chart, `template`, `install`, `upgrade`, valores, `rollback`, `test`, `--atomic` |
 
 Regras rápidas:
 

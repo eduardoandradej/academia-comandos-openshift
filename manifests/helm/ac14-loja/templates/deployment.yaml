@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ac14-loja.fullname" . }}
+  labels:
+    {{- include "ac14-loja.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ac14-loja.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "ac14-loja.labels" . | nindent 8 }}
+      annotations:
+        checksum/pagina: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: web
+          image: {{ include "ac14-loja.image" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+          {{- with .Values.env }}
+          env:
+            {{- range $nome, $valor := . }}
+            - name: {{ $nome }}
+              value: {{ $valor | quote }}
+            {{- end }}
+          {{- end }}
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          readinessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 5
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      volumes:
+        - name: pagina
+          configMap:
+            name: {{ include "ac14-loja.fullname" . }}-pagina

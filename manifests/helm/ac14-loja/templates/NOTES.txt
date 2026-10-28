@@ -1,0 +1,10 @@
+Release {{ .Release.Name }} (chart {{ .Chart.Name }}-{{ .Chart.Version }}) no projeto {{ .Release.Namespace }}.
+
+Réplicas: {{ .Values.replicaCount }} · imagem: {{ include "ac14-loja.image" . }}
+{{- if .Values.route.enabled }}
+
+Endereço:
+  oc get route {{ include "ac14-loja.fullname" . }} -n {{ .Release.Namespace }} -o jsonpath='{.spec.host}{"\n"}'
+{{- end }}
+
+Teste: helm test {{ .Release.Name }} -n {{ .Release.Namespace }}

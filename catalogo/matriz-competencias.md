@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 210 | 300+ |
-| Cenários de troubleshooting | 42 | 40+ ✔ |
-| Fichas de comando | 35 | uma por família de comando |
-| Trilhas completas | 14 de 21 | 21 |
+| Microexercícios originais | 225 | 300+ |
+| Cenários de troubleshooting | 45 | 40+ ✔ |
+| Fichas de comando | 36 | uma por família de comando |
+| Trilhas completas | 15 de 21 | 21 |
 
 ## Matriz por família
 
@@ -43,7 +43,7 @@
 | Resiliência e HPA | RES-001, RES-004, RES-007 | RES-002, RES-003, RES-012 | RES-004 a RES-011, RES-013 | RES-014, TS-034 a TS-036 | RES-015 | Metrics API (HPA) | AMARELO |
 | Manifestos declarativos | DCL-003, DCL-005, DCL-008 | DCL-004, DCL-006 | DCL-001 a DCL-013 | DCL-014, TS-037 a TS-039 | DCL-015 | — | AMARELO |
 | Kustomize e Templates | KUS-001, KUS-010, KUS-013 | KUS-005 | KUS-002 a KUS-012 | KUS-014, TS-040 a TS-042 | KUS-015 | — | AMARELO |
-| Helm | — | — | — | — | — | cliente `helm` (REQUER PREPARAÇÃO) | AMARELO |
+| Helm | HLM-002, HLM-005, HLM-013 | HLM-004, HLM-012 | HLM-003 a HLM-011 | HLM-014, TS-043 a TS-045 | HLM-015 | cliente `helm` (REQUER PREPARAÇÃO) | AMARELO |
 | RBAC e identidade | parcial: ORI-003 | — | — | — | — | `admin`; usuários DO280 só no exercício | AMARELO/VERMELHO |
 | Rede e isolamento | parcial: CLI-014 | — | — | — | — | — | AMARELO |
 | Operadores e manutenção | parcial: ORI-007 | ORI-007 | — (somente observação) | — | — | — | VERDE |
@@ -54,7 +54,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-13]
+    ID --> T00[Trilhas 00-14]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–13 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–14 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -237,18 +237,18 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 | 161 | `oc kustomize ./overlays/dev` | Renderizar Kustomize de desenvolvimento | VERDE | local | [13](../trilhas/13-kustomize/README.md) | [oc-kustomize-process](fichas/oc-kustomize-process.md) |  |
 | 162 | `kubectl kustomize ./overlays/dev` | Forma alternativa de renderização | VERDE | local | [13](../trilhas/13-kustomize/README.md) | [oc-kustomize-process](fichas/oc-kustomize-process.md) |  |
 | 163 | `oc apply -k ./overlays/dev -n <ns>` | Aplicar overlay de treino | AMARELO | developer | [13](../trilhas/13-kustomize/README.md) | [oc-kustomize-process](fichas/oc-kustomize-process.md) |  |
-| 164 | `helm version` | Verificar cliente Helm (se instalado) | VERDE | local | 14 | — |  |
-| 165 | `helm repo list` | Listar repositórios Helm | VERDE | local | 14 | — |  |
-| 166 | `helm show values ./chart` | Ler valores padrão do chart local | VERDE | local | 14 | — |  |
-| 167 | `helm lint ./chart` | Verificar chart | VERDE | local | 14 | — |  |
-| 168 | `helm template demo ./chart --namespace <ns>` | Renderizar manifests sem instalar | VERDE | local | 14 | — |  |
-| 169 | `helm install demo ./chart --namespace <ns>` | Instalar chart controlado de treino | AMARELO | developer | 14 | — |  |
-| 170 | `helm list -n <ns>` | Listar releases instaladas | VERDE | developer | 14 | — |  |
-| 171 | `helm status demo -n <ns>` | Conferir status da release | VERDE | developer | 14 | — |  |
-| 172 | `helm upgrade demo ./chart -n <ns>` | Atualizar release de laboratório | AMARELO | developer | 14 | — |  |
-| 173 | `helm history demo -n <ns>` | Listar revisões | VERDE | developer | 14 | — |  |
-| 174 | `helm rollback demo 1 -n <ns>` | Voltar à revisão especificada | AMARELO | developer | 14 | — |  |
-| 175 | `helm uninstall demo -n <ns>` | Limpar release de treino | AMARELO | developer | 14 | — |  |
+| 164 | `helm version` | Verificar cliente Helm (se instalado) | VERDE | local | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 165 | `helm repo list` | Listar repositórios Helm | VERDE | local | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 166 | `helm show values ./chart` | Ler valores padrão do chart local | VERDE | local | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 167 | `helm lint ./chart` | Verificar chart | VERDE | local | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 168 | `helm template demo ./chart --namespace <ns>` | Renderizar manifests sem instalar | VERDE | local | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 169 | `helm install demo ./chart --namespace <ns>` | Instalar chart controlado de treino | AMARELO | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 170 | `helm list -n <ns>` | Listar releases instaladas | VERDE | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 171 | `helm status demo -n <ns>` | Conferir status da release | VERDE | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 172 | `helm upgrade demo ./chart -n <ns>` | Atualizar release de laboratório | AMARELO | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 173 | `helm history demo -n <ns>` | Listar revisões | VERDE | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 174 | `helm rollback demo 1 -n <ns>` | Voltar à revisão especificada | AMARELO | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
+| 175 | `helm uninstall demo -n <ns>` | Limpar release de treino | AMARELO | developer | [14](../trilhas/14-helm/README.md) | [helm](fichas/helm.md) |  |
 
 ## 13 — RBAC, identidade e permissões
 

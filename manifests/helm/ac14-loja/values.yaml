@@ -1,0 +1,25 @@
+# Valores padrão do chart ac14-loja (Trilha 14). Sobrescreva com -f values-prod.yaml ou --set.
+replicaCount: 1                 # a Academia limita a 2 (values.schema.json)
+
+image:
+  repository: registry.access.redhat.com/ubi9/httpd-24
+  tag: latest
+  digest: ""                    # se preenchido (sha256:...), tem prioridade sobre a tag
+  pullPolicy: IfNotPresent
+
+pagina:
+  conteudo: "loja da academia (helm)"
+
+env: {}                         # mapa NOME: valor, vira env do contêiner
+
+route:
+  enabled: true
+  host: ""                      # vazio = host gerado pelo OpenShift
+
+resources:
+  requests:
+    cpu: 25m
+    memory: 48Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

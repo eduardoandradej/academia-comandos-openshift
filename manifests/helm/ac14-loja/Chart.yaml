@@ -1,0 +1,9 @@
+apiVersion: v2
+name: ac14-loja
+description: Loja de treino da Academia de Comandos (httpd + página em ConfigMap + Service + Route).
+type: application
+version: 0.1.0
+appVersion: "2.4"
+keywords:
+  - academia
+  - httpd
