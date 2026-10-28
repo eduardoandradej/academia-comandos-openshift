@@ -7,6 +7,20 @@
 Prática intensiva de `oc`, `kubectl` e administração do OpenShift 4.22: comandos explicados, exercícios
 progressivos, desafios, troubleshooting e repetição deliberada em um HomeLab Single Node OpenShift.
 
+## Guia direto: comandos e explicação em uma página
+
+Quer só os comandos, prontos para ler e aplicar? Abra o **[guia direto](guia/README.md)**: uma página por trilha, com
+cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
+
+| Página | Assunto |
+|---|---|
+| [00 — Orientação e segurança](guia/00-orientacao.md) | onde estou, quem sou, perfis, saúde do cluster, projeto de treino |
+| [01 — Navegação e CLI](guia/01-cli.md) | versões, ajuda, login/logout, kubeconfig, projetos, contextos |
+| [02 — Leitura e inspeção](guia/02-consultas.md) | `get`, `describe`, `explain`, filtros, JSONPath, jq, eventos |
+| [03 — Projetos e metadados](guia/03-projetos.md) | rótulos, anotações, seletores, donos, finalizers |
+
+O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
+
 > **Projeto de aprendizagem independente.** Não é material oficial, não reproduz roteiros, scripts `lab` nem a grade
 > da Red Hat e não substitui cursos, infraestrutura, documentação ou certificação. OpenShift e Red Hat são marcas da
 > Red Hat, Inc.
@@ -99,6 +113,7 @@ D+30). Veja [docs/05-metodologia-repeticao.md](docs/05-metodologia-repeticao.md)
 
 | Caminho | Conteúdo |
 |---|---|
+| [`guia/`](guia/README.md) | **comandos e explicação, uma página por trilha** |
 | [`docs/`](docs/00-iniciar-aqui.md) | topologia, segurança, identidades, diferenças da sala oficial, metodologia, roteiros DO180/DO280, troubleshooting, backup |
 | [`catalogo/`](catalogo/indice-comandos.md) | índice de comandos, famílias e comparações, erros frequentes, matriz de competências, fichas |
 | [`trilhas/`](trilhas/README.md) | exercícios por trilha |
