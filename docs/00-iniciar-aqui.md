@@ -30,7 +30,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 1. [Trilha 00](../trilhas/00-orientacao/README.md) — base de segurança (não pule o ORI-004).
 2. [Trilha 01](../trilhas/01-cli/README.md) — CLI.
 3. [Trilha 02](../trilhas/02-consultas/README.md) — leitura e inspeção.
-4. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-009 intercalados, conforme a trilha.
+4. [Trilha 03](../trilhas/03-projetos/README.md) — projetos e metadados.
+5. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-012 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 

@@ -5,12 +5,12 @@
 
 | Tema DO280 | Trilhas da Academia | Observação no SNO |
 |---|---|---|
-| Gerenciamento declarativo de recursos | 12 (base em ORI-012, ORI-014) | — |
+| Gerenciamento declarativo de recursos | 12 (base em ORI-012, ORI-014, PRJ-012) | — |
 | Kustomize, templates e Helm | 13, 14 | `helm` REQUER PREPARAÇÃO |
 | Autenticação (HTPasswd) e RBAC | 15 (base em ORI-003) | não pré-criar usuários do exercício |
 | Segurança de rede e TLS | 07, 16 | wildcard `*.apps` no cliente |
 | LoadBalancer e redes adicionais | 16 | **somente conceitual** |
-| Quotas, limit ranges e autosserviço de projetos | 17 (base em ORI-011 a ORI-013) | — |
+| Quotas, limit ranges e autosserviço de projetos | 17 (base em ORI-011 a ORI-013, PRJ-002, PRJ-014) | — |
 | Operators e OLM | 18 | **somente observação** |
 | SCC, service accounts, Jobs/CronJobs | 05, 17 | SCC só em observação e casos limitados |
 | Atualização do cluster | 18 | **somente conceitual/observação**; nunca `oc adm upgrade` |

@@ -1,0 +1,34 @@
+# Cenário TS-011: pod que ignora SIGTERM e só termina após o grace period (90 s).
+# Serve para observar um projeto em "Terminating" de forma segura e previsível.
+# Usa a mesma imagem do alvo de observação (normalmente já em cache no nó).
+#   oc new-project ac03-terminacao --skip-config-write
+#   oc apply -f manifests/apps-exemplo/cenario-terminacao-lenta.yaml -n ac03-terminacao
+# Limpeza: o próprio cenário apaga o projeto; o pod é encerrado à força após 90 s.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: termina-devagar
+  labels:
+    app: termina-devagar
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-011
+spec:
+  terminationGracePeriodSeconds: 90
+  containers:
+    - name: sleeper
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "trap '' TERM; while true; do sleep 5; done"]
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          cpu: 50m
+          memory: 32Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault

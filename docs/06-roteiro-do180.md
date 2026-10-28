@@ -7,6 +7,7 @@
 | Tema DO180 | Trilhas da Academia | Status |
 |---|---|---|
 | Introdução ao Kubernetes/OpenShift e ao ambiente | 00 | disponível |
+| Projetos, rótulos e metadados de recursos | 03 | disponível |
 | CLI e APIs do Kubernetes e do OpenShift | 01, 02 | disponível |
 | Observabilidade (eventos, saúde, métricas) | 00 (ORI-005 a ORI-008), 02 (CON-012, CON-014) | disponível |
 | Pods e contêineres | 04 | planejada |

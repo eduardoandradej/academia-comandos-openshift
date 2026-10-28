@@ -9,7 +9,7 @@
 |---|---|---|---|
 | Sessão e contexto | `version`, `whoami`, `login`, `logout`, `config`, `project(s)`, `status` | 00, 01 | [whoami](fichas/oc-whoami.md), [login](fichas/oc-login-logout.md), [config](fichas/oc-config.md), [project](fichas/oc-project.md) |
 | Consulta | `api-resources`, `explain`, `get`, `describe`, `events`, `wait`, `get --raw` | 02 | [get](fichas/oc-get.md), [describe](fichas/oc-describe.md), [explain](fichas/oc-explain.md) |
-| Projetos e metadados | `new-project`, `label`, `annotate`, seletores | 00, 03 | [new-project](fichas/oc-new-project.md) |
+| Projetos e metadados | `new-project`, `label`, `annotate`, seletores, `ownerReferences`, finalizers | 00, 03 | [new-project](fichas/oc-new-project.md), [label/annotate](fichas/oc-label-annotate.md) |
 | Pods e diagnóstico | `run`, `logs`, `exec`, `rsh`, `cp`, `port-forward`, `debug` | 04 | — (Trilha 04) |
 | Aplicações | `create deployment`, `new-app`, `scale`, `rollout`, `set` | 05, 11 | — |
 | Rede | `expose`, `get svc/route/endpointslices`, `curl`, `dig`, `openssl` | 06, 07, 16 | — |
@@ -46,6 +46,14 @@
 | Contata a API | não | sim | sim |
 | Valida esquema, defaults e admissão (quota, SCC) | não | sim | — |
 | Mostra a diferença para o estado atual | não | não | sim (código 1 = há diferença) |
+
+### Rótulo × anotação
+
+| | Rótulo | Anotação |
+|---|---|---|
+| Seleciona (`-l`) | sim | não |
+| Valor | curto e restrito (63 caracteres) | texto livre |
+| Uso | identidade e agrupamento | descrição e configuração de controladores |
 
 ### `oc project` × `oc config set-context --current --namespace`
 

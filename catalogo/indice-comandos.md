@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–02 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–03 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -73,17 +73,17 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 045 | `oc new-project ac03-projetos` | Criar namespace reservado de treino | AMARELO | developer | 03 | [oc-new-project](fichas/oc-new-project.md) |  |
-| 046 | `oc create namespace ac03-extra` | Criar namespace Kubernetes adicional | AMARELO | admin | 03 | — |  |
-| 047 | `oc get namespaces` | Listar namespaces | VERDE | developer | 03 | [oc-get](fichas/oc-get.md) |  |
-| 048 | `oc describe namespace ac03-projetos` | Inspecionar namespace | VERDE | developer | 03 | — |  |
-| 049 | `oc get resourcequota -n ac03-projetos` | Consultar cotas | VERDE | developer | 03 | — |  |
-| 050 | `oc label namespace ac03-projetos purpose=training` | Adicionar label a namespace de treino | AMARELO | developer | 03 | — |  |
-| 051 | `oc label namespace ac03-projetos purpose-` | Remover label específica | AMARELO | developer | 03 | — |  |
-| 052 | `oc annotate namespace ac03-projetos owner=academia` | Adicionar anotação | AMARELO | developer | 03 | — |  |
-| 053 | `oc annotate namespace ac03-projetos owner-` | Remover anotação | AMARELO | developer | 03 | — |  |
-| 054 | `oc get all -n ac03-projetos` | Consultar recursos básicos do projeto | VERDE | developer | 03 | [oc-get](fichas/oc-get.md) |  |
-| 055 | `oc delete namespace ac03-projetos` | Limpar somente namespace criado para este exercício, após confirmação | AMARELO | developer | 03 | — |  |
+| 045 | `oc new-project ac03-projetos` | Criar namespace reservado de treino | AMARELO | developer | [03](../trilhas/03-projetos/README.md) | [oc-new-project](fichas/oc-new-project.md) |  |
+| 046 | `oc create namespace ac03-extra` | Criar namespace Kubernetes adicional | AMARELO | admin | [03](../trilhas/03-projetos/README.md) | — |  |
+| 047 | `oc get namespaces` | Listar namespaces | VERDE | developer | [03](../trilhas/03-projetos/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 048 | `oc describe namespace ac03-projetos` | Inspecionar namespace | VERDE | developer | [03](../trilhas/03-projetos/README.md) | — |  |
+| 049 | `oc get resourcequota -n ac03-projetos` | Consultar cotas | VERDE | developer | [03](../trilhas/03-projetos/README.md) | — |  |
+| 050 | `oc label namespace ac03-projetos purpose=training` | Adicionar label a namespace de treino | AMARELO | developer | [03](../trilhas/03-projetos/README.md) | [oc-label-annotate](fichas/oc-label-annotate.md) |  |
+| 051 | `oc label namespace ac03-projetos purpose-` | Remover label específica | AMARELO | developer | [03](../trilhas/03-projetos/README.md) | [oc-label-annotate](fichas/oc-label-annotate.md) |  |
+| 052 | `oc annotate namespace ac03-projetos owner=academia` | Adicionar anotação | AMARELO | developer | [03](../trilhas/03-projetos/README.md) | [oc-label-annotate](fichas/oc-label-annotate.md) |  |
+| 053 | `oc annotate namespace ac03-projetos owner-` | Remover anotação | AMARELO | developer | [03](../trilhas/03-projetos/README.md) | [oc-label-annotate](fichas/oc-label-annotate.md) |  |
+| 054 | `oc get all -n ac03-projetos` | Consultar recursos básicos do projeto | VERDE | developer | [03](../trilhas/03-projetos/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 055 | `oc delete namespace ac03-projetos` | Limpar somente namespace criado para este exercício, após confirmação | AMARELO | developer | [03](../trilhas/03-projetos/README.md) | — |  |
 
 ## 04 — Pods, execução e logs
 

@@ -27,11 +27,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 3 (00, 01, 02) | 21 |
-| Microexercícios | 45 | 300+ |
-| Cenários de troubleshooting | 9 | 40+ |
+| Trilhas completas | 4 (00 a 03) | 21 |
+| Microexercícios | 60 | 300+ |
+| Cenários de troubleshooting | 12 | 40+ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 17 | — |
+| Fichas de comando | 18 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -73,7 +73,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 00 | [Orientação e segurança](trilhas/00-orientacao/README.md) | disponível |
 | 01 | [Navegação e CLI](trilhas/01-cli/README.md) | disponível |
 | 02 | [Leitura e inspeção](trilhas/02-consultas/README.md) | disponível |
-| 03–20 | [Projetos, Pods, Deployments, Services, Routes, Config, Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 03 | [Projetos e metadados](trilhas/03-projetos/README.md) | disponível |
+| 04–20 | [Pods, Deployments, Services, Routes, Config, Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
 
 ## Restrições do HomeLab
 

@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 45 | 300+ |
-| Cenários de troubleshooting | 9 | 40+ |
-| Fichas de comando | 17 | uma por família de comando |
-| Trilhas completas | 3 de 21 | 21 |
+| Microexercícios originais | 60 | 300+ |
+| Cenários de troubleshooting | 12 | 40+ |
+| Fichas de comando | 18 | uma por família de comando |
+| Trilhas completas | 4 de 21 | 21 |
 
 ## Matriz por família
 
@@ -27,6 +27,9 @@
 | Tipos e esquemas | CON-001, CON-002 | CON-001, CON-002 | — | TS-007 | CON-015 | — | VERDE |
 | Consulta e formatos | CON-004, CON-007 | CON-004 a CON-011 | CON-003 | CON-006, CON-009, TS-008 | CON-015 | imagem externa (alvo) | VERDE |
 | Eventos e espera | CON-012, CON-014 | CON-012, CON-013 | CON-014 | CON-014, TS-009 | CON-015 | imagem externa (alvo) | VERDE/AMARELO |
+| Rótulos e anotações | PRJ-003, PRJ-005 | PRJ-001, PRJ-007 | PRJ-003 a PRJ-006, PRJ-014 | PRJ-004, TS-012 | PRJ-015 | — | AMARELO |
+| Seletores e donos | PRJ-008, PRJ-009 | PRJ-013 | PRJ-008, PRJ-009 | TS-010 | PRJ-015 | imagem externa | AMARELO |
+| Ciclo de vida e versões | PRJ-010, PRJ-011 | PRJ-010, PRJ-011 | PRJ-011, PRJ-012 | PRJ-010, TS-011 | PRJ-015 | — | AMARELO |
 | Pods e contêineres | — | — | — | — | — | imagem externa | AMARELO |
 | Deployments e rollout | — | — | — | — | — | imagem externa | AMARELO |
 | Services, Routes, DNS | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
@@ -45,7 +48,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-02]
+    ID --> T00[Trilhas 00-03]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]
