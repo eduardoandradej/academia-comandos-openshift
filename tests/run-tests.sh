@@ -106,6 +106,8 @@ run "academy version" 0 "$ROOT/scripts/academy" version
 run "academy list" 0 "$ROOT/scripts/academy" list
 has "list mostra ORI-001" "ORI-001"
 has "list mostra ORI-015" "ORI-015"
+has "list mostra CON-015" "CON-015"
+has "list mostra cenário TS-009" "TS-009"
 run "academy list --trilha 00" 0 "$ROOT/scripts/academy" list --trilha 00
 has "filtro por trilha mostra a trilha pedida" "ORI-001"
 run "academy list --trilha 99 (vazia)" 0 "$ROOT/scripts/academy" list --trilha 99
@@ -126,6 +128,10 @@ has "review mostra só a ficha de revisão" "## Ficha de revisão"
 hasnt "review não mostra comandos guiados" "## Comandos guiados"
 run "academy where ORI-008" 0 "$ROOT/scripts/academy" where ORI-008
 has "where aponta o gabarito" "solucoes/00-orientacao/ORI-008.md"
+run "academy where CON-008" 0 "$ROOT/scripts/academy" where CON-008
+has "where aponta gabarito da trilha 02" "solucoes/02-consultas/CON-008.md"
+run "academy show TS-009 (cenário)" 0 "$ROOT/scripts/academy" show TS-009
+has "show de cenário imprime o sintoma" "## Sintoma"
 run "academy start não implementado" 3 "$ROOT/scripts/academy" start ORI-001
 run "academy comando desconhecido" 2 "$ROOT/scripts/academy" xyz
 : >"$MOCK_LOG"

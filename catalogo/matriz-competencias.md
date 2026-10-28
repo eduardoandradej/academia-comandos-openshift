@@ -1,0 +1,62 @@
+# Matriz de competências
+
+> Para cada família: onde se aprende a **explicar**, **observar**, **executar**, **diagnosticar** e **revisar**, quais
+> pré-requisitos o HomeLab precisa e o risco típico. "—" = ainda não produzido (trilha planejada).
+
+## Progresso do repositório
+
+| Meta | Atual | Alvo |
+|---|---:|---:|
+| Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
+| Microexercícios originais | 45 | 300+ |
+| Cenários de troubleshooting | 9 | 40+ |
+| Fichas de comando | 17 | uma por família de comando |
+| Trilhas completas | 3 de 21 | 21 |
+
+## Matriz por família
+
+| Família | Explicar | Observar | Executar | Diagnosticar | Revisar | Pré-requisitos | Risco |
+|---|---|---|---|---|---|---|---|
+| Ambiente e identidade | ORI-001, ORI-002 | ORI-002, ORI-003 | ORI-004 | TS-001 | ORI-009 | HTPasswd `homelab-users` | VERDE/AMARELO |
+| Saúde do cluster | ORI-005, ORI-006 | ORI-006, ORI-007, ORI-008 | — (somente leitura) | ORI-007, ORI-008, TS-002 | ORI-009 | perfil `admin`; métricas | VERDE |
+| Risco e permissão | ORI-010 | ORI-013 | ORI-014 | TS-003 | ORI-010 | — | VERDE |
+| Projetos e cotas | ORI-011, ORI-012 | ORI-013 | ORI-011, ORI-012, ORI-015 | ORI-011, ORI-015 | ORI-015 | `admin` para quota | AMARELO |
+| Sessão e kubeconfig | CLI-004, CLI-006 | CLI-005, CLI-006 | CLI-004, CLI-009 | TS-004, TS-005 | CLI-015 | ORI-004 | AMARELO (local) |
+| Projetos e contexto | CLI-007, CLI-008 | CLI-007 | CLI-007, CLI-008 | TS-006 | CLI-015 | — | AMARELO |
+| Ferramentas da CLI | CLI-002, CLI-003, CLI-012 | CLI-011 | CLI-003, CLI-012 | CLI-011, CLI-014 | CLI-015 | `bash-completion` | VERDE/AMARELO (local) |
+| Tipos e esquemas | CON-001, CON-002 | CON-001, CON-002 | — | TS-007 | CON-015 | — | VERDE |
+| Consulta e formatos | CON-004, CON-007 | CON-004 a CON-011 | CON-003 | CON-006, CON-009, TS-008 | CON-015 | imagem externa (alvo) | VERDE |
+| Eventos e espera | CON-012, CON-014 | CON-012, CON-013 | CON-014 | CON-014, TS-009 | CON-015 | imagem externa (alvo) | VERDE/AMARELO |
+| Pods e contêineres | — | — | — | — | — | imagem externa | AMARELO |
+| Deployments e rollout | — | — | — | — | — | imagem externa | AMARELO |
+| Services, Routes, DNS | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
+| ConfigMaps e Secrets | — | — | — | — | — | — | AMARELO |
+| Storage | — | — | — | — | — | **StorageClass/PV: NÃO DISPONÍVEL NO HOME LAB ATUAL** | AMARELO |
+| Imagens e registry | — | — | — | — | — | registry interno sem storage (verificar `managementState`) | AMARELO |
+| Resiliência e HPA | — | — | — | — | — | Metrics API | AMARELO |
+| Declarativo, Kustomize, Helm | parcial: ORI-012, ORI-014 | — | — | — | — | `helm` (REQUER PREPARAÇÃO) | AMARELO |
+| RBAC e identidade | parcial: ORI-003 | — | — | — | — | `admin`; usuários DO280 só no exercício | AMARELO/VERMELHO |
+| Rede e isolamento | parcial: CLI-014 | — | — | — | — | — | AMARELO |
+| Operadores e manutenção | parcial: ORI-007 | ORI-007 | — (somente observação) | — | — | — | VERDE |
+
+## Mapa de dependências do HomeLab
+
+```mermaid
+flowchart LR
+  subgraph disponivel[Disponível hoje]
+    API[API e OAuth] --> ID[admin e developer via HTPasswd]
+    ID --> T00[Trilhas 00-02]
+    IMG[Pull de registries externos] --> T02[Alvo de observação]
+  end
+  subgraph condicionado[Condicionado ou ausente]
+    SC[StorageClass / PV] -.-> T09[Trilha 09 Storage]
+    REG[Registry interno com storage] -.-> T10[Trilha 10 Imagens e builds]
+    DNS[Wildcard *.apps resolvendo no cliente] -.-> T07[Trilha 07 Routes]
+    MET[Metrics API] -.-> T11[Trilha 11 HPA]
+    HELM[Cliente helm] -.-> T14[Trilha 14 Helm]
+    LB[LoadBalancer / redes adicionais] -.-> X[Apenas conceitual no SNO]
+  end
+```
+
+Legenda: setas contínuas = dependência atendida no último checkpoint; tracejadas = **REQUER PREPARAÇÃO** ou
+**NÃO DISPONÍVEL NO HOME LAB ATUAL**. Confirme o estado real com `scripts/preflight.sh` (seção 7).

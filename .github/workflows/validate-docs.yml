@@ -1,0 +1,42 @@
+# Validação estática: Markdown, YAML, shell, estrutura, links internos, segredos e testes offline.
+# Não usa segredos e não contata nenhum cluster.
+name: validate-docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar ferramentas
+        run: |
+          npm install -g markdownlint-cli2@0.24.0
+          pip install --user yamllint shellcheck-py
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Markdown
+        run: markdownlint-cli2
+
+      - name: YAML
+        run: yamllint -c .yamllint.yaml .
+
+      - name: Shell
+        run: shellcheck scripts/*.sh scripts/academy scripts/lib/common.sh scripts/dev/*.sh tests/run-tests.sh tests/mocks/oc
+
+      - name: Estrutura, links e segredos
+        run: scripts/dev/check-repo.sh
+
+      - name: Testes offline dos scripts
+        run: tests/run-tests.sh

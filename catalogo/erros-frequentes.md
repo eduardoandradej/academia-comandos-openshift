@@ -1,0 +1,40 @@
+# Erros frequentes
+
+> Biblioteca de mensagens: o que significam, o primeiro comando de leitura a rodar e o atalho perigoso a evitar.
+> As mensagens são aproximadas; o texto exato varia com a versão.
+
+| Mensagem (trecho) | Significado provável | Primeiro comando | Atalho perigoso a evitar | Onde praticar |
+|---|---|---|---|---|
+| `Unauthorized` / `You must be logged in` | sessão sem token válido (expirou, logout) | `oc whoami`; `oc login -u <user>` | usar o kubeconfig do instalador "para resolver" | [TS-005](../cenarios/troubleshooting/TS-005.md) |
+| `Forbidden ... cannot <verbo> resource` | identidade conhecida, sem permissão | `oc auth can-i <verbo> <recurso> -n <ns>` | dar `cluster-admin` ao usuário | [TS-003](../cenarios/troubleshooting/TS-003.md), ORI-011 |
+| `... at the cluster scope` | pediu `-A` ou recurso de cluster sem permissão | `oc auth can-i list <recurso> --all-namespaces` | idem | CON-004 |
+| `NotFound` | nome, namespace ou tipo errado; objeto apagado | `oc get <tipo> -n <ns>`; `oc project -q` | recriar às cegas | [TS-006](../cenarios/troubleshooting/TS-006.md) |
+| `No resources found in X namespace` | resposta vazia (não é erro) | ler o namespace citado; `oc get ... -n <certo>` | — | TS-006 |
+| `the server doesn't have a resource type` | digitação ou tipo não servido (CRD ausente/API removida) | `oc api-resources \| grep -i <parte>` | instalar operadores para "ter o tipo" | [TS-007](../cenarios/troubleshooting/TS-007.md) |
+| `no such host` | DNS | `getent ahostsv4 <nome>` | editar DNS do host sem janela de manutenção | [TS-002](../cenarios/troubleshooting/TS-002.md) |
+| `connection refused` | host responde, sem serviço na porta | `timeout 3 bash -c '</dev/tcp/<h>/<p>'` | reiniciar a VM do SNO | TS-002 |
+| `i/o timeout` / `context deadline exceeded` | sem resposta: rede, VM parada ou API lenta | `time oc get --raw /readyz`; `--request-timeout=10s` | aumentar timeouts em scripts sem investigar | TS-002, CLI-011 |
+| `x509: certificate signed by unknown authority` | CA não informada/errada | `openssl s_client ... \| openssl x509 -noout -issuer` | `--insecure-skip-tls-verify` fora do HomeLab | ORI-004 |
+| `localhost:8080 was refused` / `Missing or incomplete configuration` | sem kubeconfig válido | `printenv KUBECONFIG`; `oc config get-contexts` | copiar o kubeconfig do instalador para `~/.kube/config` | [TS-004](../cenarios/troubleshooting/TS-004.md) |
+| `AlreadyExists` | `create` repetido | `oc get <tipo> <nome> -o yaml` | `delete` + `create` sem verificar dono | ORI-014 |
+| `exceeded quota: ac-quota` | admissão de quota recusou | `oc describe quota -n <ns>` | pedir para remover a quota | ORI-013 |
+| `ErrImagePull` / `ImagePullBackOff` | tag/repo inexistente, registry inacessível ou sem credencial | `oc describe pod <pod> \| sed -n '/Events:/,$p'` | trocar para imagem aleatória "que funciona" sem entender | [TS-009](../cenarios/troubleshooting/TS-009.md) |
+| `CrashLoopBackOff` | o processo do contêiner termina repetidamente | `oc logs <pod> --previous` | aumentar limites às cegas | Trilha 04 (planejada) |
+| `CreateContainerConfigError` | ConfigMap/Secret/chave referenciados ausentes | `oc describe pod` (Events) | criar Secret com valores inventados | Trilha 08 (planejada) |
+| `Pending` + `FailedScheduling` | sem recursos (requests) ou restrições de agendamento | `oc describe pod`; `oc describe node` (admin) | remover requests/limits | Trilha 11 (planejada) |
+| `Readiness probe failed` / `Liveness probe failed` | probe com caminho/porta errados ou app lenta | `oc describe pod` (Events) | desligar probes definitivamente | Trilha 11 (planejada) |
+| Route responde `503` | Route sem endpoints prontos (seletor/porta/readiness) | `oc get endpointslices -n <ns>`; `oc describe svc` | apontar a Route direto para o pod | Trilha 07 (planejada) |
+| `error: timed out waiting for the condition` | `oc wait` expirou | `oc rollout status ... --timeout=5s`; eventos `Warning` | remover o `--timeout` | CON-014 |
+| `the object has been modified` | `resourceVersion` antigo no manifesto | `grep resourceVersion <arquivo>` | `--force` | CON-013 |
+| `field label not supported` | campo não indexado para `--field-selector` | use jsonpath/jq no cliente | — | CON-006 |
+| JSONPath sem saída e sem erro | caminho ou caixa errados; faltou `.items` | `-o json \| jq 'keys'` | — | [TS-008](../cenarios/troubleshooting/TS-008.md) |
+| Projeto em `Terminating` por muito tempo | conteúdo/finalizers ainda sendo removidos | condições do namespace (admin) | remover finalizers à mão | ORI-015 |
+
+## Método
+
+1. Leia a mensagem inteira e classifique a camada: sessão, permissão, nome/escopo, rede, admissão, execução.
+2. Rode o primeiro comando **de leitura** da tabela.
+3. Formule no máximo três hipóteses e teste uma por vez.
+4. Corrija dentro do projeto de laboratório; nunca "corrija" mexendo em `openshift-*` ou no nó.
+
+Mais detalhes em [docs/08-troubleshooting.md](../docs/08-troubleshooting.md).
