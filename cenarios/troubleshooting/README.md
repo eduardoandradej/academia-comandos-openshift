@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 30 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 33 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -37,5 +37,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-028](TS-028.md) | PVC que nunca fica Bound (ou nem é criado) | 09 | MUTAÇÃO LOCAL |
 | [TS-029](TS-029.md) | Os dados sumiram depois do deploy | 09 | MUTAÇÃO LOCAL |
 | [TS-030](TS-030.md) | Pod Evicted: o disco também tem limite | 09 | MUTAÇÃO LOCAL |
+| [TS-031](TS-031.md) | ImagePullBackOff com nome curto: o ImageStream que o pod não encontra | 10 | MUTAÇÃO LOCAL |
+| [TS-032](TS-032.md) | Mudei a tag e a aplicação continua na versão antiga | 10 | MUTAÇÃO LOCAL |
+| [TS-033](TS-033.md) | InvalidImageName: o pod que nem tenta baixar | 10 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 150 | 300+ |
-| Cenários de troubleshooting | 30 | 40+ |
-| Fichas de comando | 31 | uma por família de comando |
-| Trilhas completas | 10 de 21 | 21 |
+| Microexercícios originais | 165 | 300+ |
+| Cenários de troubleshooting | 33 | 40+ |
+| Fichas de comando | 32 | uma por família de comando |
+| Trilhas completas | 11 de 21 | 21 |
 
 ## Matriz por família
 
@@ -39,7 +39,7 @@
 | Routes e Ingress | RTE-001, RTE-002, RTE-006 | RTE-005, RTE-013 | RTE-001 a RTE-012 | RTE-014, TS-022 a TS-024 | RTE-015 | wildcard `*.apps` resolvendo | AMARELO |
 | ConfigMaps e Secrets | CFG-001, CFG-004, CFG-005 | CFG-003, CFG-014 | CFG-001 a CFG-013 | CFG-004, TS-025 a TS-027 | CFG-015 | imagem externa | AMARELO |
 | Storage | STO-001, STO-007, STO-011 | STO-006 | STO-002 a STO-005; STO-008 a STO-013 (REQUER PREPARAÇÃO) | STO-014, TS-028 a TS-030 | STO-015 | PV/PVC: **REQUER PREPARAÇÃO** (docs/10) | AMARELO |
-| Imagens e registry | — | — | — | — | — | registry interno sem storage (verificar `managementState`) | AMARELO |
+| Imagens e registry | IMG-001, IMG-003, IMG-005 | IMG-002, IMG-010, IMG-011 | IMG-004 a IMG-009, IMG-012, IMG-013 | IMG-014, TS-031 a TS-033 | IMG-015 | registry interno desligado: `Local`/builds REQUER PREPARAÇÃO | AMARELO |
 | Resiliência e HPA | — | — | — | — | — | Metrics API | AMARELO |
 | Declarativo, Kustomize, Helm | parcial: ORI-012, ORI-014 | — | — | — | — | `helm` (REQUER PREPARAÇÃO) | AMARELO |
 | RBAC e identidade | parcial: ORI-003 | — | — | — | — | `admin`; usuários DO280 só no exercício | AMARELO/VERMELHO |
@@ -52,7 +52,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-09]
+    ID --> T00[Trilhas 00-10]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

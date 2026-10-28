@@ -27,6 +27,9 @@
 | `exceeded quota ... persistentvolumeclaims=0` | baseline da Academia proíbe PVCs | `oc describe quota -n <ns>` | pedir para zerar a quota em todos os projetos | [TS-028](../cenarios/troubleshooting/TS-028.md) |
 | PVC `Pending`: `no persistent volumes available ... no storage class is set` | sem classe padrão e sem PV compatível | `oc describe pvc`; `oc get sc` | criar PV `hostPath` no nó | [TS-028](../cenarios/troubleshooting/TS-028.md) |
 | `Evicted` ... `ephemeral local storage usage exceeds` | pod passou do `limits.ephemeral-storage` | `.status.message` do pod | remover o limite | [TS-030](../cenarios/troubleshooting/TS-030.md) |
+| `InvalidImageName` | referência com maiúsculas/caracteres inválidos | `oc get pod -o jsonpath='{.spec.containers[0].image}' \| od -c` | trocar de imagem às cegas | [TS-033](../cenarios/troubleshooting/TS-033.md) |
+| `ErrImagePull` com nome de ImageStream (`docker.io/library/<is>`) | ImageStream sem image-lookup | `oc set image-lookup -n <ns>` | qualificar à mão com o registry interno | [TS-031](../cenarios/troubleshooting/TS-031.md) |
+| `ErrImageNeverPull` | política `Never` e imagem fora do cache | eventos do pod | — | IMG-004 |
 | `Pending` + `FailedScheduling` | sem recursos (requests) ou restrições de agendamento | `oc describe pod`; `oc describe node` (admin) | remover requests/limits; rotular o nó para "encaixar" | [TS-014](../cenarios/troubleshooting/TS-014.md) |
 | `OOMKilled` / código 137 | o contêiner passou do `limits.memory` | `oc get pod <pod> -o jsonpath='{.status.containerStatuses[0].lastState}'` | remover o limite de memória | [TS-015](../cenarios/troubleshooting/TS-015.md) |
 | código 127 em `oc exec` | o utilitário não existe na imagem | `oc exec <pod> -- sh -c 'command -v <cmd>'` | instalar pacotes dentro do contêiner | POD-006 |
