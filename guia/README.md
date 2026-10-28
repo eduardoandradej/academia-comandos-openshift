@@ -16,6 +16,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [08 — ConfigMaps e Secrets](08-config.md) | criar ConfigMaps e Secrets, variáveis, arquivos, subPath, TLS, pull secret, imutáveis, extract, quem lê Secrets |
 | [09 — Storage](09-storage.md) | volumes, emptyDir, efêmero e despejo, PVC, modos de acesso, expansão, StatefulSet (PVC: REQUER PREPARAÇÃO) |
 | [10 — Imagens e registries](10-imagens.md) | referência e digest, `oc image info`, pull policy, ImageStreams, `oc tag`, image-lookup, gatilhos, registry interno |
+| [11 — Resiliência](11-resiliencia.md) | requests/limits, `oc adm top`, readiness/liveness/startup, autocura, preStop, rollout sem queda, HPA, PDB |
 
 Regras rápidas:
 

@@ -38,7 +38,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 9. [Trilha 08](../trilhas/08-config/README.md) — ConfigMaps e Secrets.
 10. [Trilha 09](../trilhas/09-storage/README.md) — Storage (PV/PVC: [preparação](10-preparacao-storage.md)).
 11. [Trilha 10](../trilhas/10-imagens/README.md) — Imagens e registries.
-12. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-033 intercalados, conforme a trilha.
+12. [Trilha 11](../trilhas/11-resiliencia/README.md) — Resiliência.
+13. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-036 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 

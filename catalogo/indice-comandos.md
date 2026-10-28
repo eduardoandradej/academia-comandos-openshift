@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–10 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–11 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -201,16 +201,16 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 138 | `oc adm top nodes` | Uso de CPU e memória do nó | VERDE | admin | 11 | — |  |
-| 139 | `oc adm top pods -n <ns>` | Uso de recursos por Pod | VERDE | developer | 11 | — |  |
-| 140 | `oc describe node ocp-sno.ocp.example.lab` | Allocatable, Capacity, condições e eventos | VERDE | admin | 11 | [oc-describe](fichas/oc-describe.md) |  |
-| 141 | `oc set probe deploy/demo --readiness --get-url=http://:8080/ -n <ns>` | Exemplo de readiness; conferir sintaxe e porta do contêiner | AMARELO | developer | 11 | — | a página padrão do httpd da UBI responde 403 em /; use tcpSocket ou um caminho que exista |
-| 142 | `oc set probe deploy/demo --liveness --get-url=http://:8080/ -n <ns>` | Exemplo de liveness; validar com imagem adequada | AMARELO | developer | 11 | — | mesma observação do 141 |
-| 143 | `oc autoscale deploy/demo --min=1 --max=2 --cpu-percent=75 -n <ns>` | HPA limitado ao laboratório, se metrics estiverem disponíveis | AMARELO | developer | 11 | — | depende da Metrics API; teto de 2 réplicas |
-| 144 | `oc get hpa -n <ns>` | Listar autoscalers | VERDE | developer | 11 | [oc-get](fichas/oc-get.md) |  |
-| 145 | `oc describe hpa demo -n <ns>` | Ver métricas e decisões | VERDE | developer | 11 | — |  |
-| 146 | `oc get pdb -n <ns>` | Consultar PodDisruptionBudgets | VERDE | developer | 11 | [oc-get](fichas/oc-get.md) |  |
-| 147 | `oc get pods -n <ns> -o custom-columns=NAME:.metadata.name,RESTARTS:.status.containerStatuses[0].restartCount` | Contar reinícios | VERDE | developer | 11 | [oc-get](fichas/oc-get.md) |  |
+| 138 | `oc adm top nodes` | Uso de CPU e memória do nó | VERDE | admin | [11](../trilhas/11-resiliencia/README.md) | [oc-set-probe-autoscale](fichas/oc-set-probe-autoscale.md) |  |
+| 139 | `oc adm top pods -n <ns>` | Uso de recursos por Pod | VERDE | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-set-probe-autoscale](fichas/oc-set-probe-autoscale.md) |  |
+| 140 | `oc describe node ocp-sno.ocp.example.lab` | Allocatable, Capacity, condições e eventos | VERDE | admin | [11](../trilhas/11-resiliencia/README.md) | [oc-describe](fichas/oc-describe.md) |  |
+| 141 | `oc set probe deploy/demo --readiness --get-url=http://:8080/ -n <ns>` | Exemplo de readiness; conferir sintaxe e porta do contêiner | AMARELO | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-set-probe-autoscale](fichas/oc-set-probe-autoscale.md) | a página padrão do httpd da UBI responde 403 em /; use tcpSocket ou um caminho que exista |
+| 142 | `oc set probe deploy/demo --liveness --get-url=http://:8080/ -n <ns>` | Exemplo de liveness; validar com imagem adequada | AMARELO | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-set-probe-autoscale](fichas/oc-set-probe-autoscale.md) | mesma observação do 141 |
+| 143 | `oc autoscale deploy/demo --min=1 --max=2 --cpu-percent=75 -n <ns>` | HPA limitado ao laboratório, se metrics estiverem disponíveis | AMARELO | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-set-probe-autoscale](fichas/oc-set-probe-autoscale.md) | depende da Metrics API; teto de 2 réplicas |
+| 144 | `oc get hpa -n <ns>` | Listar autoscalers | VERDE | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 145 | `oc describe hpa demo -n <ns>` | Ver métricas e decisões | VERDE | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-set-probe-autoscale](fichas/oc-set-probe-autoscale.md) |  |
+| 146 | `oc get pdb -n <ns>` | Consultar PodDisruptionBudgets | VERDE | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 147 | `oc get pods -n <ns> -o custom-columns=NAME:.metadata.name,RESTARTS:.status.containerStatuses[0].restartCount` | Contar reinícios | VERDE | developer | [11](../trilhas/11-resiliencia/README.md) | [oc-get](fichas/oc-get.md) |  |
 
 ## 11 — Declarativo, patch e differencing
 

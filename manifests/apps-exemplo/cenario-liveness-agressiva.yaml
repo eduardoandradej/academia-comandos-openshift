@@ -1,0 +1,45 @@
+# Trilha 11 (RES-014, TS-034): liveness por comando que leva 2 s com timeoutSeconds 1 -> reinícios em série.
+#   oc apply --dry-run=server -f manifests/apps-exemplo/cenario-liveness-agressiva.yaml -n ac11-resiliencia
+#   oc apply -f manifests/apps-exemplo/cenario-liveness-agressiva.yaml -n ac11-resiliencia
+# Limpeza: oc delete -f manifests/apps-exemplo/cenario-liveness-agressiva.yaml -n ac11-resiliencia
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac11-agressivo
+  labels:
+    app: ac11-agressivo
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-034
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac11-agressivo
+  template:
+    metadata:
+      labels:
+        app: ac11-agressivo
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 2; test -d /var/www/html"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 1
+            failureThreshold: 1
+          resources:
+            requests: {cpu: 20m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

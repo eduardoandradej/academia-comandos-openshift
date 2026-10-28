@@ -37,4 +37,4 @@ flowchart LR
 ## Material
 
 - Biblioteca de mensagens: [catalogo/erros-frequentes.md](../catalogo/erros-frequentes.md).
-- Cenários: [cenarios/troubleshooting/](../cenarios/troubleshooting/README.md) (33 de 40 planejados).
+- Cenários: [cenarios/troubleshooting/](../cenarios/troubleshooting/README.md) (36 de 40 planejados).

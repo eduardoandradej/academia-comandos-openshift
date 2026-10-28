@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 33 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 36 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -40,5 +40,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-031](TS-031.md) | ImagePullBackOff com nome curto: o ImageStream que o pod não encontra | 10 | MUTAÇÃO LOCAL |
 | [TS-032](TS-032.md) | Mudei a tag e a aplicação continua na versão antiga | 10 | MUTAÇÃO LOCAL |
 | [TS-033](TS-033.md) | InvalidImageName: o pod que nem tenta baixar | 10 | MUTAÇÃO LOCAL |
+| [TS-034](TS-034.md) | Reinícios em série: a liveness que mata o que está saudável | 11 | MUTAÇÃO LOCAL |
+| [TS-035](TS-035.md) | HPA com TARGETS `<unknown>` | 11 | MUTAÇÃO LOCAL |
+| [TS-036](TS-036.md) | Evicção recusada: o PDB que trava a manutenção | 11 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

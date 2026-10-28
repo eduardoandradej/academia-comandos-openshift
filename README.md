@@ -25,6 +25,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [08 — ConfigMaps e Secrets](guia/08-config.md) | criar ConfigMaps e Secrets, variáveis, arquivos, subPath, TLS, pull secret, imutáveis, extract, quem lê Secrets |
 | [09 — Storage](guia/09-storage.md) | volumes, emptyDir, efêmero e despejo, PVC, modos de acesso, expansão, StatefulSet (PVC: REQUER PREPARAÇÃO) |
 | [10 — Imagens e registries](guia/10-imagens.md) | referência e digest, `oc image info`, pull policy, ImageStreams, `oc tag`, image-lookup, gatilhos, registry interno |
+| [11 — Resiliência](guia/11-resiliencia.md) | requests/limits, `oc adm top`, readiness/liveness/startup, autocura, preStop, rollout sem queda, HPA, PDB |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -48,11 +49,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 11 (00 a 10) | 21 |
-| Microexercícios | 165 | 300+ |
-| Cenários de troubleshooting | 33 | 40+ |
+| Trilhas completas | 12 (00 a 11) | 21 |
+| Microexercícios | 180 | 300+ |
+| Cenários de troubleshooting | 36 | 40+ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 32 | — |
+| Fichas de comando | 33 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -102,7 +103,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 08 | [ConfigMaps e Secrets](trilhas/08-config/README.md) | disponível |
 | 09 | [Storage](trilhas/09-storage/README.md) | disponível (PV/PVC: REQUER PREPARAÇÃO) |
 | 10 | [Imagens e registries](trilhas/10-imagens/README.md) | disponível |
-| 11–20 | [Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 11 | [Resiliência](trilhas/11-resiliencia/README.md) | disponível |
+| 12–20 | [Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
 
 ## Restrições do HomeLab
 

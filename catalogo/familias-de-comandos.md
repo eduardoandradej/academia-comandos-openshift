@@ -1,7 +1,7 @@
 # Famílias de comandos
 
 > Mapa das famílias do catálogo, com as comparações que mais confundem. Cada família aponta para a trilha onde é
-> praticada. Trilhas 00–10 estão disponíveis; as demais são planejadas.
+> praticada. Trilhas 00–11 estão disponíveis; as demais são planejadas.
 
 ## Visão geral
 
@@ -11,7 +11,7 @@
 | Consulta | `api-resources`, `explain`, `get`, `describe`, `events`, `wait`, `get --raw` | 02 | [get](fichas/oc-get.md), [describe](fichas/oc-describe.md), [explain](fichas/oc-explain.md) |
 | Projetos e metadados | `new-project`, `label`, `annotate`, seletores, `ownerReferences`, finalizers | 00, 03 | [new-project](fichas/oc-new-project.md), [label/annotate](fichas/oc-label-annotate.md) |
 | Pods e diagnóstico | `run`, `logs`, `exec`, `rsh`, `cp`, `attach`, `port-forward`, `debug` | 04 | [run](fichas/oc-run.md), [logs](fichas/oc-logs.md), [exec/rsh/cp/debug](fichas/oc-exec-rsh.md), [port-forward](fichas/oc-port-forward.md) |
-| Aplicações | `create deployment`, `new-app`, `scale`, `rollout`, `set`, `create job/cronjob` | 05, 11 | [deployment/scale](fichas/oc-create-deployment-scale.md), [rollout](fichas/oc-rollout.md), [set](fichas/oc-set.md), [job/cronjob](fichas/oc-create-job-cronjob.md) |
+| Aplicações | `create deployment`, `new-app`, `scale`, `rollout`, `set`, `create job/cronjob` | 05, 11 | [deployment/scale](fichas/oc-create-deployment-scale.md), [rollout](fichas/oc-rollout.md), [set](fichas/oc-set.md), [job/cronjob](fichas/oc-create-job-cronjob.md), [probe/autoscale](fichas/oc-set-probe-autoscale.md) |
 | Rede | `expose`, `create service`, `set selector`, `create route`, `set route-backends`, `curl`, `openssl` | 06, 07, 16 | [expose/service](fichas/oc-expose-service.md), [route](fichas/oc-route.md) |
 | Configuração e volumes | `create configmap/secret`, `set env`, `set volume`, `set data`, `extract`, `secrets link`, `get pv,pvc,sc` | 08, 09 | [configmap/secret](fichas/oc-configmap-secret.md), [set volume](fichas/oc-set-volume.md), [pvc/storage](fichas/oc-pvc-storage.md) |
 | Imagens | `image info`, `image extract`, `imagestream`, `tag`, `import-image`, `set image-lookup`, `set triggers` | 10 | [image/imagestream](fichas/oc-image-imagestream.md) |

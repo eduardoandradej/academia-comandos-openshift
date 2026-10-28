@@ -34,7 +34,9 @@
 | `OOMKilled` / código 137 | o contêiner passou do `limits.memory` | `oc get pod <pod> -o jsonpath='{.status.containerStatuses[0].lastState}'` | remover o limite de memória | [TS-015](../cenarios/troubleshooting/TS-015.md) |
 | código 127 em `oc exec` | o utilitário não existe na imagem | `oc exec <pod> -- sh -c 'command -v <cmd>'` | instalar pacotes dentro do contêiner | POD-006 |
 | `Unable to listen on port ... address already in use` | port-forward anterior aberto | `pgrep -af 'oc port-forward'` | — | POD-009 |
-| `Readiness probe failed` / `Liveness probe failed` | probe com caminho/porta errados ou app lenta | `oc describe pod` (Events) | desligar probes definitivamente | Trilha 11 (planejada) |
+| `Readiness probe failed` / `Liveness probe failed` | probe com caminho/porta errados ou app lenta (403 em `/` na UBI) | `oc describe pod` (Events) | desligar probes definitivamente | RES-004, [TS-034](../cenarios/troubleshooting/TS-034.md) |
+| HPA `TARGETS <unknown>` | sem `requests.cpu` ou sem Metrics API | `oc describe hpa` (Conditions) | remover o HPA | [TS-035](../cenarios/troubleshooting/TS-035.md) |
+| `Cannot evict pod as it would violate the pod's disruption budget` | PDB com `ALLOWED DISRUPTIONS 0` | `oc get pdb` | apagar o PDB sem avisar o dono | [TS-036](../cenarios/troubleshooting/TS-036.md) |
 | Route responde `503` | Route sem endpoints prontos (seletor/porta/readiness) | `oc get endpointslices -n <ns>`; `oc describe svc` | apontar a Route direto para o pod | [TS-022](../cenarios/troubleshooting/TS-022.md) |
 | Route com `Admitted=False` / `HostAlreadyClaimed` | outra Route mais antiga usa o host | `status.ingress[0].conditions` | apagar Routes de outros | [TS-023](../cenarios/troubleshooting/TS-023.md) |
 | `Could not resolve host` para uma Route | hostname fora de `*.apps` ou sem linha no `hosts` do Windows | `getent ahostsv4 <host>`; `curl -H Host:` para 192.168.10.200 | — | [TS-024](../cenarios/troubleshooting/TS-024.md) |

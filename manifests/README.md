@@ -24,6 +24,7 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`apps-exemplo/emptydir-compartilhado.yaml`](apps-exemplo/emptydir-compartilhado.yaml) | Pod com dois contêineres trocando arquivos por `emptyDir` | developer | STO-002 |
 | [`apps-exemplo/cenario-evicted-efemero.yaml`](apps-exemplo/cenario-evicted-efemero.yaml) | Pod que estoura o `ephemeral-storage` (32 MiB) | developer | STO-005, TS-030 |
 | [`apps-exemplo/statefulset-mini.yaml`](apps-exemplo/statefulset-mini.yaml) | StatefulSet com um PVC por réplica (REQUER PREPARAÇÃO) | developer | STO-013 |
+| [`apps-exemplo/cenario-liveness-agressiva.yaml`](apps-exemplo/cenario-liveness-agressiva.yaml) | Deployment com liveness mais lenta que o próprio timeout | developer | RES-014, TS-034 |
 | [`preparacao/storage-nfs-pv.yaml`](preparacao/storage-nfs-pv.yaml) | 3 PVs NFS estáticos (opção A da preparação de storage) | admin | docs/10 |
 | [`preparacao/quota-storage-ac09.yaml`](preparacao/quota-storage-ac09.yaml) | quota do `ac09-storage` liberando 3 PVCs / 3Gi | admin | docs/10 |
 
