@@ -43,7 +43,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 14. [Trilha 13](../trilhas/13-kustomize/README.md) — Kustomize e Templates.
 15. [Trilha 14](../trilhas/14-helm/README.md) — Helm (cliente: [preparação](11-preparacao-helm.md)).
 16. [Trilha 15](../trilhas/15-rbac/README.md) — Usuários, identidade e RBAC.
-17. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-048 intercalados, conforme a trilha.
+17. [Trilha 16](../trilhas/16-rede/README.md) — Rede e isolamento.
+18. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-051 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 

@@ -1,0 +1,21 @@
+# NET-009: libera a saída dos clientes (app=ac16-cliente) só para a loja do próprio projeto, porta 8080.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac16-saida-loja
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector:
+    matchLabels:
+      app: ac16-cliente
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: loja
+      ports:
+        - protocol: TCP
+          port: 8080

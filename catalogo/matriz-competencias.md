@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 240 | 300+ |
-| Cenários de troubleshooting | 48 | 40+ ✔ |
-| Fichas de comando | 37 | uma por família de comando |
-| Trilhas completas | 16 de 21 | 21 |
+| Microexercícios originais | 255 | 300+ |
+| Cenários de troubleshooting | 51 | 40+ ✔ |
+| Fichas de comando | 38 | uma por família de comando |
+| Trilhas completas | 17 de 21 | 21 |
 
 ## Matriz por família
 
@@ -45,7 +45,7 @@
 | Kustomize e Templates | KUS-001, KUS-010, KUS-013 | KUS-005 | KUS-002 a KUS-012 | KUS-014, TS-040 a TS-042 | KUS-015 | — | AMARELO |
 | Helm | HLM-002, HLM-005, HLM-013 | HLM-004, HLM-012 | HLM-003 a HLM-011 | HLM-014, TS-043 a TS-045 | HLM-015 | cliente `helm` (REQUER PREPARAÇÃO) | AMARELO |
 | RBAC e identidade | RBC-001, RBC-003, RBC-012 | RBC-010, RBC-011, RBC-013 | RBC-002 a RBC-008 | RBC-014, TS-046 a TS-048 | RBC-015 | `admin`; usuários DO280 só via docs/12 | AMARELO/VERMELHO |
-| Rede e isolamento | parcial: CLI-014 | — | — | — | — | — | AMARELO |
+| Rede e isolamento | NET-001, NET-005, NET-011 | NET-010, NET-012 | NET-002 a NET-009, NET-013 | NET-014, TS-049 a TS-051 | NET-015 | — | AMARELO |
 | Operadores e manutenção | parcial: ORI-007 | ORI-007 | — (somente observação) | — | — | — | VERDE |
 
 ## Mapa de dependências do HomeLab
@@ -54,7 +54,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-15]
+    ID --> T00[Trilhas 00-16]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

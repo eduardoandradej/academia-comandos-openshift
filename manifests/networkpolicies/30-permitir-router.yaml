@@ -1,0 +1,22 @@
+# NET-007: libera a entrada vinda do router (Ingress Controller) para a loja, só na porta 8080.
+# O namespace do router tem o rótulo policy-group.network.openshift.io/ingress="".
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac16-router
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector:
+    matchLabels:
+      app: loja
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              policy-group.network.openshift.io/ingress: ""
+      ports:
+        - protocol: TCP
+          port: 8080

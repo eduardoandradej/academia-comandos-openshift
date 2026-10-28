@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–15 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–16 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -275,16 +275,16 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 192 | `oc get networkpolicy -n <ns>` | Listar políticas de rede | VERDE | developer | 16 | [oc-get](fichas/oc-get.md) | duplicata intencional do 104 |
-| 193 | `oc describe networkpolicy <nome> -n <ns>` | Inspecionar regras ingress/egress | VERDE | developer | 16 | — |  |
-| 194 | `oc apply -f ./networkpolicy-demo.yaml -n <ns>` | Isolar somente pods etiquetados do treino | AMARELO | developer | 16 | — |  |
+| 192 | `oc get networkpolicy -n <ns>` | Listar políticas de rede | VERDE | developer | [16](../trilhas/16-rede/README.md) | [oc-networkpolicy](fichas/oc-networkpolicy.md) | duplicata intencional do 104 |
+| 193 | `oc describe networkpolicy <nome> -n <ns>` | Inspecionar regras ingress/egress | VERDE | developer | [16](../trilhas/16-rede/README.md) | [oc-networkpolicy](fichas/oc-networkpolicy.md) |  |
+| 194 | `oc apply -f ./networkpolicy-demo.yaml -n <ns>` | Isolar somente pods etiquetados do treino | AMARELO | developer | [16](../trilhas/16-rede/README.md) | [oc-networkpolicy](fichas/oc-networkpolicy.md) |  |
 | 195 | `oc get route <nome> -n <ns> -o yaml` | Inspecionar TLS na Route | VERDE | developer | [07](../trilhas/07-rotas/README.md) | [oc-route](fichas/oc-route.md) |  |
 | 196 | `openssl s_client -connect 192.168.10.200:443 -servername console-openshift-console.apps.ocp.example.lab </dev/null` | Inspecionar certificado por SNI | VERDE | local | [07](../trilhas/07-rotas/README.md) | — |  |
 | 197 | `curl -I -k https://console-openshift-console.apps.ocp.example.lab` | Cabeçalhos HTTP via TLS | VERDE | local | [07](../trilhas/07-rotas/README.md) | — |  |
-| 198 | `oc get ingresscontroller -n openshift-ingress-operator` | Consultar Ingress Controllers | VERDE | admin | 16 | — |  |
-| 199 | `oc get clusteroperator ingress` | Verificar saúde do Ingress | VERDE | admin | 16 | — |  |
-| 200 | `oc get dns.operator/default -o yaml` | Consultar DNS Operator sem mudança | VERDE | admin | 16 | — |  |
-| 201 | `oc get network.operator cluster -o yaml` | Consultar configuração CNI global sem alteração | VERDE | admin | 16 | — |  |
+| 198 | `oc get ingresscontroller -n openshift-ingress-operator` | Consultar Ingress Controllers | VERDE | admin | [16](../trilhas/16-rede/README.md) | — |  |
+| 199 | `oc get clusteroperator ingress` | Verificar saúde do Ingress | VERDE | admin | [16](../trilhas/16-rede/README.md) | — |  |
+| 200 | `oc get dns.operator/default -o yaml` | Consultar DNS Operator sem mudança | VERDE | admin | [16](../trilhas/16-rede/README.md) | — |  |
+| 201 | `oc get network.operator cluster -o yaml` | Consultar configuração CNI global sem alteração | VERDE | admin | [16](../trilhas/16-rede/README.md) | [oc-networkpolicy](fichas/oc-networkpolicy.md) |  |
 
 ## 15 — Administração e diagnóstico do cluster
 
@@ -315,14 +315,14 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 |---:|---|---|---|---|---|---|---|
 | 220 | `jq -r '.items[].metadata.name' < resources.json` | Filtrar nomes em JSON exportado | VERDE | local | [00](../trilhas/00-orientacao/README.md) | [jq](fichas/jq.md) |  |
 | 221 | `python3 -m json.tool resources.json` | Validar/formatar JSON local | VERDE | local | [00](../trilhas/00-orientacao/README.md) | — |  |
-| 222 | `command -v oc kubectl jq` | Checar ferramentas disponíveis | VERDE | local | 16 | — |  |
-| 223 | `printenv KUBECONFIG` | Conferir kubeconfig em uso sem revelar conteúdo | VERDE | local | 16 | — |  |
-| 224 | `curl -ksS https://api.ocp.example.lab:6443/readyz` | Conferir API externamente | VERDE | local | 16 | — | duplicata intencional do 100 |
-| 225 | `hostnamectl` | Identificação do sistema local | VERDE | local | 16 | — |  |
-| 226 | `ip -br addr` | Endereços de rede locais | VERDE | local | 16 | — |  |
-| 227 | `ip route` | Tabela de rotas local | VERDE | local | 16 | — |  |
-| 228 | `ss -tln` | Sockets TCP localmente | VERDE | local | 16 | — |  |
-| 229 | `chronyc tracking` | Condição de sincronização NTP local | VERDE | local | 16 | — |  |
+| 222 | `command -v oc kubectl jq` | Checar ferramentas disponíveis | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
+| 223 | `printenv KUBECONFIG` | Conferir kubeconfig em uso sem revelar conteúdo | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
+| 224 | `curl -ksS https://api.ocp.example.lab:6443/readyz` | Conferir API externamente | VERDE | local | [16](../trilhas/16-rede/README.md) | — | duplicata intencional do 100 |
+| 225 | `hostnamectl` | Identificação do sistema local | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
+| 226 | `ip -br addr` | Endereços de rede locais | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
+| 227 | `ip route` | Tabela de rotas local | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
+| 228 | `ss -tln` | Sockets TCP localmente | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
+| 229 | `chronyc tracking` | Condição de sincronização NTP local | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
 | 230 | `journalctl -b -u kubelet -n 50 --no-pager` | Logs kubelet quando conectado ao RHCOS | VERDE | core@ocp-sno (leitura) | 19 | — |  |
 | 231 | `sudo crictl ps` | Contêineres CRI-O no RHCOS, somente leitura | VERDE | core@ocp-sno (leitura) | 19 | — |  |
 | 232 | `virsh domstate ocp-sno` | Estado VM (executar no kvm-server) | VERDE | kvm-server | [00](../trilhas/00-orientacao/README.md) | — |  |

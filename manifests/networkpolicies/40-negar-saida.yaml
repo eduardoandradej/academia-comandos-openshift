@@ -1,0 +1,11 @@
+# NET-008: nega TODA saída dos pods do projeto (inclusive DNS!). Use com 50-permitir-dns.yaml.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac16-negar-saida
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress

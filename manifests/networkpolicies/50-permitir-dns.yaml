@@ -1,0 +1,22 @@
+# NET-008: libera a saída para o DNS do cluster (pods do openshift-dns escutam na 5353; a política
+# vale depois da tradução do Service, por isso a porta é 5353, não 53).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac16-dns
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: openshift-dns
+      ports:
+        - protocol: UDP
+          port: 5353
+        - protocol: TCP
+          port: 5353

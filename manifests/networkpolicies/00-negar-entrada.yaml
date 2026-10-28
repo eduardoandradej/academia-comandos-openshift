@@ -1,0 +1,12 @@
+# NET-003: nega TODA entrada aos pods do projeto (podSelector vazio = todos os pods).
+# Aplicar só em ac16-rede:  oc apply -f manifests/networkpolicies/00-negar-entrada.yaml -n ac16-rede
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac16-negar-entrada
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress

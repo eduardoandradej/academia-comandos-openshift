@@ -29,6 +29,7 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`kustomize/`](kustomize/README.md) | base e overlays `dev`/`prod` da loja `ac13-loja` | developer | Trilha 13 |
 | [`templates/ac13-template.yaml`](templates/ac13-template.yaml) | Template do OpenShift com parâmetros e valor gerado | developer | Trilha 13 |
 | [`helm/ac14-loja/`](helm/ac14-loja/README.md) | chart Helm de treino (valores, schema, helpers, teste) | developer | Trilha 14 |
+| [`networkpolicies/`](networkpolicies/README.md) | políticas de entrada e saída para os projetos `ac16-*` | developer | Trilha 16 |
 | [`preparacao/storage-nfs-pv.yaml`](preparacao/storage-nfs-pv.yaml) | 3 PVs NFS estáticos (opção A da preparação de storage) | admin | docs/10 |
 | [`preparacao/quota-storage-ac09.yaml`](preparacao/quota-storage-ac09.yaml) | quota do `ac09-storage` liberando 3 PVCs / 3Gi | admin | docs/10 |
 

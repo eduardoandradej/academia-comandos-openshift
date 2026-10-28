@@ -1,0 +1,25 @@
+# NET-005: libera a loja (app=loja) só para pods app=ac16-cliente do projeto ac16-vizinho.
+# Um único item em "from" com namespaceSelector E podSelector = as duas condições (AND).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac16-cliente-vizinho
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector:
+    matchLabels:
+      app: loja
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ac16-vizinho
+          podSelector:
+            matchLabels:
+              app: ac16-cliente
+      ports:
+        - protocol: TCP
+          port: 8080

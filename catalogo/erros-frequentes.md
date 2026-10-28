@@ -16,6 +16,8 @@
 | `No resources found in X namespace` | resposta vazia (não é erro) | ler o namespace citado; `oc get ... -n <certo>` | — | TS-006 |
 | `the server doesn't have a resource type` | digitação ou tipo não servido (CRD ausente/API removida) | `oc api-resources \| grep -i <parte>` | instalar operadores para "ter o tipo" | [TS-007](../cenarios/troubleshooting/TS-007.md) |
 | `no such host` | DNS | `getent ahostsv4 <nome>` | editar DNS do host sem janela de manutenção | [TS-002](../cenarios/troubleshooting/TS-002.md) |
+| conexão entre pods expira (timeout) com Service e endpoints ok | NetworkPolicy descartou (entrada no destino ou saída na origem) | `oc get networkpolicy -n <ns>` nos dois projetos | apagar todas as políticas | [TS-049](../cenarios/troubleshooting/TS-049.md), NET-014 |
+| nenhum nome resolve depois de política de saída | DNS do cluster bloqueado (liberar 5353 do `openshift-dns`) | `oc exec <pod> -- getent hosts <svc>` | — | [TS-050](../cenarios/troubleshooting/TS-050.md) |
 | `connection refused` | host responde, sem serviço na porta | `timeout 3 bash -c '</dev/tcp/<h>/<p>'` | reiniciar a VM do SNO | TS-002 |
 | `i/o timeout` / `context deadline exceeded` | sem resposta: rede, VM parada ou API lenta | `time oc get --raw /readyz`; `--request-timeout=10s` | aumentar timeouts em scripts sem investigar | TS-002, CLI-011 |
 | `x509: certificate signed by unknown authority` | CA não informada/errada | `openssl s_client ... \| openssl x509 -noout -issuer` | `--insecure-skip-tls-verify` fora do HomeLab | ORI-004 |
