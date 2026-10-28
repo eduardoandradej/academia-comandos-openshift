@@ -9,6 +9,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [01 — Navegação e CLI](01-cli.md) | versões, ajuda, login/logout, kubeconfig, projetos, contextos |
 | [02 — Leitura e inspeção](02-consultas.md) | `get`, `describe`, `explain`, filtros, JSONPath, jq, eventos |
 | [03 — Projetos e metadados](03-projetos.md) | rótulos, anotações, seletores, donos, finalizers |
+| [04 — Pods e contêineres](04-pods.md) | criar pods, logs, exec, rsh, cp, port-forward, debug, QoS, erros comuns |
 
 Regras rápidas:
 

@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 60 | 300+ |
-| Cenários de troubleshooting | 12 | 40+ |
-| Fichas de comando | 18 | uma por família de comando |
-| Trilhas completas | 4 de 21 | 21 |
+| Microexercícios originais | 75 | 300+ |
+| Cenários de troubleshooting | 15 | 40+ |
+| Fichas de comando | 22 | uma por família de comando |
+| Trilhas completas | 5 de 21 | 21 |
 
 ## Matriz por família
 
@@ -30,7 +30,9 @@
 | Rótulos e anotações | PRJ-003, PRJ-005 | PRJ-001, PRJ-007 | PRJ-003 a PRJ-006, PRJ-014 | PRJ-004, TS-012 | PRJ-015 | — | AMARELO |
 | Seletores e donos | PRJ-008, PRJ-009 | PRJ-013 | PRJ-008, PRJ-009 | TS-010 | PRJ-015 | imagem externa | AMARELO |
 | Ciclo de vida e versões | PRJ-010, PRJ-011 | PRJ-010, PRJ-011 | PRJ-011, PRJ-012 | PRJ-010, TS-011 | PRJ-015 | — | AMARELO |
-| Pods e contêineres | — | — | — | — | — | imagem externa | AMARELO |
+| Pods: ciclo de vida | POD-001, POD-003 | POD-002, POD-014 | POD-002, POD-003, POD-011 | TS-013, TS-014 | POD-015 | imagem externa | AMARELO |
+| Pods: logs e acesso | POD-004, POD-010 | POD-004, POD-005 | POD-006 a POD-009, POD-013 | POD-004, POD-013 | POD-015 | imagem externa | VERDE/AMARELO |
+| Pods: recursos e QoS | POD-012 | POD-012 | POD-012 | TS-015 | POD-015 | imagem externa | AMARELO |
 | Deployments e rollout | — | — | — | — | — | imagem externa | AMARELO |
 | Services, Routes, DNS | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
 | ConfigMaps e Secrets | — | — | — | — | — | — | AMARELO |
@@ -48,7 +50,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-03]
+    ID --> T00[Trilhas 00-04]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

@@ -1,0 +1,29 @@
+# Cenário TS-015: contêiner que excede o limite de memória (OOMKilled).
+# "tail /dev/zero" lê bytes sem quebra de linha e os acumula na memória até o limite de 48 Mi;
+# o kernel encerra o processo. O consumo nunca passa do limite declarado.
+#   oc apply -f manifests/apps-exemplo/cenario-oomkilled.yaml -n ac04-pods
+# Limpeza: oc delete pod -l academy.openshift.dev/cenario=ts-015 -n ac04-pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac04-oom
+  labels:
+    app: ac04-oom
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-015
+spec:
+  restartPolicy: Never
+  containers:
+    - name: app
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "echo 'consumindo memoria...'; tail /dev/zero"]
+      resources:
+        requests: {cpu: 10m, memory: 48Mi}
+        limits: {cpu: 100m, memory: 48Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault

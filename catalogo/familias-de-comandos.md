@@ -10,7 +10,7 @@
 | Sessão e contexto | `version`, `whoami`, `login`, `logout`, `config`, `project(s)`, `status` | 00, 01 | [whoami](fichas/oc-whoami.md), [login](fichas/oc-login-logout.md), [config](fichas/oc-config.md), [project](fichas/oc-project.md) |
 | Consulta | `api-resources`, `explain`, `get`, `describe`, `events`, `wait`, `get --raw` | 02 | [get](fichas/oc-get.md), [describe](fichas/oc-describe.md), [explain](fichas/oc-explain.md) |
 | Projetos e metadados | `new-project`, `label`, `annotate`, seletores, `ownerReferences`, finalizers | 00, 03 | [new-project](fichas/oc-new-project.md), [label/annotate](fichas/oc-label-annotate.md) |
-| Pods e diagnóstico | `run`, `logs`, `exec`, `rsh`, `cp`, `port-forward`, `debug` | 04 | — (Trilha 04) |
+| Pods e diagnóstico | `run`, `logs`, `exec`, `rsh`, `cp`, `attach`, `port-forward`, `debug` | 04 | [run](fichas/oc-run.md), [logs](fichas/oc-logs.md), [exec/rsh/cp/debug](fichas/oc-exec-rsh.md), [port-forward](fichas/oc-port-forward.md) |
 | Aplicações | `create deployment`, `new-app`, `scale`, `rollout`, `set` | 05, 11 | — |
 | Rede | `expose`, `get svc/route/endpointslices`, `curl`, `dig`, `openssl` | 06, 07, 16 | — |
 | Configuração e volumes | `create configmap/secret`, `set env`, `set volume`, `get pv,pvc,sc` | 08, 09 | — |

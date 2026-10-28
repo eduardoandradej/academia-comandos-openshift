@@ -1,0 +1,56 @@
+# Trilha 04: pod com init container, contêiner principal (httpd) e sidecar que escreve logs.
+# Usado para praticar -c, --all-containers, --prefix, exec/rsh/cp em contêiner específico.
+#   oc apply --dry-run=server -f manifests/apps-exemplo/pod-dois-conteineres.yaml -n ac04-pods
+#   oc apply -f manifests/apps-exemplo/pod-dois-conteineres.yaml -n ac04-pods
+# Limpeza: oc delete -f manifests/apps-exemplo/pod-dois-conteineres.yaml -n ac04-pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac04-duplo
+  labels:
+    app: ac04-duplo
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "04"
+spec:
+  initContainers:
+    - name: preparo
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "echo 'init: preparando'; sleep 3; echo 'init: pronto'"]
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 50m, memory: 32Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+  containers:
+    - name: web
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      ports:
+        - containerPort: 8080
+      resources:
+        requests: {cpu: 25m, memory: 48Mi}
+        limits: {cpu: 100m, memory: 128Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+    - name: relogio
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "i=0; while true; do i=$((i+1)); echo \"relogio: batida $i $(date -u +%H:%M:%S)\"; sleep 5; done"]
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 50m, memory: 32Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault

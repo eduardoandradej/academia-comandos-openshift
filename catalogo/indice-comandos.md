@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–03 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–04 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -89,20 +89,20 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 056 | `oc run treino-nginx --image=registry.access.redhat.com/ubi9/httpd-24 -n <ns>` | Criar Pod simples, depois verificar compatibilidade de imagem/porta | AMARELO | developer | 04 | — | httpd-24 escuta 8080; o nome do pod diz nginx, mas a imagem é httpd |
-| 057 | `oc get pod treino-nginx -n <ns>` | Verificar ciclo de vida | VERDE | developer | 04 | [oc-get](fichas/oc-get.md) |  |
-| 058 | `oc describe pod treino-nginx -n <ns>` | Investigar eventos | VERDE | developer | 04 | — |  |
-| 059 | `oc logs pod/<pod> -n <ns>` | Logs atuais | VERDE | developer | 04 | — |  |
-| 060 | `oc logs -f pod/<pod> -n <ns>` | Seguir logs continuamente | VERDE | developer | 04 | — |  |
-| 061 | `oc logs pod/<pod> --previous -n <ns>` | Logs da instância anterior | VERDE | developer | 04 | — |  |
-| 062 | `oc logs deployment/<nome> -n <ns>` | Logs de Pod selecionado pelo Deployment | VERDE | developer | 04 | — |  |
-| 063 | `oc exec -it pod/<pod> -n <ns> -- /bin/sh` | Abrir shell, se disponível na imagem | AMARELO | developer | 04 | — |  |
-| 064 | `oc exec pod/<pod> -n <ns> -- id` | Inspecionar identidade do processo | VERDE | developer | 04 | — |  |
-| 065 | `oc rsh -n <ns> pod/<pod>` | Shell remoto com oc | AMARELO | developer | 04 | — |  |
-| 066 | `oc cp -n <ns> pod/<pod>:/tmp/arquivo ./arquivo` | Copiar arquivo do Pod | AMARELO | developer | 04 | — |  |
-| 067 | `oc attach -it pod/<pod> -n <ns>` | Anexar-se ao processo principal quando apropriado | AMARELO | developer | 04 | — |  |
-| 068 | `oc port-forward -n <ns> svc/<svc> 8080:8080` | Redirecionar serviço para máquina local | AMARELO | developer | 04 | — |  |
-| 069 | `oc delete pod treino-nginx -n <ns>` | Apagar somente Pod de treino | AMARELO | developer | 04 | — |  |
+| 056 | `oc run treino-nginx --image=registry.access.redhat.com/ubi9/httpd-24 -n <ns>` | Criar Pod simples, depois verificar compatibilidade de imagem/porta | AMARELO | developer | [04](../trilhas/04-pods/README.md) | [oc-run](fichas/oc-run.md) | httpd-24 escuta 8080; o nome do pod diz nginx, mas a imagem é httpd |
+| 057 | `oc get pod treino-nginx -n <ns>` | Verificar ciclo de vida | VERDE | developer | [04](../trilhas/04-pods/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 058 | `oc describe pod treino-nginx -n <ns>` | Investigar eventos | VERDE | developer | [04](../trilhas/04-pods/README.md) | — |  |
+| 059 | `oc logs pod/<pod> -n <ns>` | Logs atuais | VERDE | developer | [04](../trilhas/04-pods/README.md) | [oc-logs](fichas/oc-logs.md) |  |
+| 060 | `oc logs -f pod/<pod> -n <ns>` | Seguir logs continuamente | VERDE | developer | [04](../trilhas/04-pods/README.md) | [oc-logs](fichas/oc-logs.md) |  |
+| 061 | `oc logs pod/<pod> --previous -n <ns>` | Logs da instância anterior | VERDE | developer | [04](../trilhas/04-pods/README.md) | [oc-logs](fichas/oc-logs.md) |  |
+| 062 | `oc logs deployment/<nome> -n <ns>` | Logs de Pod selecionado pelo Deployment | VERDE | developer | [04](../trilhas/04-pods/README.md) | [oc-logs](fichas/oc-logs.md) |  |
+| 063 | `oc exec -it pod/<pod> -n <ns> -- /bin/sh` | Abrir shell, se disponível na imagem | AMARELO | developer | [04](../trilhas/04-pods/README.md) | [oc-exec-rsh](fichas/oc-exec-rsh.md) |  |
+| 064 | `oc exec pod/<pod> -n <ns> -- id` | Inspecionar identidade do processo | VERDE | developer | [04](../trilhas/04-pods/README.md) | [oc-exec-rsh](fichas/oc-exec-rsh.md) |  |
+| 065 | `oc rsh -n <ns> pod/<pod>` | Shell remoto com oc | AMARELO | developer | [04](../trilhas/04-pods/README.md) | [oc-exec-rsh](fichas/oc-exec-rsh.md) |  |
+| 066 | `oc cp -n <ns> pod/<pod>:/tmp/arquivo ./arquivo` | Copiar arquivo do Pod | AMARELO | developer | [04](../trilhas/04-pods/README.md) | [oc-exec-rsh](fichas/oc-exec-rsh.md) |  |
+| 067 | `oc attach -it pod/<pod> -n <ns>` | Anexar-se ao processo principal quando apropriado | AMARELO | developer | [04](../trilhas/04-pods/README.md) | [oc-exec-rsh](fichas/oc-exec-rsh.md) |  |
+| 068 | `oc port-forward -n <ns> svc/<svc> 8080:8080` | Redirecionar serviço para máquina local | AMARELO | developer | [04](../trilhas/04-pods/README.md) | [oc-port-forward](fichas/oc-port-forward.md) |  |
+| 069 | `oc delete pod treino-nginx -n <ns>` | Apagar somente Pod de treino | AMARELO | developer | [04](../trilhas/04-pods/README.md) | — |  |
 
 ## 05 — Deployments e rollout
 

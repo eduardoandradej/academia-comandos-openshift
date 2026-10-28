@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 12 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 15 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -19,5 +19,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-010](TS-010.md) | Service sem endpoints: o seletor que não casa | 03 | MUTAÇÃO LOCAL |
 | [TS-011](TS-011.md) | Projeto preso em Terminating | 03 | MUTAÇÃO LOCAL |
 | [TS-012](TS-012.md) | oc label recusou: --overwrite e valores inválidos | 03 | LEITURA |
+| [TS-013](TS-013.md) | CrashLoopBackOff: o contêiner sobe e cai | 04 | MUTAÇÃO LOCAL |
+| [TS-014](TS-014.md) | Pending para sempre: nenhum nó serve | 04 | MUTAÇÃO LOCAL |
+| [TS-015](TS-015.md) | OOMKilled: estourou o limite de memória | 04 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

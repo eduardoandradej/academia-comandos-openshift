@@ -1,0 +1,27 @@
+# Cenário TS-013: contêiner que termina com erro poucos segundos após iniciar (CrashLoopBackOff).
+# Leve: o kubelet espera cada vez mais entre as tentativas (backoff exponencial, até 5 min).
+#   oc apply -f manifests/apps-exemplo/cenario-crashloop.yaml -n ac04-pods
+# Limpeza: oc delete pod -l academy.openshift.dev/cenario=ts-013 -n ac04-pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac04-crash
+  labels:
+    app: ac04-crash
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-013
+spec:
+  containers:
+    - name: app
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "echo 'iniciando'; echo 'ERRO: variavel CONFIG_URL ausente' >&2; sleep 3; exit 1"]
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 50m, memory: 32Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault

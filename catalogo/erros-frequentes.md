@@ -19,9 +19,12 @@
 | `AlreadyExists` | `create` repetido | `oc get <tipo> <nome> -o yaml` | `delete` + `create` sem verificar dono | ORI-014 |
 | `exceeded quota: ac-quota` | admissão de quota recusou | `oc describe quota -n <ns>` | pedir para remover a quota | ORI-013 |
 | `ErrImagePull` / `ImagePullBackOff` | tag/repo inexistente, registry inacessível ou sem credencial | `oc describe pod <pod> \| sed -n '/Events:/,$p'` | trocar para imagem aleatória "que funciona" sem entender | [TS-009](../cenarios/troubleshooting/TS-009.md) |
-| `CrashLoopBackOff` | o processo do contêiner termina repetidamente | `oc logs <pod> --previous` | aumentar limites às cegas | Trilha 04 (planejada) |
+| `CrashLoopBackOff` | o processo do contêiner termina repetidamente | `oc logs <pod> --previous` | aumentar limites às cegas | [TS-013](../cenarios/troubleshooting/TS-013.md), POD-003 |
 | `CreateContainerConfigError` | ConfigMap/Secret/chave referenciados ausentes | `oc describe pod` (Events) | criar Secret com valores inventados | Trilha 08 (planejada) |
-| `Pending` + `FailedScheduling` | sem recursos (requests) ou restrições de agendamento | `oc describe pod`; `oc describe node` (admin) | remover requests/limits | Trilha 11 (planejada) |
+| `Pending` + `FailedScheduling` | sem recursos (requests) ou restrições de agendamento | `oc describe pod`; `oc describe node` (admin) | remover requests/limits; rotular o nó para "encaixar" | [TS-014](../cenarios/troubleshooting/TS-014.md) |
+| `OOMKilled` / código 137 | o contêiner passou do `limits.memory` | `oc get pod <pod> -o jsonpath='{.status.containerStatuses[0].lastState}'` | remover o limite de memória | [TS-015](../cenarios/troubleshooting/TS-015.md) |
+| código 127 em `oc exec` | o utilitário não existe na imagem | `oc exec <pod> -- sh -c 'command -v <cmd>'` | instalar pacotes dentro do contêiner | POD-006 |
+| `Unable to listen on port ... address already in use` | port-forward anterior aberto | `pgrep -af 'oc port-forward'` | — | POD-009 |
 | `Readiness probe failed` / `Liveness probe failed` | probe com caminho/porta errados ou app lenta | `oc describe pod` (Events) | desligar probes definitivamente | Trilha 11 (planejada) |
 | Route responde `503` | Route sem endpoints prontos (seletor/porta/readiness) | `oc get endpointslices -n <ns>`; `oc describe svc` | apontar a Route direto para o pod | Trilha 07 (planejada) |
 | `error: timed out waiting for the condition` | `oc wait` expirou | `oc rollout status ... --timeout=5s`; eventos `Warning` | remover o `--timeout` | CON-014 |

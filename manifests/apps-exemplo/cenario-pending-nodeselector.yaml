@@ -1,0 +1,27 @@
+# Cenário TS-014: pod que nunca é agendado (nodeSelector sem nó correspondente). Não consome CPU/memória.
+#   oc apply -f manifests/apps-exemplo/cenario-pending-nodeselector.yaml -n ac04-pods
+# Limpeza: oc delete pod -l academy.openshift.dev/cenario=ts-014 -n ac04-pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac04-pendente
+  labels:
+    app: ac04-pendente
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-014
+spec:
+  nodeSelector:
+    academy.openshift.dev/zona: inexistente
+  containers:
+    - name: app
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 50m, memory: 32Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault

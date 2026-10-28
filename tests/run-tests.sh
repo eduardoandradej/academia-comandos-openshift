@@ -110,6 +110,8 @@ has "list mostra CON-015" "CON-015"
 has "list mostra cenário TS-009" "TS-009"
 has "list mostra PRJ-015" "PRJ-015"
 has "list mostra cenário TS-012" "TS-012"
+has "list mostra POD-015" "POD-015"
+has "list mostra cenário TS-015" "TS-015"
 run "academy list --trilha 00" 0 "$ROOT/scripts/academy" list --trilha 00
 has "filtro por trilha mostra a trilha pedida" "ORI-001"
 run "academy list --trilha 99 (vazia)" 0 "$ROOT/scripts/academy" list --trilha 99
@@ -136,6 +138,8 @@ run "academy show TS-009 (cenário)" 0 "$ROOT/scripts/academy" show TS-009
 has "show de cenário imprime o sintoma" "## Sintoma"
 run "academy where PRJ-009" 0 "$ROOT/scripts/academy" where PRJ-009
 has "where aponta gabarito da trilha 03" "solucoes/03-projetos/PRJ-009.md"
+run "academy review POD-009" 0 "$ROOT/scripts/academy" review POD-009
+has "review POD-009 mostra a ficha" "Ficha de revisão"
 run "academy start não implementado" 3 "$ROOT/scripts/academy" start ORI-001
 run "academy comando desconhecido" 2 "$ROOT/scripts/academy" xyz
 : >"$MOCK_LOG"
