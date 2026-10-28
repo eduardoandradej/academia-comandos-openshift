@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 39 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 42 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -46,5 +46,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-037](TS-037.md) | field is immutable: mudei o seletor do Deployment | 12 | LEITURA |
 | [TS-038](TS-038.md) | O apply desfaz a escala (e briga com o HPA) | 12 | MUTAÇÃO LOCAL |
 | [TS-039](TS-039.md) | Conflito de server-side apply entre duas ferramentas | 12 | MUTAÇÃO LOCAL |
+| [TS-040](TS-040.md) | apply -k recusado: o namespace que não bate | 13 | LEITURA |
+| [TS-041](TS-041.md) | Patch que não encontra o alvo | 13 | LEITURA |
+| [TS-042](TS-042.md) | Template que renderiza, mas o servidor recusa | 13 | LEITURA |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

@@ -1,0 +1,26 @@
+# Overlay de desenvolvimento: namespace, rótulo de ambiente, página própria e uma variável por JSON patch.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+namespace: ac13-dev
+labels:
+  - pairs:
+      ambiente: dev
+    includeSelectors: false
+    includeTemplates: true
+configMapGenerator:
+  - name: ac13-pagina
+    behavior: replace
+    literals:
+      - index.html=loja da academia (dev)
+patches:
+  - target:
+      kind: Deployment
+      name: ac13-loja
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env
+        value:
+          - name: AMBIENTE
+            value: dev

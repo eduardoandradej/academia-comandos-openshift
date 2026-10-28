@@ -26,6 +26,8 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`apps-exemplo/statefulset-mini.yaml`](apps-exemplo/statefulset-mini.yaml) | StatefulSet com um PVC por réplica (REQUER PREPARAÇÃO) | developer | STO-013 |
 | [`apps-exemplo/cenario-liveness-agressiva.yaml`](apps-exemplo/cenario-liveness-agressiva.yaml) | Deployment com liveness mais lenta que o próprio timeout | developer | RES-014, TS-034 |
 | [`apps-exemplo/declarativo-app.yaml`](apps-exemplo/declarativo-app.yaml) | aplicação completa (ConfigMap, Deployment, Service, Route) em um arquivo | developer | Trilha 12 |
+| [`kustomize/`](kustomize/README.md) | base e overlays `dev`/`prod` da loja `ac13-loja` | developer | Trilha 13 |
+| [`templates/ac13-template.yaml`](templates/ac13-template.yaml) | Template do OpenShift com parâmetros e valor gerado | developer | Trilha 13 |
 | [`preparacao/storage-nfs-pv.yaml`](preparacao/storage-nfs-pv.yaml) | 3 PVs NFS estáticos (opção A da preparação de storage) | admin | docs/10 |
 | [`preparacao/quota-storage-ac09.yaml`](preparacao/quota-storage-ac09.yaml) | quota do `ac09-storage` liberando 3 PVCs / 3Gi | admin | docs/10 |
 

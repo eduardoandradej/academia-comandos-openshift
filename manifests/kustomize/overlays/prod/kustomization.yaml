@@ -1,0 +1,24 @@
+# Overlay de produção: namespace, 2 réplicas, imagem fixada e recursos/estratégia por patch estratégico.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+namespace: ac13-prod
+labels:
+  - pairs:
+      ambiente: prod
+    includeSelectors: false
+    includeTemplates: true
+replicas:
+  - name: ac13-loja
+    count: 2
+images:
+  - name: registry.access.redhat.com/ubi9/httpd-24
+    newTag: latest   # troque por um digest (KUS-006): digest: sha256:...
+configMapGenerator:
+  - name: ac13-pagina
+    behavior: replace
+    literals:
+      - index.html=loja da academia (prod)
+patches:
+  - path: patch-recursos.yaml

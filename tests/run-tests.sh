@@ -128,6 +128,8 @@ has "list mostra RES-015" "RES-015"
 has "list mostra cenário TS-036" "TS-036"
 has "list mostra DCL-015" "DCL-015"
 has "list mostra cenário TS-039" "TS-039"
+has "list mostra KUS-015" "KUS-015"
+has "list mostra cenário TS-042" "TS-042"
 run "academy list --trilha 00" 0 "$ROOT/scripts/academy" list --trilha 00
 has "filtro por trilha mostra a trilha pedida" "ORI-001"
 run "academy list --trilha 99 (vazia)" 0 "$ROOT/scripts/academy" list --trilha 99
@@ -174,6 +176,8 @@ run "academy review RES-010" 0 "$ROOT/scripts/academy" review RES-010
 has "review RES-010 mostra a ficha" "Ficha de revisão"
 run "academy where DCL-006" 0 "$ROOT/scripts/academy" where DCL-006
 has "where aponta gabarito da trilha 12" "solucoes/12-declarativo/DCL-006.md"
+run "academy where KUS-007" 0 "$ROOT/scripts/academy" where KUS-007
+has "where aponta gabarito da trilha 13" "solucoes/13-kustomize/KUS-007.md"
 run "academy start não implementado" 3 "$ROOT/scripts/academy" start ORI-001
 run "academy comando desconhecido" 2 "$ROOT/scripts/academy" xyz
 : >"$MOCK_LOG"

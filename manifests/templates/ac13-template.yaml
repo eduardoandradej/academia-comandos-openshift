@@ -1,0 +1,92 @@
+# Trilha 13: Template do OpenShift (KUS-011 a KUS-013). Renderize antes de aplicar:
+#   oc process -f manifests/templates/ac13-template.yaml --parameters
+#   oc process -f manifests/templates/ac13-template.yaml -p NOME=ac13-tpl -o yaml
+#   oc process -f manifests/templates/ac13-template.yaml -p NOME=ac13-tpl | oc apply -n ac13-kustomize -f -
+# A SENHA é gerada aleatoriamente a cada processamento (valor de treino, sem uso real).
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ac13-web
+  labels:
+    academy.openshift.dev/managed-by: academia
+  annotations:
+    description: "Aplicação httpd mínima da Academia: ConfigMap, Secret de treino, Deployment e Service."
+    tags: "academia,httpd"
+labels:
+  academy.openshift.dev/managed-by: academia
+  app.kubernetes.io/part-of: ac13-template
+objects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: ${NOME}-pagina
+    data:
+      index.html: ${MENSAGEM}
+  - apiVersion: v1
+    kind: Secret
+    metadata:
+      name: ${NOME}-credencial
+    stringData:
+      senha: ${SENHA}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: ${NOME}
+    spec:
+      replicas: ${{REPLICAS}}
+      selector:
+        matchLabels:
+          app: ${NOME}
+      template:
+        metadata:
+          labels:
+            app: ${NOME}
+        spec:
+          containers:
+            - name: web
+              image: registry.access.redhat.com/ubi9/httpd-24:latest
+              ports:
+                - containerPort: 8080
+              volumeMounts:
+                - name: pagina
+                  mountPath: /var/www/html
+              resources:
+                requests: {cpu: 25m, memory: 48Mi}
+                limits: {cpu: 100m, memory: 128Mi}
+              securityContext:
+                allowPrivilegeEscalation: false
+                runAsNonRoot: true
+                capabilities:
+                  drop: ["ALL"]
+                seccompProfile:
+                  type: RuntimeDefault
+          volumes:
+            - name: pagina
+              configMap:
+                name: ${NOME}-pagina
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: ${NOME}
+    spec:
+      selector:
+        app: ${NOME}
+      ports:
+        - name: http
+          port: 8080
+          targetPort: 8080
+parameters:
+  - name: NOME
+    displayName: Nome da aplicação
+    description: "Prefixo de todos os objetos (ex.: ac13-tpl)."
+    required: true
+  - name: MENSAGEM
+    displayName: Conteúdo da página
+    value: "ola da academia (template)"
+  - name: REPLICAS
+    displayName: Réplicas (1 ou 2)
+    value: "1"
+  - name: SENHA
+    displayName: Senha de treino gerada
+    generate: expression
+    from: "[a-z0-9]{16}"

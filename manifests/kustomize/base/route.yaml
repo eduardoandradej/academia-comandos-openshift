@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ac13-loja
+  labels:
+    app: ac13-loja
+spec:
+  to:
+    kind: Service
+    name: ac13-loja
+  port:
+    targetPort: http

@@ -18,6 +18,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [10 — Imagens e registries](10-imagens.md) | referência e digest, `oc image info`, pull policy, ImageStreams, `oc tag`, image-lookup, gatilhos, registry interno |
 | [11 — Resiliência](11-resiliencia.md) | requests/limits, `oc adm top`, readiness/liveness/startup, autocura, preStop, rollout sem queda, HPA, PDB |
 | [12 — Manifestos declarativos](12-declarativo.md) | gerar, validar, `apply`, `diff`, merge de três vias, server-side apply, `replace`, `patch`, prune |
+| [13 — Kustomize e Templates](13-kustomize.md) | base e overlays, geradores com hash, images/replicas, patches, `oc process`, `new-app --template` |
 
 Regras rápidas:
 

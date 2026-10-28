@@ -1,0 +1,17 @@
+# Base da aplicação ac13-loja. Sem namespace: quem define é o overlay (ou -n ao aplicar a base).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: ac13-loja
+      academy.openshift.dev/managed-by: academia
+    includeSelectors: false
+    includeTemplates: true
+configMapGenerator:
+  - name: ac13-pagina
+    files:
+      - index.html
