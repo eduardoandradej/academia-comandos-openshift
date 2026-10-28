@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–07 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–08 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -153,18 +153,18 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 105 | `oc create configmap cfg-demo --from-literal=MODE=lab -n <ns>` | Criar ConfigMap de teste | AMARELO | developer | 08 | — |  |
-| 106 | `oc create configmap cfg-demo --from-file=app.conf -n <ns> --dry-run=client -o yaml` | Gerar YAML sem alterar o cluster | VERDE | developer | 08 | — |  |
-| 107 | `oc get configmap -n <ns>` | Listar ConfigMaps | VERDE | developer | 08 | [oc-get](fichas/oc-get.md) |  |
-| 108 | `oc describe configmap cfg-demo -n <ns>` | Inspecionar configuração sem segredo | VERDE | developer | 08 | — |  |
-| 109 | `oc create secret generic secret-demo --from-literal=DEMO=valor-ficticio -n <ns>` | Criar Secret com valor sem sensibilidade apenas em ambiente controlado | AMARELO | developer | 08 | — |  |
-| 110 | `oc get secret -n <ns>` | Listar metadados dos Secrets (não exibir dados) | VERDE | developer | 08 | [oc-get](fichas/oc-get.md) |  |
-| 111 | `oc set env deploy/demo --from=configmap/cfg-demo -n <ns>` | Injetar parâmetros não secretos | AMARELO | developer | 08 | — |  |
-| 112 | `oc create serviceaccount sa-demo -n <ns>` | Criar SA dedicada | AMARELO | developer | 08 | — |  |
-| 113 | `oc get sa -n <ns>` | Listar serviceaccounts | VERDE | developer | 08 | [oc-get](fichas/oc-get.md) |  |
-| 114 | `oc set serviceaccount deployment/demo sa-demo -n <ns>` | Associar SA ao Deployment | AMARELO | developer | 08 | — |  |
-| 115 | `oc delete configmap cfg-demo -n <ns>` | Limpar ConfigMap do treino | AMARELO | developer | 08 | — |  |
-| 116 | `oc delete secret secret-demo -n <ns>` | Limpar Secret fictício | AMARELO | developer | 08 | — |  |
+| 105 | `oc create configmap cfg-demo --from-literal=MODE=lab -n <ns>` | Criar ConfigMap de teste | AMARELO | developer | [08](../trilhas/08-config/README.md) | [oc-configmap-secret](fichas/oc-configmap-secret.md) |  |
+| 106 | `oc create configmap cfg-demo --from-file=app.conf -n <ns> --dry-run=client -o yaml` | Gerar YAML sem alterar o cluster | VERDE | developer | [08](../trilhas/08-config/README.md) | [oc-configmap-secret](fichas/oc-configmap-secret.md) |  |
+| 107 | `oc get configmap -n <ns>` | Listar ConfigMaps | VERDE | developer | [08](../trilhas/08-config/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 108 | `oc describe configmap cfg-demo -n <ns>` | Inspecionar configuração sem segredo | VERDE | developer | [08](../trilhas/08-config/README.md) | [oc-configmap-secret](fichas/oc-configmap-secret.md) |  |
+| 109 | `oc create secret generic secret-demo --from-literal=DEMO=valor-ficticio -n <ns>` | Criar Secret com valor sem sensibilidade apenas em ambiente controlado | AMARELO | developer | [08](../trilhas/08-config/README.md) | [oc-configmap-secret](fichas/oc-configmap-secret.md) |  |
+| 110 | `oc get secret -n <ns>` | Listar metadados dos Secrets (não exibir dados) | VERDE | developer | [08](../trilhas/08-config/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 111 | `oc set env deploy/demo --from=configmap/cfg-demo -n <ns>` | Injetar parâmetros não secretos | AMARELO | developer | [08](../trilhas/08-config/README.md) | [oc-set-volume](fichas/oc-set-volume.md) |  |
+| 112 | `oc create serviceaccount sa-demo -n <ns>` | Criar SA dedicada | AMARELO | developer | [08](../trilhas/08-config/README.md) | — |  |
+| 113 | `oc get sa -n <ns>` | Listar serviceaccounts | VERDE | developer | [08](../trilhas/08-config/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 114 | `oc set serviceaccount deployment/demo sa-demo -n <ns>` | Associar SA ao Deployment | AMARELO | developer | [08](../trilhas/08-config/README.md) | [oc-set](fichas/oc-set.md) |  |
+| 115 | `oc delete configmap cfg-demo -n <ns>` | Limpar ConfigMap do treino | AMARELO | developer | [08](../trilhas/08-config/README.md) | [oc-configmap-secret](fichas/oc-configmap-secret.md) |  |
+| 116 | `oc delete secret secret-demo -n <ns>` | Limpar Secret fictício | AMARELO | developer | [08](../trilhas/08-config/README.md) | [oc-configmap-secret](fichas/oc-configmap-secret.md) |  |
 
 ## 08 — Volumes e persistência (dependente de pré-requisito)
 

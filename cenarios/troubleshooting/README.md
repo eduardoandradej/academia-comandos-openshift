@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 24 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 27 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -31,5 +31,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-022](TS-022.md) | Application is not available: o 503 do router | 07 | MUTAÇÃO LOCAL |
 | [TS-023](TS-023.md) | HostAlreadyClaimed: a Route nova não recebe tráfego | 07 | MUTAÇÃO LOCAL |
 | [TS-024](TS-024.md) | O hostname da Route não resolve em lugar nenhum | 07 | MUTAÇÃO LOCAL |
+| [TS-025](TS-025.md) | CreateContainerConfigError: a configuração que não existe | 08 | MUTAÇÃO LOCAL |
+| [TS-026](TS-026.md) | Alterei o ConfigMap e nada mudou | 08 | MUTAÇÃO LOCAL |
+| [TS-027](TS-027.md) | Senha certa, autenticação errada: o Secret com bytes a mais | 08 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

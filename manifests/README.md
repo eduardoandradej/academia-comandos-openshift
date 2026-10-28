@@ -20,5 +20,6 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`apps-exemplo/cenario-quota-deploy.yaml`](apps-exemplo/cenario-quota-deploy.yaml) | Deployment que excede `requests.cpu` da quota | developer | TS-018 (exige baseline) |
 | [`apps-exemplo/servicos-azul-verde.yaml`](apps-exemplo/servicos-azul-verde.yaml) | Backends httpd `web-azul` e `web-verde` com página própria (ConfigMap) | developer | SVC-001 em diante, RTE-001 em diante |
 | [`apps-exemplo/cenario-nao-pronto.yaml`](apps-exemplo/cenario-nao-pronto.yaml) | Deployment + Service com readiness que nunca passa | developer | TS-021 |
+| [`apps-exemplo/cenario-config-ausente.yaml`](apps-exemplo/cenario-config-ausente.yaml) | Deployment que referencia ConfigMap e Secret inexistentes | developer | TS-025 |
 
 Imagens: `registry.access.redhat.com/ubi9/httpd-24` — **REQUER PREPARAÇÃO** (acesso de saída do cluster ao registry).

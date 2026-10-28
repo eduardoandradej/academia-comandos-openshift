@@ -22,6 +22,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [05 — Deployments e workloads](guia/05-deployments.md) | criar, escalar, rollout, undo, restart, set, estratégias, Jobs, CronJobs, DaemonSet |
 | [06 — Services e DNS](guia/06-servicos.md) | criar Services, portas, endpoints, DNS interno, azul/verde, headless, diagnóstico |
 | [07 — Routes e Ingress](guia/07-rotas.md) | Routes HTTP, hostname, caminhos, HTTPS edge/passthrough, pesos, Ingress, diagnóstico |
+| [08 — ConfigMaps e Secrets](guia/08-config.md) | criar ConfigMaps e Secrets, variáveis, arquivos, subPath, TLS, pull secret, imutáveis, extract, quem lê Secrets |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -45,11 +46,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 8 (00 a 07) | 21 |
-| Microexercícios | 120 | 300+ |
-| Cenários de troubleshooting | 24 | 40+ |
+| Trilhas completas | 9 (00 a 08) | 21 |
+| Microexercícios | 135 | 300+ |
+| Cenários de troubleshooting | 27 | 40+ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 28 | — |
+| Fichas de comando | 30 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -96,7 +97,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 05 | [Deployments e workloads](trilhas/05-deployments/README.md) | disponível |
 | 06 | [Services e DNS](trilhas/06-servicos/README.md) | disponível |
 | 07 | [Routes e Ingress](trilhas/07-rotas/README.md) | disponível |
-| 08–20 | [Config, Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 08 | [ConfigMaps e Secrets](trilhas/08-config/README.md) | disponível |
+| 09–20 | [Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
 
 ## Restrições do HomeLab
 

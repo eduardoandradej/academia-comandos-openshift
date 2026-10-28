@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 120 | 300+ |
-| Cenários de troubleshooting | 24 | 40+ |
-| Fichas de comando | 28 | uma por família de comando |
-| Trilhas completas | 8 de 21 | 21 |
+| Microexercícios originais | 135 | 300+ |
+| Cenários de troubleshooting | 27 | 40+ |
+| Fichas de comando | 30 | uma por família de comando |
+| Trilhas completas | 9 de 21 | 21 |
 
 ## Matriz por família
 
@@ -37,7 +37,7 @@
 | Jobs, CronJobs, DaemonSets | DEP-010 a DEP-012 | DEP-012 | DEP-009 a DEP-012 | DEP-010, TS-017 | DEP-015 | imagem externa | AMARELO |
 | Services e DNS | SVC-001, SVC-002, SVC-005 | SVC-003, SVC-005, SVC-007 | SVC-001, SVC-002, SVC-006, SVC-008 a SVC-012 | SVC-014, TS-019 a TS-021 | SVC-015 | imagem externa | AMARELO |
 | Routes e Ingress | RTE-001, RTE-002, RTE-006 | RTE-005, RTE-013 | RTE-001 a RTE-012 | RTE-014, TS-022 a TS-024 | RTE-015 | wildcard `*.apps` resolvendo | AMARELO |
-| ConfigMaps e Secrets | — | — | — | — | — | — | AMARELO |
+| ConfigMaps e Secrets | CFG-001, CFG-004, CFG-005 | CFG-003, CFG-014 | CFG-001 a CFG-013 | CFG-004, TS-025 a TS-027 | CFG-015 | imagem externa | AMARELO |
 | Storage | — | — | — | — | — | **StorageClass/PV: NÃO DISPONÍVEL NO HOME LAB ATUAL** | AMARELO |
 | Imagens e registry | — | — | — | — | — | registry interno sem storage (verificar `managementState`) | AMARELO |
 | Resiliência e HPA | — | — | — | — | — | Metrics API | AMARELO |
@@ -52,7 +52,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-07]
+    ID --> T00[Trilhas 00-08]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

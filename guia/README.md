@@ -13,6 +13,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [05 — Deployments e workloads](05-deployments.md) | criar, escalar, rollout, undo, restart, set, estratégias, Jobs, CronJobs, DaemonSet |
 | [06 — Services e DNS](06-servicos.md) | criar Services, portas, endpoints, DNS interno, azul/verde, headless, diagnóstico |
 | [07 — Routes e Ingress](07-rotas.md) | Routes HTTP, hostname, caminhos, HTTPS edge/passthrough, pesos, Ingress, diagnóstico |
+| [08 — ConfigMaps e Secrets](08-config.md) | criar ConfigMaps e Secrets, variáveis, arquivos, subPath, TLS, pull secret, imutáveis, extract, quem lê Secrets |
 
 Regras rápidas:
 

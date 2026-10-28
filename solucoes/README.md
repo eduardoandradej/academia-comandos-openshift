@@ -13,7 +13,8 @@
 | [`05-deployments/`](05-deployments/) | DEP-001 a DEP-015 |
 | [`06-servicos/`](06-servicos/) | SVC-001 a SVC-015 |
 | [`07-rotas/`](07-rotas/) | RTE-001 a RTE-015 |
-| [`cenarios/`](cenarios/) | TS-001 a TS-024 |
+| [`08-config/`](08-config/) | CFG-001 a CFG-015 |
+| [`cenarios/`](cenarios/) | TS-001 a TS-027 |
 
 `scripts/academy where <ID>` mostra o caminho do enunciado e do gabarito sem exibir o conteúdo. Um gabarito traz
 **uma** solução possível; alternativas válidas são bem-vindas.

@@ -1,0 +1,48 @@
+# Cenário TS-025: Deployment que referencia um ConfigMap e um Secret que não existem.
+# O pod fica em CreateContainerConfigError (nenhum contêiner chega a rodar).
+#   oc apply -f manifests/apps-exemplo/cenario-config-ausente.yaml -n ac08-config
+# Limpeza: oc delete deployment -l academy.openshift.dev/cenario=ts-025 -n ac08-config
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac08-sem-config
+  labels:
+    app: ac08-sem-config
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-025
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac08-sem-config
+  template:
+    metadata:
+      labels:
+        app: ac08-sem-config
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/cenario: ts-025
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          env:
+            - name: MODO
+              valueFrom:
+                configMapKeyRef:
+                  name: ac08-config-que-nao-existe
+                  key: MODO
+            - name: TOKEN_API
+              valueFrom:
+                secretKeyRef:
+                  name: ac08-secret-que-nao-existe
+                  key: token
+          resources:
+            requests: {cpu: 20m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
