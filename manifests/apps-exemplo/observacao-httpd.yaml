@@ -1,0 +1,88 @@
+# Alvo de observação da Trilha 02 (consultas). Leve: 2 réplicas httpd, ~64Mi cada.
+# Aplicar como developer, no projeto de laboratório:
+#   oc apply --dry-run=server -f manifests/apps-exemplo/observacao-httpd.yaml -n ac02-consultas
+#   oc apply -f manifests/apps-exemplo/observacao-httpd.yaml -n ac02-consultas
+# REQUER PREPARAÇÃO: o cluster precisa baixar imagens de registry.access.redhat.com.
+# Limpeza: scripts/safe-cleanup.sh -n ac02-consultas --execute
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: obs-config
+  labels:
+    app: obs-web
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "02"
+data:
+  MODO: observacao
+  NIVEL_LOG: info
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obs-web
+  labels:
+    app: obs-web
+    tier: web
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "02"
+  annotations:
+    academy.openshift.dev/proposito: "alvo de leitura para get/describe/jsonpath"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: obs-web
+  template:
+    metadata:
+      labels:
+        app: obs-web
+        tier: web
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/trilha: "02"
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: obs-config
+          # tcpSocket: a página padrão do httpd da UBI responde 403 em "/",
+          # o que faria uma probe httpGet falhar.
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: obs-web
+  labels:
+    app: obs-web
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "02"
+spec:
+  selector:
+    app: obs-web
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

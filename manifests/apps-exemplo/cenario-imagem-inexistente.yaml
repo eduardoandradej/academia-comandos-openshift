@@ -1,0 +1,41 @@
+# Cenário TS-009: Deployment com tag de imagem inexistente (falha PROPOSITAL e leve).
+# Nenhum contêiner chega a rodar; o kubelet apenas tenta baixar a imagem com backoff.
+#   oc apply -f manifests/apps-exemplo/cenario-imagem-inexistente.yaml -n ac02-consultas
+# Limpeza: scripts/safe-cleanup.sh -n ac02-consultas -l academy.openshift.dev/cenario=ts-009 --execute
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obs-quebrado
+  labels:
+    app: obs-quebrado
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-009
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: obs-quebrado
+  template:
+    metadata:
+      labels:
+        app: obs-quebrado
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/cenario: ts-009
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24:tag-que-nao-existe-ac
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

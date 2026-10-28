@@ -1,0 +1,12 @@
+# Regras de Markdown verificadas na CI (markdownlint-cli2).
+config:
+  default: true
+  MD013: false          # comprimento de linha: tabelas e comandos longos são intencionais
+  MD024:
+    siblings_only: true # títulos repetidos só são proibidos entre irmãos
+  MD033: false          # HTML inline permitido (ex.: <details>)
+  MD060: false          # estilo de alinhamento de colunas em tabelas
+globs:
+  - "**/*.md"
+ignores:
+  - "node_modules/**"

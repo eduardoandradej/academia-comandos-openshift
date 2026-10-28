@@ -1,0 +1,42 @@
+# --- Credenciais e artefatos sigilosos do cluster: NUNCA versionar ---
+auth/
+**/auth/
+*kubeconfig*
+!**/kubeconfig-exemplo.md
+.kube/
+*pull-secret*
+*kubeadmin-password*
+*.htpasswd
+users.htpasswd
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*token*
+!**/*token*.md
+.env
+.env*
+*.secret.yaml
+*-secret.yaml
+
+# --- Resultados reais, coletas e diários pessoais ---
+coleta/
+must-gather*/
+inspect.local.*
+*.log
+progresso/*
+!progresso/modelo-revisoes.md
+!progresso/README.md
+
+# --- Caches e editores ---
+.cache/
+__pycache__/
+node_modules/
+*.swp
+*~
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+# academy — utilitário local de apoio da Academia de Comandos: OpenShift.
+#
+# NÃO é o comando "lab" da Red Hat e não atribui notas. Nesta versão, todos os
+# subcomandos implementados são SOMENTE LEITURA.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+# shellcheck source=lib/common.sh
+source "$SCRIPT_DIR/lib/common.sh"
+
+ACADEMY_VERSION="0.1.0"
+ID_REGEX='^[A-Z]{2,4}-[0-9]{3}$'
+
+usage() {
+  cat <<'EOF'
+academy — apoio local aos exercícios (não é o "lab" oficial e não dá nota)
+
+Uso: academy <comando> [argumentos]
+
+Comandos disponíveis (somente leitura):
+  doctor [opções]      Verifica o HomeLab (executa scripts/preflight.sh).
+  list [--trilha NN]   Lista exercícios e cenários disponíveis.
+  show ID              Mostra o enunciado (ex.: academy show ORI-001). Não mostra gabarito.
+  review ID            Mostra apenas a ficha de revisão espaçada do exercício.
+  where ID             Mostra o caminho do enunciado e do gabarito.
+  version              Versão deste utilitário.
+  help                 Esta ajuda.
+
+Planejados para uma etapa futura (ainda NÃO implementados):
+  start ID | status ID | check ID | finish ID
+
+Para limpar recursos de um exercício, use scripts/safe-cleanup.sh (simula por padrão).
+EOF
+}
+
+find_item() {
+  local id="$1" f
+  for f in "$REPO_DIR"/trilhas/*/exercicios/"$id".md "$REPO_DIR"/cenarios/*/"$id".md; do
+    [[ -f "$f" ]] && { printf '%s\n' "$f"; return 0; }
+  done
+  return 1
+}
+
+find_solution() {
+  local id="$1" f
+  for f in "$REPO_DIR"/solucoes/*/"$id".md; do
+    [[ -f "$f" ]] && { printf '%s\n' "$f"; return 0; }
+  done
+  return 1
+}
+
+require_id() {
+  local id="${1:-}"
+  [[ -n "$id" ]] || ac_die "informe um ID (ex.: ORI-001). Veja: academy list"
+  [[ "$id" =~ $ID_REGEX ]] || ac_die "ID inválido: '$id' (formato esperado: ABC-001)"
+}
+
+cmd_list() {
+  local filter=""
+  if [[ "${1:-}" == "--trilha" ]]; then
+    [[ "${2:-}" =~ ^[0-9]{2}$ ]] || ac_die "--trilha exige dois dígitos (ex.: --trilha 01)"
+    filter="$2"
+  elif [[ -n "${1:-}" ]]; then
+    ac_die "argumento desconhecido para list: $1"
+  fi
+  printf '%-8s %-7s %-14s %s\n' "ID" "TRILHA" "NÍVEL" "TÍTULO"
+  local f id trilha nivel titulo dir
+  for f in "$REPO_DIR"/trilhas/*/exercicios/*.md; do
+    [[ -f "$f" ]] || continue
+    dir="$(basename "$(dirname "$(dirname "$f")")")"
+    trilha="${dir%%-*}"
+    [[ -z "$filter" || "$filter" == "$trilha" ]] || continue
+    id="$(basename "$f" .md)"
+    titulo="$(sed -n '1s/^# [A-Z]*-[0-9]* — //p' "$f")"
+    nivel="$(sed -n 's/^\*\*Nível:\*\* *//p' "$f" | head -n1)"
+    printf '%-8s %-7s %-14s %s\n' "$id" "$trilha" "${nivel:-?}" "$titulo"
+  done
+  if [[ -z "$filter" ]]; then
+    for f in "$REPO_DIR"/cenarios/*/*.md; do
+      [[ -f "$f" && "$(basename "$f")" != README.md ]] || continue
+      id="$(basename "$f" .md)"
+      titulo="$(sed -n '1s/^# [A-Z]*-[0-9]* — //p' "$f")"
+      printf '%-8s %-7s %-14s %s\n' "$id" "cen." "cenário" "$titulo"
+    done
+  fi
+}
+
+cmd_show() {
+  require_id "${1:-}"
+  local f
+  f="$(find_item "$1")" || ac_die "exercício/cenário $1 não encontrado. Veja: academy list"
+  cat "$f"
+  printf '\n---\nArquivo: %s\n' "${f#"$REPO_DIR"/}"
+  printf 'O gabarito fica em solucoes/ — consulte só depois de tentar (academy where %s).\n' "$1"
+}
+
+cmd_review() {
+  require_id "${1:-}"
+  local f
+  f="$(find_item "$1")" || ac_die "exercício $1 não encontrado"
+  awk '/^## Ficha de revisão/{p=1} /^## /&&!/^## Ficha de revisão/{if(p)exit} p' "$f" | grep . \
+    || ac_die "$1 não possui seção 'Ficha de revisão'"
+}
+
+cmd_where() {
+  require_id "${1:-}"
+  local f s
+  f="$(find_item "$1")" || ac_die "exercício/cenário $1 não encontrado"
+  printf 'enunciado: %s\n' "${f#"$REPO_DIR"/}"
+  if s="$(find_solution "$1")"; then printf 'gabarito:  %s\n' "${s#"$REPO_DIR"/}"; else printf 'gabarito:  (não encontrado)\n'; fi
+}
+
+main() {
+  local cmd="${1:-help}"
+  [[ $# -gt 0 ]] && shift
+  case "$cmd" in
+    doctor) exec "$SCRIPT_DIR/preflight.sh" "$@" ;;
+    list) cmd_list "$@" ;;
+    show) cmd_show "$@" ;;
+    review) cmd_review "$@" ;;
+    where) cmd_where "$@" ;;
+    version|--version) printf 'academy %s\n' "$ACADEMY_VERSION" ;;
+    help|-h|--help) usage ;;
+    start|status|check|finish)
+      printf 'academy %s: ainda não implementado nesta versão.\n' "$cmd" >&2
+      printf 'Motivo: subcomandos que alteram o cluster só serão liberados após testes de idempotência e escopo.\n' >&2
+      printf 'Enquanto isso: siga o enunciado (academy show ID), use scripts/status.sh e scripts/safe-cleanup.sh.\n' >&2
+      exit 3 ;;
+    *) usage >&2; ac_die "comando desconhecido: $cmd" ;;
+  esac
+}
+
+main "$@"

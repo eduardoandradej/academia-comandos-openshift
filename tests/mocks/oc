@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Simulador mínimo do "oc" para testes offline dos scripts. NÃO contata nenhum cluster.
+# MOCK_PROFILE: developer | admin | down   (padrão: developer)
+# MOCK_LOG:     arquivo onde cada chamada é registrada (uma linha por chamada)
+set -euo pipefail
+
+profile="${MOCK_PROFILE:-developer}"
+args=()
+for a in "$@"; do
+  case "$a" in
+    --request-timeout=*) ;;
+    *) args+=("$a") ;;
+  esac
+done
+set -- "${args[@]}"
+line="$*"
+# Registra a chamada já sem --request-timeout, para facilitar as asserções.
+if [[ -n "${MOCK_LOG:-}" ]]; then printf '%s\n' "$line" >>"$MOCK_LOG"; fi
+
+forbidden() { echo "Error from server (Forbidden): $1 is forbidden: User \"developer\" cannot list resource \"$1\"" >&2; exit 1; }
+
+if [[ "$profile" == down ]]; then
+  [[ "$line" == "version --client" ]] && { echo "Client Version: 4.22.0"; exit 0; }
+  echo 'Unable to connect to the server: dial tcp: lookup api.ocp.example.lab: no such host' >&2
+  exit 1
+fi
+
+case "$line" in
+  "version --client") echo "Client Version: 4.22.0"; echo "Kustomize Version: v5.0.0" ;;
+  "whoami") [[ "$profile" == admin ]] && echo admin || echo developer ;;
+  "whoami --show-server") echo "https://api.ocp.example.lab:6443" ;;
+  "whoami --show-context") echo "ac01-cli/api-ocp-example-lab:6443/$profile" ;;
+  "project -q") echo "ac00-orientacao" ;;
+  "get --raw /readyz") echo ok ;;
+  "get clusterversion version -o json")
+    [[ "$profile" == admin ]] || forbidden clusterversions
+    echo '{"status":{"desired":{"version":"4.22.0"},"conditions":[{"type":"Available","status":"True"},{"type":"Progressing","status":"False"}]}}' ;;
+  "get nodes -o json")
+    [[ "$profile" == admin ]] || forbidden nodes
+    echo '{"items":[{"metadata":{"name":"ocp-sno.ocp.example.lab"},"status":{"conditions":[{"type":"Ready","status":"True"}]}}]}' ;;
+  "get clusteroperators -o json")
+    [[ "$profile" == admin ]] || forbidden clusteroperators
+    echo '{"items":[{"metadata":{"name":"dns"},"status":{"conditions":[{"type":"Available","status":"True"},{"type":"Degraded","status":"False"},{"type":"Progressing","status":"False"}]}},{"metadata":{"name":"monitoring"},"status":{"conditions":[{"type":"Available","status":"True"},{"type":"Degraded","status":"False"},{"type":"Progressing","status":"True"}]}}]}' ;;
+  "adm top nodes --no-headers")
+    [[ "$profile" == admin ]] || forbidden nodes
+    echo "ocp-sno.ocp.example.lab   769m   13%   11400Mi   60%" ;;
+  "get storageclass -o name") [[ "$profile" == admin ]] || forbidden storageclasses ;;
+  "get configs.imageregistry.operator.openshift.io cluster -o jsonpath={.spec.managementState}")
+    [[ "$profile" == admin ]] || forbidden configs
+    printf 'Removed' ;;
+  "get projects -o name")
+    printf 'project.project.openshift.io/ac00-orientacao\nproject.project.openshift.io/meu-app\nproject.project.openshift.io/openshift-console\n' ;;
+  "get project ac00-orientacao -o name") echo "project.project.openshift.io/ac00-orientacao" ;;
+  "get project "*" -o name") echo "Error from server (NotFound): projects.project.openshift.io \"x\" not found" >&2; exit 1 ;;
+  "get namespace ac00-orientacao -o jsonpath="*) printf '' ;;
+  "get project ac00-orientacao -o jsonpath="*) printf 'developer' ;;
+  get\ *" -n ac00-orientacao -l academy.openshift.dev/managed-by=academia -o name --ignore-not-found")
+    if [[ -f "${MOCK_STATE:-/nonexistent}" ]]; then :; else printf 'configmap/ac00-cfg\ndeployment.apps/demo\n'; fi ;;
+  delete\ *" -n ac00-orientacao -l "*) [[ -n "${MOCK_STATE:-}" ]] && touch "$MOCK_STATE"; echo 'configmap "ac00-cfg" deleted' ;;
+  "delete project ac00-orientacao") echo 'project.project.openshift.io "ac00-orientacao" deleted' ;;
+  *) echo "mock oc: chamada não prevista: $line" >&2; exit 1 ;;
+esac
