@@ -23,7 +23,8 @@
 | [`15-rbac/`](15-rbac/) | RBC-001 a RBC-015 |
 | [`16-rede/`](16-rede/) | NET-001 a NET-015 |
 | [`17-admin/`](17-admin/) | ADM-001 a ADM-015 |
-| [`cenarios/`](cenarios/) | TS-001 a TS-054 |
+| [`18-operadores/`](18-operadores/) | OPS-001 a OPS-015 |
+| [`cenarios/`](cenarios/) | TS-001 a TS-057 |
 
 `scripts/academy where <ID>` mostra o caminho do enunciado e do gabarito sem exibir o conteúdo. Um gabarito traz
 **uma** solução possível; alternativas válidas são bem-vindas.

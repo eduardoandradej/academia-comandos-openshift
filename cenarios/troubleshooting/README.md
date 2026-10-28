@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 54 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 57 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -61,5 +61,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-052](TS-052.md) | failed quota: must specify — o pod sem resources | 17 | MUTAÇÃO LOCAL |
 | [TS-053](TS-053.md) | Projeto novo e vazio, mas sem cota: a ClusterResourceQuota compartilhada | 17 | MUTAÇÃO DE CLUSTER |
 | [TS-054](TS-054.md) | Pending por Insufficient cpu com o nó ocioso | 17 | MUTAÇÃO LOCAL |
+| [TS-055](TS-055.md) | Depois de religar o SNO, operadores em Progressing e Degraded | 18 | LEITURA |
+| [TS-056](TS-056.md) | MachineConfigPool travado em Updating | 18 | LEITURA |
+| [TS-057](TS-057.md) | O operador não atualiza: InstallPlan esperando aprovação | 18 | LEITURA |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

@@ -1,7 +1,7 @@
 # Famílias de comandos
 
 > Mapa das famílias do catálogo, com as comparações que mais confundem. Cada família aponta para a trilha onde é
-> praticada. Trilhas 00–17 estão disponíveis; as demais são planejadas.
+> praticada. Trilhas 00–18 estão disponíveis; as demais são planejadas.
 
 ## Visão geral
 
@@ -17,7 +17,7 @@
 | Imagens | `image info`, `image extract`, `imagestream`, `tag`, `import-image`, `set image-lookup`, `set triggers` | 10 | [image/imagestream](fichas/oc-image-imagestream.md) |
 | Declarativo | `apply`, `create -f`, `replace`, `patch`, `diff`, `--dry-run`, `--server-side`, `--prune`, `--local` | 00, 12 | [apply/patch/diff](fichas/oc-apply-patch-diff.md) |
 | Empacotamento | `process`, `kustomize`, `apply -k`, `new-app --template`, `helm` | 13, 14 | [kustomize/process](fichas/oc-kustomize-process.md), [helm](fichas/helm.md) |
-| RBAC e administração | `auth can-i`, `policy`, `adm groups`, `describe quota/limitrange`, `adm node-logs`, `adm inspect`, `get co/clusterversion`, OLM | 00, 15, 17, 18 | [auth can-i](fichas/oc-auth-can-i.md), [policy/rbac](fichas/oc-policy-rbac.md), [quota/limitrange](fichas/oc-quota-limitrange.md) |
+| RBAC e administração | `auth can-i`, `policy`, `adm groups`, `describe quota/limitrange`, `adm node-logs`, `adm inspect`, `get co/clusterversion`, OLM | 00, 15, 17, 18 | [auth can-i](fichas/oc-auth-can-i.md), [policy/rbac](fichas/oc-policy-rbac.md), [quota/limitrange](fichas/oc-quota-limitrange.md), [operadores](fichas/oc-operadores-manutencao.md) |
 
 ## Comparações essenciais
 

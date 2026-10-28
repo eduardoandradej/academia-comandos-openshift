@@ -45,7 +45,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 16. [Trilha 15](../trilhas/15-rbac/README.md) — Usuários, identidade e RBAC.
 17. [Trilha 16](../trilhas/16-rede/README.md) — Rede e isolamento.
 18. [Trilha 17](../trilhas/17-admin/README.md) — Administração de recursos (perfil admin).
-19. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-054 intercalados, conforme a trilha.
+19. [Trilha 18](../trilhas/18-operadores/README.md) — Operadores e manutenção (somente leitura).
+20. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-057 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 

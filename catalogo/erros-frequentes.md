@@ -26,6 +26,9 @@
 | `failed quota: ... must specify limits.cpu` | quota de computação sem LimitRange com padrões | `oc get limitrange -n <ns>` | remover a quota | [TS-052](../cenarios/troubleshooting/TS-052.md) |
 | `exceeded quota: <nome>` sem ResourceQuota no projeto | ClusterResourceQuota compartilhada | `oc describe appliedclusterresourcequota -n <ns>` | — | [TS-053](../cenarios/troubleshooting/TS-053.md) |
 | `Insufficient cpu` com uso baixo no nó | requests reservados esgotaram o alocável | `oc describe node` (Allocated resources) | reduzir requests de componentes do sistema | [TS-054](../cenarios/troubleshooting/TS-054.md) |
+| ClusterOperator `Progressing`/`Degraded` logo após religar o SNO | reconciliação em andamento | `lastTransitionTime`; repetir a leitura | reiniciar pods do sistema | [TS-055](../cenarios/troubleshooting/TS-055.md) |
+| MCP `UPDATING=True` sem fim | MachineConfig novo ou inválido | `oc get mc --sort-by=.metadata.creationTimestamp` | apagar MachineConfigs às cegas | [TS-056](../cenarios/troubleshooting/TS-056.md) |
+| operador do OLM não atualiza | InstallPlan com aprovação manual pendente | `oc get installplan -A` | trocar para `Automatic` sem revisão | [TS-057](../cenarios/troubleshooting/TS-057.md) |
 | `exceeded quota: ac-quota` | admissão de quota recusou | `oc describe quota -n <ns>` | pedir para remover a quota | ORI-013 |
 | `ErrImagePull` / `ImagePullBackOff` | tag/repo inexistente, registry inacessível ou sem credencial | `oc describe pod <pod> \| sed -n '/Events:/,$p'` | trocar para imagem aleatória "que funciona" sem entender | [TS-009](../cenarios/troubleshooting/TS-009.md) |
 | `CrashLoopBackOff` | o processo do contêiner termina repetidamente | `oc logs <pod> --previous` | aumentar limites às cegas | [TS-013](../cenarios/troubleshooting/TS-013.md), POD-003 |

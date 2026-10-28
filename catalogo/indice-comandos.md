@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–17 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–18 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -193,9 +193,9 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 | 132 | `oc tag <referencia> hello:v1 -n <ns>` | Definir tag, se fonte acessível | AMARELO | developer | [10](../trilhas/10-imagens/README.md) | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
 | 133 | `oc set image-lookup hello -n <ns>` | Habilitar lookup de ImageStream | AMARELO | developer | [10](../trilhas/10-imagens/README.md) | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
 | 134 | `oc set image-lookup -n <ns>` | Listar estado do lookup | VERDE | developer | [10](../trilhas/10-imagens/README.md) | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
-| 135 | `oc get configs.imageregistry.operator.openshift.io cluster -o yaml` | Inspecionar política do registry interno, sem alterar | VERDE | admin | 18 | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
-| 136 | `oc get image -o name` | Listar objetos de imagem globais | VERDE | admin | 18 | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
-| 137 | `oc get imagecontentsourcepolicy` | Detectar ICSP legados se presente | VERDE | admin | 18 | [oc-image-imagestream](fichas/oc-image-imagestream.md) | ICSP é legado; em 4.x recentes procurar também imagedigestmirrorsets/imagetagmirrorsets (veja TS-007) |
+| 135 | `oc get configs.imageregistry.operator.openshift.io cluster -o yaml` | Inspecionar política do registry interno, sem alterar | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
+| 136 | `oc get image -o name` | Listar objetos de imagem globais | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-image-imagestream](fichas/oc-image-imagestream.md) |  |
+| 137 | `oc get imagecontentsourcepolicy` | Detectar ICSP legados se presente | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-image-imagestream](fichas/oc-image-imagestream.md) | ICSP é legado; em 4.x recentes procurar também imagedigestmirrorsets/imagetagmirrorsets (veja TS-007) |
 
 ## 10 — Resiliência, métricas e escalonamento
 
@@ -295,19 +295,19 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 | 204 | `oc describe co monitoring` | Mensagens e condições do operador | VERDE | admin | [00](../trilhas/00-orientacao/README.md) | [oc-describe](fichas/oc-describe.md) |  |
 | 205 | `oc get pods -A -o wide` | Consultar pods em todos namespaces | VERDE | admin | [00](../trilhas/00-orientacao/README.md) | [oc-get](fichas/oc-get.md) |  |
 | 206 | `oc get events -A --sort-by=.metadata.creationTimestamp` | Investigar incidentes globais | VERDE | admin | [00](../trilhas/00-orientacao/README.md) | [oc-get-events](fichas/oc-get-events.md) |  |
-| 207 | `oc get mcp` | Consultar MachineConfigPools | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 208 | `oc get mc` | Consultar MachineConfigs, sem editar | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 209 | `oc get csr` | Inspecionar solicitações de certificados | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 210 | `oc get subscription -A` | Consultar subscriptions OLM | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 211 | `oc get csv -A` | Consultar ClusterServiceVersions | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 212 | `oc get installplan -A` | Consultar planos de instalação de operadores | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 213 | `oc get operatorgroups -A` | Consultar OperatorGroups | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
-| 214 | `oc get pods -n openshift-monitoring` | Ver stack de observabilidade | VERDE | admin | 18 | [oc-get](fichas/oc-get.md) |  |
+| 207 | `oc get mcp` | Consultar MachineConfigPools | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 208 | `oc get mc` | Consultar MachineConfigs, sem editar | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 209 | `oc get csr` | Inspecionar solicitações de certificados | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 210 | `oc get subscription -A` | Consultar subscriptions OLM | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 211 | `oc get csv -A` | Consultar ClusterServiceVersions | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 212 | `oc get installplan -A` | Consultar planos de instalação de operadores | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 213 | `oc get operatorgroups -A` | Consultar OperatorGroups | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
+| 214 | `oc get pods -n openshift-monitoring` | Ver stack de observabilidade | VERDE | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) |  |
 | 215 | `oc get route console -n openshift-console` | Consultar host do Console | VERDE | admin | [00](../trilhas/00-orientacao/README.md) | [oc-get](fichas/oc-get.md) |  |
 | 216 | `oc get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"="}{.status.conditions[?(@.type=="Ready")].status}{"\n"}{end}'` | Extrair condição Ready | VERDE | admin | [00](../trilhas/00-orientacao/README.md) | [oc-get](fichas/oc-get.md) |  |
-| 217 | `oc adm inspect ns/openshift-monitoring --dest-dir=./coleta` | Coleta potencialmente volumosa/sensível; requer autorização e espaço | VERMELHO | admin | 18 | — | coleta volumosa e potencialmente sensível: autorização e espaço em disco antes |
-| 218 | `oc adm drain ocp-sno.ocp.example.lab` | **NUNCA EXECUTAR** no SNO de laboratório único | VERMELHO | admin | 18 | — | NUNCA no SNO: drena o único nó e derruba o cluster |
-| 219 | `oc adm upgrade` | **NUNCA EXECUTAR** automaticamente; somente planejar | VERMELHO | admin | 18 | — | somente planejamento; nunca em script |
+| 217 | `oc adm inspect ns/openshift-monitoring --dest-dir=./coleta` | Coleta potencialmente volumosa/sensível; requer autorização e espaço | VERMELHO | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) | coleta volumosa e potencialmente sensível: autorização e espaço em disco antes |
+| 218 | `oc adm drain ocp-sno.ocp.example.lab` | **NUNCA EXECUTAR** no SNO de laboratório único | VERMELHO | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) | NUNCA no SNO: drena o único nó e derruba o cluster |
+| 219 | `oc adm upgrade` | **NUNCA EXECUTAR** automaticamente; somente planejar | VERMELHO | admin | [18](../trilhas/18-operadores/README.md) | [oc-operadores-manutencao](fichas/oc-operadores-manutencao.md) | somente planejamento; nunca em script |
 
 ## 16 — Ferramentas auxiliares e saúde do host
 

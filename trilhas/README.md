@@ -1,6 +1,6 @@
 # Trilhas
 
-> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 17. As demais são **planejadas**: as pastas só passam a
+> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 18. As demais são **planejadas**: as pastas só passam a
 > existir quando o conteúdo estiver escrito — nada aqui finge estar pronto.
 
 | ID | Trilha | Status | Foco | Dependências do HomeLab |
@@ -23,7 +23,7 @@
 | 15 | [Usuários, identidade e RBAC](15-rbac/README.md) | **disponível** (15) | can-i, papéis, Roles, bindings, grupos, tokens, SCC, OAuth (leitura) | perfil admin; HTPasswd opcional ([docs/12](../docs/12-preparacao-usuarios.md)) |
 | 16 | [Rede e isolamento](16-rede/README.md) | **disponível** (15) | NetworkPolicy entrada/saída, router, DNS, TLS, service CA | — |
 | 17 | [Administração de recursos](17-admin/README.md) | **disponível** (15) | capacidade, quotas, LimitRange, CRQ, prioridade, varredura, node-logs, inspect | perfil admin |
-| 18 | Operadores e manutenção | planejada | CO, CVO, OLM, MCP — somente observação | perfil admin |
+| 18 | [Operadores e manutenção](18-operadores/README.md) | **disponível** (15) | CVO, CO, OLM, CRDs, MCP, atualização e backup planejados, alertas — somente observação | perfil admin |
 | 19 | Troubleshooting transversal | planejada | Pending, BackOff, probes, RBAC, DNS, Route | trilhas anteriores |
 | 20 | Desafios integradores | planejada | casos com 6–12 recursos, diagnóstico cego | trilhas anteriores |
 
