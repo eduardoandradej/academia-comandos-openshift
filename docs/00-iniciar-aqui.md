@@ -32,7 +32,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 3. [Trilha 02](../trilhas/02-consultas/README.md) — leitura e inspeção.
 4. [Trilha 03](../trilhas/03-projetos/README.md) — projetos e metadados.
 5. [Trilha 04](../trilhas/04-pods/README.md) — pods e contêineres.
-6. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-015 intercalados, conforme a trilha.
+6. [Trilha 05](../trilhas/05-deployments/README.md) — Deployments e workloads.
+7. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-018 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 

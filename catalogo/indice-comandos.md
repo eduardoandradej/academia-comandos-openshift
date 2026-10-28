@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–04 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–05 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -108,26 +108,26 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 070 | `oc create deployment demo --image=registry.access.redhat.com/ubi9/httpd-24 -n <ns>` | Criar Deployment | AMARELO | developer | 05 | — |  |
-| 071 | `oc new-app --image=registry.access.redhat.com/ubi9/httpd-24 -n <ns>` | Criar app a partir de imagem compatível | AMARELO | developer | 05 | — |  |
-| 072 | `oc get deploy -n <ns>` | Listar deployments | VERDE | developer | 05 | [oc-get](fichas/oc-get.md) |  |
-| 073 | `oc describe deploy/demo -n <ns>` | Ver status e estratégia | VERDE | developer | 05 | — |  |
-| 074 | `oc get rs -n <ns>` | Observar ReplicaSets | VERDE | developer | 05 | [oc-get](fichas/oc-get.md) |  |
-| 075 | `oc scale deploy/demo --replicas=2 -n <ns>` | Escalar com teto de duas réplicas | AMARELO | developer | 05 | — |  |
-| 076 | `oc scale deploy/demo --replicas=1 -n <ns>` | Reduzir escala | AMARELO | developer | 05 | — |  |
-| 077 | `oc rollout status deploy/demo -n <ns>` | Acompanhar disponibilização | VERDE | developer | 05 | — |  |
-| 078 | `oc rollout history deploy/demo -n <ns>` | Consultar revisões | VERDE | developer | 05 | — |  |
-| 079 | `oc rollout history deploy/demo --revision=1 -n <ns>` | Ver detalhes da revisão 1 | VERDE | developer | 05 | — |  |
-| 080 | `oc rollout restart deploy/demo -n <ns>` | Reiniciar rollout de app de treino | AMARELO | developer | 05 | — |  |
-| 081 | `oc rollout undo deploy/demo -n <ns>` | Desfazer última alteração do rollout | AMARELO | developer | 05 | — |  |
-| 082 | `oc rollout pause deploy/demo -n <ns>` | Suspender rollout de app de treino | AMARELO | developer | 05 | — |  |
-| 083 | `oc rollout resume deploy/demo -n <ns>` | Retomar rollout de app de treino | AMARELO | developer | 05 | — |  |
-| 084 | `oc set image deploy/demo <container>=<imagem>:<tag> -n <ns>` | Trocar imagem do container | AMARELO | developer | 05 | — |  |
-| 085 | `oc set resources deploy/demo --requests=cpu=50m,memory=64Mi --limits=cpu=200m,memory=256Mi -n <ns>` | Configurar requests/limits moderados | AMARELO | developer | 05 | — |  |
-| 086 | `oc set env deploy/demo MODO=treino -n <ns>` | Adicionar variável ambiente | AMARELO | developer | 05 | — |  |
-| 087 | `oc set env deploy/demo MODO- -n <ns>` | Remover variável ambiente | AMARELO | developer | 05 | — |  |
-| 088 | `oc get deployment demo -o yaml -n <ns>` | Inspecionar spec e status | VERDE | developer | 05 | [oc-get](fichas/oc-get.md) | mesma forma do 156 |
-| 089 | `oc delete deployment demo -n <ns>` | Remover Deployment do exercício | AMARELO | developer | 05 | — |  |
+| 070 | `oc create deployment demo --image=registry.access.redhat.com/ubi9/httpd-24 -n <ns>` | Criar Deployment | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-create-deployment-scale](fichas/oc-create-deployment-scale.md) |  |
+| 071 | `oc new-app --image=registry.access.redhat.com/ubi9/httpd-24 -n <ns>` | Criar app a partir de imagem compatível | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-create-deployment-scale](fichas/oc-create-deployment-scale.md) |  |
+| 072 | `oc get deploy -n <ns>` | Listar deployments | VERDE | developer | [05](../trilhas/05-deployments/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 073 | `oc describe deploy/demo -n <ns>` | Ver status e estratégia | VERDE | developer | [05](../trilhas/05-deployments/README.md) | — |  |
+| 074 | `oc get rs -n <ns>` | Observar ReplicaSets | VERDE | developer | [05](../trilhas/05-deployments/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 075 | `oc scale deploy/demo --replicas=2 -n <ns>` | Escalar com teto de duas réplicas | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-create-deployment-scale](fichas/oc-create-deployment-scale.md) |  |
+| 076 | `oc scale deploy/demo --replicas=1 -n <ns>` | Reduzir escala | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-create-deployment-scale](fichas/oc-create-deployment-scale.md) |  |
+| 077 | `oc rollout status deploy/demo -n <ns>` | Acompanhar disponibilização | VERDE | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 078 | `oc rollout history deploy/demo -n <ns>` | Consultar revisões | VERDE | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 079 | `oc rollout history deploy/demo --revision=1 -n <ns>` | Ver detalhes da revisão 1 | VERDE | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 080 | `oc rollout restart deploy/demo -n <ns>` | Reiniciar rollout de app de treino | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 081 | `oc rollout undo deploy/demo -n <ns>` | Desfazer última alteração do rollout | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 082 | `oc rollout pause deploy/demo -n <ns>` | Suspender rollout de app de treino | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 083 | `oc rollout resume deploy/demo -n <ns>` | Retomar rollout de app de treino | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-rollout](fichas/oc-rollout.md) |  |
+| 084 | `oc set image deploy/demo <container>=<imagem>:<tag> -n <ns>` | Trocar imagem do container | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-set](fichas/oc-set.md) |  |
+| 085 | `oc set resources deploy/demo --requests=cpu=50m,memory=64Mi --limits=cpu=200m,memory=256Mi -n <ns>` | Configurar requests/limits moderados | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-set](fichas/oc-set.md) |  |
+| 086 | `oc set env deploy/demo MODO=treino -n <ns>` | Adicionar variável ambiente | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-set](fichas/oc-set.md) |  |
+| 087 | `oc set env deploy/demo MODO- -n <ns>` | Remover variável ambiente | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | [oc-set](fichas/oc-set.md) |  |
+| 088 | `oc get deployment demo -o yaml -n <ns>` | Inspecionar spec e status | VERDE | developer | [05](../trilhas/05-deployments/README.md) | [oc-get](fichas/oc-get.md) | mesma forma do 156 |
+| 089 | `oc delete deployment demo -n <ns>` | Remover Deployment do exercício | AMARELO | developer | [05](../trilhas/05-deployments/README.md) | — |  |
 
 ## 06 — Service, Route e DNS
 

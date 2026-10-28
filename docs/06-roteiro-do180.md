@@ -11,11 +11,11 @@
 | CLI e APIs do Kubernetes e do OpenShift | 01, 02 | disponível |
 | Observabilidade (eventos, saúde, métricas) | 00 (ORI-005 a ORI-008), 02 (CON-012, CON-014) | disponível |
 | Pods e contêineres | 04 | disponível |
-| Deployments e aplicações gerenciadas | 05 | planejada |
+| Deployments e aplicações gerenciadas | 05 | disponível |
 | Services e Routes | 06, 07 | planejada |
 | Configuração e dados (ConfigMaps, Secrets, storage) | 08, 09 | planejada (09 depende de StorageClass) |
 | Confiabilidade (probes, recursos, escala) | 11 | planejada |
-| Atualizações de aplicações (imagens, rollout) | 05, 10 | planejada |
+| Atualizações de aplicações (imagens, rollout) | 05 (disponível), 10 (planejada) | parcial |
 | Revisão integrada | 19, 20 | planejada |
 
 Use a Academia **depois** de estudar o capítulo correspondente: o capítulo explica, a trilha repete até fixar.

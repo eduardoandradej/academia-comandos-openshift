@@ -12,7 +12,7 @@
 | LoadBalancer e redes adicionais | 16 | **somente conceitual** |
 | Quotas, limit ranges e autosserviço de projetos | 17 (base em ORI-011 a ORI-013, PRJ-002, PRJ-014) | — |
 | Operators e OLM | 18 | **somente observação** |
-| SCC, service accounts, Jobs/CronJobs | 05, 17 | SCC só em observação e casos limitados |
+| SCC, service accounts, Jobs/CronJobs | 05 (Jobs/CronJobs: DEP-010, DEP-011), 17 | SCC só em observação e casos limitados |
 | Atualização do cluster | 18 | **somente conceitual/observação**; nunca `oc adm upgrade` |
 
 ## Jornada DO180 → DO280 → EX280

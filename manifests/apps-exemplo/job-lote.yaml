@@ -1,0 +1,36 @@
+# Trilha 05: Job com 4 conclusões, 2 em paralelo. Cada pod imprime o índice e termina.
+#   oc apply -f manifests/apps-exemplo/job-lote.yaml -n ac05-deploy
+# Limpeza: oc delete job ac05-lote -n ac05-deploy (apaga também os pods)
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ac05-lote
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "05"
+spec:
+  completions: 4
+  parallelism: 2
+  completionMode: Indexed
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 600
+  template:
+    metadata:
+      labels:
+        academy.openshift.dev/managed-by: academia
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: tarefa
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/sh", "-c", "echo \"tarefa $JOB_COMPLETION_INDEX iniciada\"; sleep 5; echo \"tarefa $JOB_COMPLETION_INDEX ok\""]
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 50m, memory: 32Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

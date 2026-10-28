@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 75 | 300+ |
-| Cenários de troubleshooting | 15 | 40+ |
-| Fichas de comando | 22 | uma por família de comando |
-| Trilhas completas | 5 de 21 | 21 |
+| Microexercícios originais | 90 | 300+ |
+| Cenários de troubleshooting | 18 | 40+ |
+| Fichas de comando | 26 | uma por família de comando |
+| Trilhas completas | 6 de 21 | 21 |
 
 ## Matriz por família
 
@@ -33,7 +33,8 @@
 | Pods: ciclo de vida | POD-001, POD-003 | POD-002, POD-014 | POD-002, POD-003, POD-011 | TS-013, TS-014 | POD-015 | imagem externa | AMARELO |
 | Pods: logs e acesso | POD-004, POD-010 | POD-004, POD-005 | POD-006 a POD-009, POD-013 | POD-004, POD-013 | POD-015 | imagem externa | VERDE/AMARELO |
 | Pods: recursos e QoS | POD-012 | POD-012 | POD-012 | TS-015 | POD-015 | imagem externa | AMARELO |
-| Deployments e rollout | — | — | — | — | — | imagem externa | AMARELO |
+| Deployments e rollout | DEP-001, DEP-003, DEP-007 | DEP-008, DEP-014 | DEP-001 a DEP-007, DEP-013 | DEP-014, TS-016, TS-018 | DEP-015 | imagem externa | AMARELO |
+| Jobs, CronJobs, DaemonSets | DEP-010 a DEP-012 | DEP-012 | DEP-009 a DEP-012 | DEP-010, TS-017 | DEP-015 | imagem externa | AMARELO |
 | Services, Routes, DNS | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
 | ConfigMaps e Secrets | — | — | — | — | — | — | AMARELO |
 | Storage | — | — | — | — | — | **StorageClass/PV: NÃO DISPONÍVEL NO HOME LAB ATUAL** | AMARELO |
@@ -50,7 +51,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-04]
+    ID --> T00[Trilhas 00-05]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

@@ -1,0 +1,38 @@
+# Cenário TS-018: Deployment que pede mais CPU do que a quota do projeto permite.
+# REQUER a baseline de quota no projeto (requests.cpu: 500m), aplicada pelo admin.
+# Cada réplica pede 300m: a 1ª cabe, a 2ª e a 3ª são recusadas pela quota (nenhum pod extra roda).
+#   oc apply -f manifests/apps-exemplo/cenario-quota-deploy.yaml -n ac05-deploy
+# Limpeza: oc delete deployment -l academy.openshift.dev/cenario=ts-018 -n ac05-deploy
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac05-guloso
+  labels:
+    app: ac05-guloso
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-018
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ac05-guloso
+  template:
+    metadata:
+      labels:
+        app: ac05-guloso
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/cenario: ts-018
+    spec:
+      containers:
+        - name: app
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          resources:
+            requests: {cpu: 300m, memory: 32Mi}
+            limits: {cpu: 400m, memory: 64Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

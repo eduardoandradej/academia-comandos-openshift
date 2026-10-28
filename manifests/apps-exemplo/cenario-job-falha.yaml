@@ -1,0 +1,33 @@
+# Cenário TS-017: Job que sempre falha e esgota o backoffLimit (BackoffLimitExceeded).
+#   oc apply -f manifests/apps-exemplo/cenario-job-falha.yaml -n ac05-deploy
+# Limpeza: oc delete job -l academy.openshift.dev/cenario=ts-017 -n ac05-deploy
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ac05-job-falha
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-017
+spec:
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/cenario: ts-017
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: tarefa
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/sh", "-c", "echo 'conectando ao banco...'; echo 'ERRO: banco inacessivel' >&2; exit 2"]
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 50m, memory: 32Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

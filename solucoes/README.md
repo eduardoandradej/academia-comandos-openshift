@@ -10,7 +10,8 @@
 | [`02-consultas/`](02-consultas/) | CON-001 a CON-015 |
 | [`03-projetos/`](03-projetos/) | PRJ-001 a PRJ-015 |
 | [`04-pods/`](04-pods/) | POD-001 a POD-015 |
-| [`cenarios/`](cenarios/) | TS-001 a TS-015 |
+| [`05-deployments/`](05-deployments/) | DEP-001 a DEP-015 |
+| [`cenarios/`](cenarios/) | TS-001 a TS-018 |
 
 `scripts/academy where <ID>` mostra o caminho do enunciado e do gabarito sem exibir o conteúdo. Um gabarito traz
 **uma** solução possível; alternativas válidas são bem-vindas.

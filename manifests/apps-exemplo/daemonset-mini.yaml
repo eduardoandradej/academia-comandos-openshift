@@ -1,0 +1,39 @@
+# Trilha 05: DaemonSet mínimo (um pod por nó; no SNO, exatamente um pod).
+#   oc apply -f manifests/apps-exemplo/daemonset-mini.yaml -n ac05-deploy
+# Limpeza: oc delete daemonset ac05-ds -n ac05-deploy
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ac05-ds
+  labels:
+    app: ac05-ds
+    academy.openshift.dev/managed-by: academia
+spec:
+  selector:
+    matchLabels:
+      app: ac05-ds
+  template:
+    metadata:
+      labels:
+        app: ac05-ds
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: agente
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/sh", "-c", "while true; do echo \"agente no nó $NODE_NAME\"; sleep 30; done"]
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 50m, memory: 32Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

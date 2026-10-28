@@ -14,5 +14,9 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`apps-exemplo/cenario-crashloop.yaml`](apps-exemplo/cenario-crashloop.yaml) | Pod que termina com erro (CrashLoopBackOff) | developer | TS-013, POD-013 |
 | [`apps-exemplo/cenario-pending-nodeselector.yaml`](apps-exemplo/cenario-pending-nodeselector.yaml) | Pod com nodeSelector sem nó correspondente | developer | TS-014 |
 | [`apps-exemplo/cenario-oomkilled.yaml`](apps-exemplo/cenario-oomkilled.yaml) | Pod que estoura 48 Mi de memória | developer | TS-015 |
+| [`apps-exemplo/job-lote.yaml`](apps-exemplo/job-lote.yaml) | Job indexado: 4 conclusões, 2 em paralelo | developer | DEP-010 |
+| [`apps-exemplo/daemonset-mini.yaml`](apps-exemplo/daemonset-mini.yaml) | DaemonSet mínimo (1 pod no SNO) | developer | DEP-012 |
+| [`apps-exemplo/cenario-job-falha.yaml`](apps-exemplo/cenario-job-falha.yaml) | Job que esgota o backoffLimit | developer | TS-017 |
+| [`apps-exemplo/cenario-quota-deploy.yaml`](apps-exemplo/cenario-quota-deploy.yaml) | Deployment que excede `requests.cpu` da quota | developer | TS-018 (exige baseline) |
 
 Imagens: `registry.access.redhat.com/ubi9/httpd-24` — **REQUER PREPARAÇÃO** (acesso de saída do cluster ao registry).

@@ -19,6 +19,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [02 — Leitura e inspeção](guia/02-consultas.md) | `get`, `describe`, `explain`, filtros, JSONPath, jq, eventos |
 | [03 — Projetos e metadados](guia/03-projetos.md) | rótulos, anotações, seletores, donos, finalizers |
 | [04 — Pods e contêineres](guia/04-pods.md) | criar pods, logs, exec, rsh, cp, port-forward, debug, QoS, erros comuns |
+| [05 — Deployments e workloads](guia/05-deployments.md) | criar, escalar, rollout, undo, restart, set, estratégias, Jobs, CronJobs, DaemonSet |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -42,11 +43,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 5 (00 a 04) | 21 |
-| Microexercícios | 75 | 300+ |
-| Cenários de troubleshooting | 15 | 40+ |
+| Trilhas completas | 6 (00 a 05) | 21 |
+| Microexercícios | 90 | 300+ |
+| Cenários de troubleshooting | 18 | 40+ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 22 | — |
+| Fichas de comando | 26 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -90,7 +91,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 02 | [Leitura e inspeção](trilhas/02-consultas/README.md) | disponível |
 | 03 | [Projetos e metadados](trilhas/03-projetos/README.md) | disponível |
 | 04 | [Pods e contêineres](trilhas/04-pods/README.md) | disponível |
-| 05–20 | [Deployments, Services, Routes, Config, Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 05 | [Deployments e workloads](trilhas/05-deployments/README.md) | disponível |
+| 06–20 | [Services, Routes, Config, Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
 
 ## Restrições do HomeLab
 

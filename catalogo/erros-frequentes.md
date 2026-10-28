@@ -27,6 +27,9 @@
 | `Unable to listen on port ... address already in use` | port-forward anterior aberto | `pgrep -af 'oc port-forward'` | — | POD-009 |
 | `Readiness probe failed` / `Liveness probe failed` | probe com caminho/porta errados ou app lenta | `oc describe pod` (Events) | desligar probes definitivamente | Trilha 11 (planejada) |
 | Route responde `503` | Route sem endpoints prontos (seletor/porta/readiness) | `oc get endpointslices -n <ns>`; `oc describe svc` | apontar a Route direto para o pod | Trilha 07 (planejada) |
+| `exceeded its progress deadline` | revisão nova não ficou pronta no prazo | condição `Progressing` + pods do RS novo | apagar o Deployment e recriar | [TS-016](../cenarios/troubleshooting/TS-016.md) |
+| Job `Failed` / `BackoffLimitExceeded` | a tarefa falhou mais que o `backoffLimit` | `oc logs -l job-name=<job> --prefix` | aumentar o `backoffLimit` sem corrigir a causa | [TS-017](../cenarios/troubleshooting/TS-017.md) |
+| `FailedCreate ... exceeded quota` (eventos do ReplicaSet) | quota impediu criar pods | `oc describe rs -l app=<nome>` | pedir para remover a quota | [TS-018](../cenarios/troubleshooting/TS-018.md) |
 | `error: timed out waiting for the condition` | `oc wait` expirou | `oc rollout status ... --timeout=5s`; eventos `Warning` | remover o `--timeout` | CON-014 |
 | `the object has been modified` | `resourceVersion` antigo no manifesto | `grep resourceVersion <arquivo>` | `--force` | CON-013 |
 | `field label not supported` | campo não indexado para `--field-selector` | use jsonpath/jq no cliente | — | CON-006 |
