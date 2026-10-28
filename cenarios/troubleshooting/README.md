@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 45 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 48 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -52,5 +52,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-043](TS-043.md) | another operation is in progress: a release travada | 14 | MUTAÇÃO LOCAL |
 | [TS-044](TS-044.md) | invalid ownership metadata: o objeto que o Helm não assume | 14 | MUTAÇÃO LOCAL |
 | [TS-045](TS-045.md) | --reuse-values: o padrão novo do chart que não chegou | 14 | MUTAÇÃO LOCAL |
+| [TS-046](TS-046.md) | Lê os pods, mas não os logs | 15 | MUTAÇÃO LOCAL |
+| [TS-047](TS-047.md) | cannot change roleRef: trocar o papel de um binding | 15 | MUTAÇÃO LOCAL |
+| [TS-048](TS-048.md) | O binding para o grupo existe, mas o acesso não | 15 | MUTAÇÃO DE CLUSTER |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

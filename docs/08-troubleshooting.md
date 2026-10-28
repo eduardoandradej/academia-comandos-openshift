@@ -37,4 +37,4 @@ flowchart LR
 ## Material
 
 - Biblioteca de mensagens: [catalogo/erros-frequentes.md](../catalogo/erros-frequentes.md).
-- Cenários: [cenarios/troubleshooting/](../cenarios/troubleshooting/README.md) (45; meta inicial de 40 atingida).
+- Cenários: [cenarios/troubleshooting/](../cenarios/troubleshooting/README.md) (48; meta inicial de 40 atingida).

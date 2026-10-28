@@ -7,6 +7,10 @@
 |---|---|---|---|---|
 | `Unauthorized` / `You must be logged in` | sessão sem token válido (expirou, logout) | `oc whoami`; `oc login -u <user>` | usar o kubeconfig do instalador "para resolver" | [TS-005](../cenarios/troubleshooting/TS-005.md) |
 | `Forbidden ... cannot <verbo> resource` | identidade conhecida, sem permissão | `oc auth can-i <verbo> <recurso> -n <ns>` | dar `cluster-admin` ao usuário | [TS-003](../cenarios/troubleshooting/TS-003.md), ORI-011 |
+| `cannot get resource "pods/log"` | subrecurso fora da regra da Role | `oc describe role <r>` | dar `edit`/`admin` inteiro | [TS-046](../cenarios/troubleshooting/TS-046.md) |
+| `cannot change roleRef` | `roleRef` de binding é imutável | `oc get rolebinding -o yaml` | `oc delete` antes de criar o novo | [TS-047](../cenarios/troubleshooting/TS-047.md) |
+| binding para grupo sem efeito | nome do grupo errado no sujeito | `subjects` do binding × `oc get groups` | dar o papel direto ao usuário | [TS-048](../cenarios/troubleshooting/TS-048.md) |
+| `unable to validate against any security context constraint` | pod pede UID/capability que a SCC não permite | anotação `openshift.io/scc`; `scc-subject-review` | conceder `anyuid`/`privileged` | RBC-012 |
 | `... at the cluster scope` | pediu `-A` ou recurso de cluster sem permissão | `oc auth can-i list <recurso> --all-namespaces` | idem | CON-004 |
 | `NotFound` | nome, namespace ou tipo errado; objeto apagado | `oc get <tipo> -n <ns>`; `oc project -q` | recriar às cegas | [TS-006](../cenarios/troubleshooting/TS-006.md) |
 | `No resources found in X namespace` | resposta vazia (não é erro) | ler o namespace citado; `oc get ... -n <certo>` | — | TS-006 |

@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–14 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–15 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -254,22 +254,22 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 176 | `oc auth can-i get pods -n <ns>` | Verificar permissão atual | VERDE | admin | 15 | [oc-auth-can-i](fichas/oc-auth-can-i.md) |  |
-| 177 | `oc auth can-i create deployments -n <ns> --as=developer` | Consultar permissão de outro usuário se autorização permitir | VERDE | admin | 15 | [oc-auth-can-i](fichas/oc-auth-can-i.md) |  |
-| 178 | `oc auth can-i --list -n <ns>` | Listar permissões efetivas no projeto | VERDE | admin | 15 | [oc-auth-can-i](fichas/oc-auth-can-i.md) |  |
-| 179 | `oc get oauth cluster -o yaml` | Inspecionar IdP, sem secrets | VERDE | admin | 15 | — |  |
-| 180 | `oc get users` | Listar usuários do OpenShift | VERDE | admin | 15 | — |  |
-| 181 | `oc get groups` | Listar grupos existentes | VERDE | admin | 15 | — |  |
-| 182 | `oc get roles,rolebindings -n <ns>` | Listar controles de acesso no projeto | VERDE | admin | 15 | [oc-get](fichas/oc-get.md) |  |
-| 183 | `oc get clusterroles,clusterrolebindings` | Consultar RBAC global | VERDE | admin | 15 | — |  |
-| 184 | `oc adm groups new ac-dev-group` | Criar grupo dedicado de treino | AMARELO | admin | 15 | — |  |
-| 185 | `oc adm groups add-users ac-dev-group developer` | Associar usuário de treino ao grupo | AMARELO | admin | 15 | — |  |
-| 186 | `oc policy add-role-to-user view developer -n <ns>` | Dar leitura em projeto de treino | AMARELO | admin | 15 | — |  |
-| 187 | `oc policy add-role-to-group edit ac-dev-group -n <ns>` | Dar edição no namespace reservado | AMARELO | admin | 15 | — |  |
-| 188 | `oc adm policy add-cluster-role-to-user cluster-admin admin` | Alteração global sensível; não automatizar | VERMELHO | admin | 15 | — |  |
-| 189 | `oc get rolebinding -n <ns> -o yaml` | Auditar bindings | VERDE | admin | 15 | [oc-get](fichas/oc-get.md) |  |
+| 176 | `oc auth can-i get pods -n <ns>` | Verificar permissão atual | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-auth-can-i](fichas/oc-auth-can-i.md) |  |
+| 177 | `oc auth can-i create deployments -n <ns> --as=developer` | Consultar permissão de outro usuário se autorização permitir | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-auth-can-i](fichas/oc-auth-can-i.md) |  |
+| 178 | `oc auth can-i --list -n <ns>` | Listar permissões efetivas no projeto | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-auth-can-i](fichas/oc-auth-can-i.md) |  |
+| 179 | `oc get oauth cluster -o yaml` | Inspecionar IdP, sem secrets | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 180 | `oc get users` | Listar usuários do OpenShift | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 181 | `oc get groups` | Listar grupos existentes | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 182 | `oc get roles,rolebindings -n <ns>` | Listar controles de acesso no projeto | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 183 | `oc get clusterroles,clusterrolebindings` | Consultar RBAC global | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 184 | `oc adm groups new ac-dev-group` | Criar grupo dedicado de treino | AMARELO | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 185 | `oc adm groups add-users ac-dev-group developer` | Associar usuário de treino ao grupo | AMARELO | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 186 | `oc policy add-role-to-user view developer -n <ns>` | Dar leitura em projeto de treino | AMARELO | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 187 | `oc policy add-role-to-group edit ac-dev-group -n <ns>` | Dar edição no namespace reservado | AMARELO | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 188 | `oc adm policy add-cluster-role-to-user cluster-admin admin` | Alteração global sensível; não automatizar | VERMELHO | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
+| 189 | `oc get rolebinding -n <ns> -o yaml` | Auditar bindings | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-get](fichas/oc-get.md) |  |
 | 190 | `oc get securitycontextconstraints` | Inspecionar SCCs sem alterar | VERDE | admin | 17 | — |  |
-| 191 | `oc adm policy who-can create pods -n <ns>` | Listar sujeitos autorizados por ação | VERDE | admin | 15 | — |  |
+| 191 | `oc adm policy who-can create pods -n <ns>` | Listar sujeitos autorizados por ação | VERDE | admin | [15](../trilhas/15-rbac/README.md) | [oc-policy-rbac](fichas/oc-policy-rbac.md) |  |
 
 ## 14 — Rede, TLS e isolamento
 

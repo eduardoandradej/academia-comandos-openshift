@@ -20,7 +20,8 @@
 | [`12-declarativo/`](12-declarativo/) | DCL-001 a DCL-015 |
 | [`13-kustomize/`](13-kustomize/) | KUS-001 a KUS-015 |
 | [`14-helm/`](14-helm/) | HLM-001 a HLM-015 |
-| [`cenarios/`](cenarios/) | TS-001 a TS-045 |
+| [`15-rbac/`](15-rbac/) | RBC-001 a RBC-015 |
+| [`cenarios/`](cenarios/) | TS-001 a TS-048 |
 
 `scripts/academy where <ID>` mostra o caminho do enunciado e do gabarito sem exibir o conteúdo. Um gabarito traz
 **uma** solução possível; alternativas válidas são bem-vindas.
