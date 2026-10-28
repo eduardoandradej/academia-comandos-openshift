@@ -26,7 +26,10 @@
 | código 127 em `oc exec` | o utilitário não existe na imagem | `oc exec <pod> -- sh -c 'command -v <cmd>'` | instalar pacotes dentro do contêiner | POD-006 |
 | `Unable to listen on port ... address already in use` | port-forward anterior aberto | `pgrep -af 'oc port-forward'` | — | POD-009 |
 | `Readiness probe failed` / `Liveness probe failed` | probe com caminho/porta errados ou app lenta | `oc describe pod` (Events) | desligar probes definitivamente | Trilha 11 (planejada) |
-| Route responde `503` | Route sem endpoints prontos (seletor/porta/readiness) | `oc get endpointslices -n <ns>`; `oc describe svc` | apontar a Route direto para o pod | Trilha 07 (planejada) |
+| Route responde `503` | Route sem endpoints prontos (seletor/porta/readiness) | `oc get endpointslices -n <ns>`; `oc describe svc` | apontar a Route direto para o pod | [TS-022](../cenarios/troubleshooting/TS-022.md) |
+| Route com `Admitted=False` / `HostAlreadyClaimed` | outra Route mais antiga usa o host | `status.ingress[0].conditions` | apagar Routes de outros | [TS-023](../cenarios/troubleshooting/TS-023.md) |
+| `Could not resolve host` para uma Route | hostname fora de `*.apps` ou sem linha no `hosts` do Windows | `getent ahostsv4 <host>`; `curl -H Host:` para 192.168.10.200 | — | [TS-024](../cenarios/troubleshooting/TS-024.md) |
+| `SSL certificate problem` ao acessar Route | CA do Ingress não confiável no cliente | `openssl s_client ... \| openssl x509 -noout -issuer` | `-k` fora do HomeLab | RTE-006 |
 | `exceeded its progress deadline` | revisão nova não ficou pronta no prazo | condição `Progressing` + pods do RS novo | apagar o Deployment e recriar | [TS-016](../cenarios/troubleshooting/TS-016.md) |
 | Job `Failed` / `BackoffLimitExceeded` | a tarefa falhou mais que o `backoffLimit` | `oc logs -l job-name=<job> --prefix` | aumentar o `backoffLimit` sem corrigir a causa | [TS-017](../cenarios/troubleshooting/TS-017.md) |
 | `FailedCreate ... exceeded quota` (eventos do ReplicaSet) | quota impediu criar pods | `oc describe rs -l app=<nome>` | pedir para remover a quota | [TS-018](../cenarios/troubleshooting/TS-018.md) |

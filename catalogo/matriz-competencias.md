@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 105 | 300+ |
-| Cenários de troubleshooting | 21 | 40+ |
-| Fichas de comando | 27 | uma por família de comando |
-| Trilhas completas | 7 de 21 | 21 |
+| Microexercícios originais | 120 | 300+ |
+| Cenários de troubleshooting | 24 | 40+ |
+| Fichas de comando | 28 | uma por família de comando |
+| Trilhas completas | 8 de 21 | 21 |
 
 ## Matriz por família
 
@@ -36,7 +36,7 @@
 | Deployments e rollout | DEP-001, DEP-003, DEP-007 | DEP-008, DEP-014 | DEP-001 a DEP-007, DEP-013 | DEP-014, TS-016, TS-018 | DEP-015 | imagem externa | AMARELO |
 | Jobs, CronJobs, DaemonSets | DEP-010 a DEP-012 | DEP-012 | DEP-009 a DEP-012 | DEP-010, TS-017 | DEP-015 | imagem externa | AMARELO |
 | Services e DNS | SVC-001, SVC-002, SVC-005 | SVC-003, SVC-005, SVC-007 | SVC-001, SVC-002, SVC-006, SVC-008 a SVC-012 | SVC-014, TS-019 a TS-021 | SVC-015 | imagem externa | AMARELO |
-| Routes e Ingress | — | — | — | — | — | wildcard `*.apps` resolvendo | AMARELO |
+| Routes e Ingress | RTE-001, RTE-002, RTE-006 | RTE-005, RTE-013 | RTE-001 a RTE-012 | RTE-014, TS-022 a TS-024 | RTE-015 | wildcard `*.apps` resolvendo | AMARELO |
 | ConfigMaps e Secrets | — | — | — | — | — | — | AMARELO |
 | Storage | — | — | — | — | — | **StorageClass/PV: NÃO DISPONÍVEL NO HOME LAB ATUAL** | AMARELO |
 | Imagens e registry | — | — | — | — | — | registry interno sem storage (verificar `managementState`) | AMARELO |
@@ -52,13 +52,13 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-06]
+    ID --> T00[Trilhas 00-07]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]
     SC[StorageClass / PV] -.-> T09[Trilha 09 Storage]
     REG[Registry interno com storage] -.-> T10[Trilha 10 Imagens e builds]
-    DNS[Wildcard *.apps resolvendo no cliente] -.-> T07[Trilha 07 Routes]
+    DNS[Wildcard *.apps resolvendo no cliente] -.-> T07[Trilha 07 Routes: verificar no cliente]
     MET[Metrics API] -.-> T11[Trilha 11 HPA]
     HELM[Cliente helm] -.-> T14[Trilha 14 Helm]
     LB[LoadBalancer / redes adicionais] -.-> X[Apenas conceitual no SNO]

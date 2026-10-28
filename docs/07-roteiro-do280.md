@@ -8,7 +8,7 @@
 | Gerenciamento declarativo de recursos | 12 (base em ORI-012, ORI-014, PRJ-012) | — |
 | Kustomize, templates e Helm | 13, 14 | `helm` REQUER PREPARAÇÃO |
 | Autenticação (HTPasswd) e RBAC | 15 (base em ORI-003) | não pré-criar usuários do exercício |
-| Segurança de rede e TLS | 07, 16 | wildcard `*.apps` no cliente |
+| Segurança de rede e TLS | 07 (TLS em Routes: RTE-006 a RTE-009), 16 | wildcard `*.apps` no cliente |
 | LoadBalancer e redes adicionais | 16 | **somente conceitual** |
 | Quotas, limit ranges e autosserviço de projetos | 17 (base em ORI-011 a ORI-013, PRJ-002, PRJ-014) | — |
 | Operators e OLM | 18 | **somente observação** |

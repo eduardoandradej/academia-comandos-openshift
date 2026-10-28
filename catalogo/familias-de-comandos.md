@@ -12,7 +12,7 @@
 | Projetos e metadados | `new-project`, `label`, `annotate`, seletores, `ownerReferences`, finalizers | 00, 03 | [new-project](fichas/oc-new-project.md), [label/annotate](fichas/oc-label-annotate.md) |
 | Pods e diagnóstico | `run`, `logs`, `exec`, `rsh`, `cp`, `attach`, `port-forward`, `debug` | 04 | [run](fichas/oc-run.md), [logs](fichas/oc-logs.md), [exec/rsh/cp/debug](fichas/oc-exec-rsh.md), [port-forward](fichas/oc-port-forward.md) |
 | Aplicações | `create deployment`, `new-app`, `scale`, `rollout`, `set`, `create job/cronjob` | 05, 11 | [deployment/scale](fichas/oc-create-deployment-scale.md), [rollout](fichas/oc-rollout.md), [set](fichas/oc-set.md), [job/cronjob](fichas/oc-create-job-cronjob.md) |
-| Rede | `expose`, `create service`, `set selector`, `get svc/route/endpointslices`, `curl`, `dig`, `openssl` | 06, 07, 16 | [expose/service](fichas/oc-expose-service.md) |
+| Rede | `expose`, `create service`, `set selector`, `create route`, `set route-backends`, `curl`, `openssl` | 06, 07, 16 | [expose/service](fichas/oc-expose-service.md), [route](fichas/oc-route.md) |
 | Configuração e volumes | `create configmap/secret`, `set env`, `set volume`, `get pv,pvc,sc` | 08, 09 | — |
 | Imagens | `image info`, `imagestream`, `tag`, `import-image` | 10 | — |
 | Declarativo | `apply`, `create -f`, `replace`, `patch`, `diff`, `--dry-run` | 00, 12 | — |

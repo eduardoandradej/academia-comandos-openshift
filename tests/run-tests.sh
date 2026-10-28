@@ -116,6 +116,8 @@ has "list mostra DEP-015" "DEP-015"
 has "list mostra cenário TS-018" "TS-018"
 has "list mostra SVC-015" "SVC-015"
 has "list mostra cenário TS-021" "TS-021"
+has "list mostra RTE-015" "RTE-015"
+has "list mostra cenário TS-024" "TS-024"
 run "academy list --trilha 00" 0 "$ROOT/scripts/academy" list --trilha 00
 has "filtro por trilha mostra a trilha pedida" "ORI-001"
 run "academy list --trilha 99 (vazia)" 0 "$ROOT/scripts/academy" list --trilha 99
@@ -148,6 +150,8 @@ run "academy where DEP-004" 0 "$ROOT/scripts/academy" where DEP-004
 has "where aponta gabarito da trilha 05" "solucoes/05-deployments/DEP-004.md"
 run "academy review SVC-006" 0 "$ROOT/scripts/academy" review SVC-006
 has "review SVC-006 mostra a ficha" "Ficha de revisão"
+run "academy where RTE-007" 0 "$ROOT/scripts/academy" where RTE-007
+has "where aponta gabarito da trilha 07" "solucoes/07-rotas/RTE-007.md"
 run "academy start não implementado" 3 "$ROOT/scripts/academy" start ORI-001
 run "academy comando desconhecido" 2 "$ROOT/scripts/academy" xyz
 : >"$MOCK_LOG"
