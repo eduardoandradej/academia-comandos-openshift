@@ -1,0 +1,60 @@
+# Preparação da Trilha 09, opção A: PVs estáticos NFS (docs/10-preparacao-storage.md).
+# Aplicar como admin SOMENTE depois de configurar o servidor NFS no kvm-server, trocando NFS_SERVER pelo IP dele
+# na rede 192.168.10.0/24:
+#   sed "s/NFS_SERVER/<IP>/" manifests/preparacao/storage-nfs-pv.yaml | oc apply --dry-run=server -f -
+#   sed "s/NFS_SERVER/<IP>/" manifests/preparacao/storage-nfs-pv.yaml | oc apply -f -
+# PVs são objetos de cluster; não há StorageClass: a ligação é pelo nome "ac09-nfs".
+# Remoção: oc delete pv -l academy.openshift.dev/managed-by=academia (depois de apagar os PVCs)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ac09-pv-01
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/pv: "01"
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes: ["ReadWriteOnce", "ReadWriteMany"]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ac09-nfs
+  mountOptions: ["nfsvers=4.1"]
+  nfs:
+    server: NFS_SERVER
+    path: /mnt/hd1tb/ac09-nfs/pv01
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ac09-pv-02
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/pv: "02"
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes: ["ReadWriteOnce", "ReadWriteMany"]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ac09-nfs
+  mountOptions: ["nfsvers=4.1"]
+  nfs:
+    server: NFS_SERVER
+    path: /mnt/hd1tb/ac09-nfs/pv02
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ac09-pv-03
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/pv: "03"
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes: ["ReadWriteOnce", "ReadWriteMany"]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ac09-nfs
+  mountOptions: ["nfsvers=4.1"]
+  nfs:
+    server: NFS_SERVER
+    path: /mnt/hd1tb/ac09-nfs/pv03

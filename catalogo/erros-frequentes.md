@@ -24,6 +24,9 @@
 | `Keys [...] were skipped ... invalid environment variable names` | chave do ConfigMap com ponto/hífen não vira variável | `oc get events --field-selector reason=InvalidEnvironmentVariableNames` | renomear chaves usadas como arquivo | CFG-002 |
 | Secret "certo" recusado pela aplicação | `\n` final ou base64 duplo no valor | `oc describe secret` (tamanho em bytes) | imprimir o Secret para conferir | [TS-027](../cenarios/troubleshooting/TS-027.md) |
 | ConfigMap alterado sem efeito | consumo por variável ou `subPath` | `jq` em `envFrom`/`volumeMounts` | apagar pods um a um | [TS-026](../cenarios/troubleshooting/TS-026.md) |
+| `exceeded quota ... persistentvolumeclaims=0` | baseline da Academia proíbe PVCs | `oc describe quota -n <ns>` | pedir para zerar a quota em todos os projetos | [TS-028](../cenarios/troubleshooting/TS-028.md) |
+| PVC `Pending`: `no persistent volumes available ... no storage class is set` | sem classe padrão e sem PV compatível | `oc describe pvc`; `oc get sc` | criar PV `hostPath` no nó | [TS-028](../cenarios/troubleshooting/TS-028.md) |
+| `Evicted` ... `ephemeral local storage usage exceeds` | pod passou do `limits.ephemeral-storage` | `.status.message` do pod | remover o limite | [TS-030](../cenarios/troubleshooting/TS-030.md) |
 | `Pending` + `FailedScheduling` | sem recursos (requests) ou restrições de agendamento | `oc describe pod`; `oc describe node` (admin) | remover requests/limits; rotular o nó para "encaixar" | [TS-014](../cenarios/troubleshooting/TS-014.md) |
 | `OOMKilled` / código 137 | o contêiner passou do `limits.memory` | `oc get pod <pod> -o jsonpath='{.status.containerStatuses[0].lastState}'` | remover o limite de memória | [TS-015](../cenarios/troubleshooting/TS-015.md) |
 | código 127 em `oc exec` | o utilitário não existe na imagem | `oc exec <pod> -- sh -c 'command -v <cmd>'` | instalar pacotes dentro do contêiner | POD-006 |

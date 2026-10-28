@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 27 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 30 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -34,5 +34,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-025](TS-025.md) | CreateContainerConfigError: a configuração que não existe | 08 | MUTAÇÃO LOCAL |
 | [TS-026](TS-026.md) | Alterei o ConfigMap e nada mudou | 08 | MUTAÇÃO LOCAL |
 | [TS-027](TS-027.md) | Senha certa, autenticação errada: o Secret com bytes a mais | 08 | MUTAÇÃO LOCAL |
+| [TS-028](TS-028.md) | PVC que nunca fica Bound (ou nem é criado) | 09 | MUTAÇÃO LOCAL |
+| [TS-029](TS-029.md) | Os dados sumiram depois do deploy | 09 | MUTAÇÃO LOCAL |
+| [TS-030](TS-030.md) | Pod Evicted: o disco também tem limite | 09 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

@@ -1,0 +1,25 @@
+# Preparação da Trilha 09: libera 3 PVCs / 3Gi SOMENTE no projeto ac09-storage (docs/10-preparacao-storage.md).
+# Substitui a ResourceQuota ac-quota da baseline nesse projeto (mesmos limites, exceto PVCs). Aplicar como admin:
+#   oc apply --dry-run=server -f manifests/preparacao/quota-storage-ac09.yaml -n ac09-storage
+#   oc apply -f manifests/preparacao/quota-storage-ac09.yaml -n ac09-storage
+# Reverter: oc apply -f manifests/baseline-seguro/quota-limitrange.yaml -n ac09-storage
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ac-quota
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  hard:
+    pods: "6"
+    requests.cpu: "500m"
+    requests.memory: 768Mi
+    limits.cpu: "2"
+    limits.memory: 1536Mi
+    configmaps: "20"
+    secrets: "30"
+    services: "5"
+    services.loadbalancers: "0"
+    services.nodeports: "0"
+    persistentvolumeclaims: "3"
+    requests.storage: 3Gi

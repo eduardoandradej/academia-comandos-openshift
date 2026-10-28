@@ -1,0 +1,52 @@
+# Trilha 09 (STO-002): dois contêineres trocando arquivos por um emptyDir.
+# "gerador" escreve /saida/index.html a cada 5 s; "web" (httpd) serve o mesmo volume em /var/www/html.
+#   oc apply --dry-run=server -f manifests/apps-exemplo/emptydir-compartilhado.yaml -n ac09-storage
+#   oc apply -f manifests/apps-exemplo/emptydir-compartilhado.yaml -n ac09-storage
+# Limpeza: oc delete -f manifests/apps-exemplo/emptydir-compartilhado.yaml -n ac09-storage
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac09-compartilhado
+  labels:
+    app: ac09-compartilhado
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "09"
+spec:
+  volumes:
+    - name: pagina
+      emptyDir:
+        sizeLimit: 8Mi
+  containers:
+    - name: gerador
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "i=0; while true; do i=$((i+1)); echo \"gerado em $(date -u +%H:%M:%S) ($i)\" > /saida/index.html; sleep 5; done"]
+      volumeMounts:
+        - name: pagina
+          mountPath: /saida
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 50m, memory: 32Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+    - name: web
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      ports:
+        - containerPort: 8080
+      volumeMounts:
+        - name: pagina
+          mountPath: /var/www/html
+      resources:
+        requests: {cpu: 25m, memory: 48Mi}
+        limits: {cpu: 100m, memory: 128Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault

@@ -36,7 +36,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 7. [Trilha 06](../trilhas/06-servicos/README.md) — Services e DNS.
 8. [Trilha 07](../trilhas/07-rotas/README.md) — Routes e Ingress.
 9. [Trilha 08](../trilhas/08-config/README.md) — ConfigMaps e Secrets.
-10. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-027 intercalados, conforme a trilha.
+10. [Trilha 09](../trilhas/09-storage/README.md) — Storage (PV/PVC: [preparação](10-preparacao-storage.md)).
+11. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-030 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 
@@ -61,3 +62,4 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 | [07-roteiro-do280.md](07-roteiro-do280.md) | temas DO280 × trilhas e jornada DO180 → DO280 → EX280 |
 | [08-troubleshooting.md](08-troubleshooting.md) | método de diagnóstico |
 | [09-backup-e-recuperacao.md](09-backup-e-recuperacao.md) | o que protege o HomeLab e o que esta Academia não faz |
+| [10-preparacao-storage.md](10-preparacao-storage.md) | REQUER PREPARAÇÃO da Trilha 09: NFS + PVs estáticos ou LVM Storage |

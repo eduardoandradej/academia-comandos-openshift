@@ -21,5 +21,10 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`apps-exemplo/servicos-azul-verde.yaml`](apps-exemplo/servicos-azul-verde.yaml) | Backends httpd `web-azul` e `web-verde` com página própria (ConfigMap) | developer | SVC-001 em diante, RTE-001 em diante |
 | [`apps-exemplo/cenario-nao-pronto.yaml`](apps-exemplo/cenario-nao-pronto.yaml) | Deployment + Service com readiness que nunca passa | developer | TS-021 |
 | [`apps-exemplo/cenario-config-ausente.yaml`](apps-exemplo/cenario-config-ausente.yaml) | Deployment que referencia ConfigMap e Secret inexistentes | developer | TS-025 |
+| [`apps-exemplo/emptydir-compartilhado.yaml`](apps-exemplo/emptydir-compartilhado.yaml) | Pod com dois contêineres trocando arquivos por `emptyDir` | developer | STO-002 |
+| [`apps-exemplo/cenario-evicted-efemero.yaml`](apps-exemplo/cenario-evicted-efemero.yaml) | Pod que estoura o `ephemeral-storage` (32 MiB) | developer | STO-005, TS-030 |
+| [`apps-exemplo/statefulset-mini.yaml`](apps-exemplo/statefulset-mini.yaml) | StatefulSet com um PVC por réplica (REQUER PREPARAÇÃO) | developer | STO-013 |
+| [`preparacao/storage-nfs-pv.yaml`](preparacao/storage-nfs-pv.yaml) | 3 PVs NFS estáticos (opção A da preparação de storage) | admin | docs/10 |
+| [`preparacao/quota-storage-ac09.yaml`](preparacao/quota-storage-ac09.yaml) | quota do `ac09-storage` liberando 3 PVCs / 3Gi | admin | docs/10 |
 
 Imagens: `registry.access.redhat.com/ubi9/httpd-24` — **REQUER PREPARAÇÃO** (acesso de saída do cluster ao registry).

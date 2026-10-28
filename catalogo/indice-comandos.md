@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–08 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–09 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -170,16 +170,16 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 117 | `oc get storageclass` | Descobrir classes disponíveis | VERDE | admin | 09 | [oc-get](fichas/oc-get.md) |  |
-| 118 | `oc get pvc -A` | Listar PVCs em todos namespaces (somente leitura) | VERDE | admin | 09 | [oc-get](fichas/oc-get.md) |  |
-| 119 | `oc get pv` | Listar PVs do cluster | VERDE | admin | 09 | [oc-get](fichas/oc-get.md) |  |
-| 120 | `oc explain persistentvolumeclaim.spec` | Explorar esquema PVC | VERDE | developer | 09 | [oc-explain](fichas/oc-explain.md) |  |
-| 121 | `oc get statefulset -n <ns>` | Consultar StatefulSets | VERDE | developer | 09 | [oc-get](fichas/oc-get.md) |  |
-| 122 | `oc describe pvc <pvc> -n <ns>` | Investigar Binding e provisionador | VERDE | developer | 09 | — |  |
-| 123 | `oc describe pv <pv>` | Inspecionar volume existente | VERDE | admin | 09 | — |  |
-| 124 | `oc get sc -o yaml` | Ler StorageClasses sem modificá-las | VERDE | admin | 09 | — |  |
-| 125 | `oc get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{": "}{.spec.volumes[*].name}{"\n"}{end}'` | Inspecionar volumes usados por Pods | VERDE | developer | 09 | — |  |
-| 126 | `oc get events -n <ns> --sort-by=.metadata.creationTimestamp` | Investigar PVC Pending | VERDE | developer | 09 | [oc-get-events](fichas/oc-get-events.md) | duplicata intencional do 037, no contexto de PVC Pending |
+| 117 | `oc get storageclass` | Descobrir classes disponíveis | VERDE | admin | [09](../trilhas/09-storage/README.md) | [oc-pvc-storage](fichas/oc-pvc-storage.md) |  |
+| 118 | `oc get pvc -A` | Listar PVCs em todos namespaces (somente leitura) | VERDE | admin | [09](../trilhas/09-storage/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 119 | `oc get pv` | Listar PVs do cluster | VERDE | admin | [09](../trilhas/09-storage/README.md) | [oc-pvc-storage](fichas/oc-pvc-storage.md) |  |
+| 120 | `oc explain persistentvolumeclaim.spec` | Explorar esquema PVC | VERDE | developer | [09](../trilhas/09-storage/README.md) | [oc-pvc-storage](fichas/oc-pvc-storage.md) |  |
+| 121 | `oc get statefulset -n <ns>` | Consultar StatefulSets | VERDE | developer | [09](../trilhas/09-storage/README.md) | [oc-get](fichas/oc-get.md) |  |
+| 122 | `oc describe pvc <pvc> -n <ns>` | Investigar Binding e provisionador | VERDE | developer | [09](../trilhas/09-storage/README.md) | [oc-pvc-storage](fichas/oc-pvc-storage.md) |  |
+| 123 | `oc describe pv <pv>` | Inspecionar volume existente | VERDE | admin | [09](../trilhas/09-storage/README.md) | [oc-pvc-storage](fichas/oc-pvc-storage.md) |  |
+| 124 | `oc get sc -o yaml` | Ler StorageClasses sem modificá-las | VERDE | admin | [09](../trilhas/09-storage/README.md) | [oc-pvc-storage](fichas/oc-pvc-storage.md) |  |
+| 125 | `oc get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{": "}{.spec.volumes[*].name}{"\n"}{end}'` | Inspecionar volumes usados por Pods | VERDE | developer | [09](../trilhas/09-storage/README.md) | — |  |
+| 126 | `oc get events -n <ns> --sort-by=.metadata.creationTimestamp` | Investigar PVC Pending | VERDE | developer | [09](../trilhas/09-storage/README.md) | [oc-get-events](fichas/oc-get-events.md) | duplicata intencional do 037, no contexto de PVC Pending |
 
 ## 09 — Imagens, ImageStream e registry
 

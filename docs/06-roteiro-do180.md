@@ -13,7 +13,7 @@
 | Pods e contêineres | 04 | disponível |
 | Deployments e aplicações gerenciadas | 05 | disponível |
 | Services e Routes | 06, 07 | disponível |
-| Configuração e dados (ConfigMaps, Secrets, storage) | 08, 09 | 08 disponível; 09 planejada (depende de StorageClass) |
+| Configuração e dados (ConfigMaps, Secrets, storage) | 08, 09 | disponível (PV/PVC da 09: REQUER PREPARAÇÃO) |
 | Confiabilidade (probes, recursos, escala) | 11 | planejada |
 | Atualizações de aplicações (imagens, rollout) | 05 (disponível), 10 (planejada) | parcial |
 | Revisão integrada | 19, 20 | planejada |

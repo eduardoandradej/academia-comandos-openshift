@@ -1,6 +1,6 @@
 # Trilhas
 
-> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 08. As demais são **planejadas**: as pastas só passam a
+> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 09. As demais são **planejadas**: as pastas só passam a
 > existir quando o conteúdo estiver escrito — nada aqui finge estar pronto.
 
 | ID | Trilha | Status | Foco | Dependências do HomeLab |
@@ -14,7 +14,7 @@
 | 06 | [Services e DNS](06-servicos/README.md) | **disponível** (15) | ClusterIP, portas, EndpointSlices, DNS, azul/verde, headless, diagnóstico | imagem externa |
 | 07 | [Routes e Ingress](07-rotas/README.md) | **disponível** (15) | expose, hostname, path, TLS edge/passthrough/reencrypt, pesos, Ingress | wildcard `*.apps` no cliente |
 | 08 | [ConfigMaps e Secrets](08-config/README.md) | **disponível** (15) | literal/arquivo/env-file, envFrom, volumes, subPath, Secrets TLS e de registry, imutáveis, extract | — |
-| 09 | Storage | planejada | emptyDir, PV/PVC, StatefulSet | **StorageClass ausente** |
+| 09 | [Storage](09-storage/README.md) | **disponível** (15) | emptyDir, efêmero, PVC, modos de acesso, expansão, StatefulSet | PV/PVC: **REQUER PREPARAÇÃO** ([docs/10](../docs/10-preparacao-storage.md)) |
 | 10 | Imagens e registries | planejada | image info, ImageStreams, import-image | registry interno sem storage |
 | 11 | Resiliência | planejada | probes, requests/limits, HPA, PDB | Metrics API |
 | 12 | Manifestos declarativos | planejada | create/apply/replace/patch, diff, dry-run | — |

@@ -47,7 +47,7 @@ própria (ou de um DNS que resolva `*.apps`). Na `ocp-admin`, o resolvedor usa o
 | Memória do SNO | 20 GiB (uso real ~60% no checkpoint) | quota: `requests.memory` 768 Mi; não praticar com memória > 85% |
 | Disco do SNO | QCOW2 de 120 GiB thin no SSD de 240 GB | nada de workloads que gravem muito; PVCs proibidos na quota |
 | `/var` do `kvm-server` | ~169 GiB, compartilhado com outras VMs | manter **> 20 GiB livres** (`preflight.sh --kvm-ssh`) |
-| StorageClass / PVC | 0 / 0 | Trilha 09 **REQUER PREPARAÇÃO** |
+| StorageClass / PVC | 0 / 0 | Trilha 09 **REQUER PREPARAÇÃO** ([10-preparacao-storage.md](10-preparacao-storage.md)) |
 | Registry interno | sem armazenamento persistente configurado | builds/push internos condicionados ao `managementState` |
 | Prometheus | sem PVC | métricas se perdem em reinícios; `Available=True` não implica histórico |
 | Nós | 1 (control plane + worker) | **nunca** drain, cordon, reboot ou upgrade pela Academia |

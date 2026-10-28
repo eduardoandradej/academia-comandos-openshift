@@ -23,6 +23,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [06 — Services e DNS](guia/06-servicos.md) | criar Services, portas, endpoints, DNS interno, azul/verde, headless, diagnóstico |
 | [07 — Routes e Ingress](guia/07-rotas.md) | Routes HTTP, hostname, caminhos, HTTPS edge/passthrough, pesos, Ingress, diagnóstico |
 | [08 — ConfigMaps e Secrets](guia/08-config.md) | criar ConfigMaps e Secrets, variáveis, arquivos, subPath, TLS, pull secret, imutáveis, extract, quem lê Secrets |
+| [09 — Storage](guia/09-storage.md) | volumes, emptyDir, efêmero e despejo, PVC, modos de acesso, expansão, StatefulSet (PVC: REQUER PREPARAÇÃO) |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -46,11 +47,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 9 (00 a 08) | 21 |
-| Microexercícios | 135 | 300+ |
-| Cenários de troubleshooting | 27 | 40+ |
+| Trilhas completas | 10 (00 a 09) | 21 |
+| Microexercícios | 150 | 300+ |
+| Cenários de troubleshooting | 30 | 40+ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 30 | — |
+| Fichas de comando | 31 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -98,7 +99,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 06 | [Services e DNS](trilhas/06-servicos/README.md) | disponível |
 | 07 | [Routes e Ingress](trilhas/07-rotas/README.md) | disponível |
 | 08 | [ConfigMaps e Secrets](trilhas/08-config/README.md) | disponível |
-| 09–20 | [Storage, Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 09 | [Storage](trilhas/09-storage/README.md) | disponível (PV/PVC: REQUER PREPARAÇÃO) |
+| 10–20 | [Imagens, Resiliência, Declarativo, Kustomize, Helm, RBAC, Rede, Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
 
 ## Restrições do HomeLab
 
@@ -124,7 +126,7 @@ D+30). Veja [docs/05-metodologia-repeticao.md](docs/05-metodologia-repeticao.md)
 | Caminho | Conteúdo |
 |---|---|
 | [`guia/`](guia/README.md) | **comandos e explicação, uma página por trilha** |
-| [`docs/`](docs/00-iniciar-aqui.md) | topologia, segurança, identidades, diferenças da sala oficial, metodologia, roteiros DO180/DO280, troubleshooting, backup |
+| [`docs/`](docs/00-iniciar-aqui.md) | topologia, segurança, identidades, diferenças da sala oficial, metodologia, roteiros DO180/DO280, troubleshooting, backup, preparação de storage |
 | [`catalogo/`](catalogo/indice-comandos.md) | índice de comandos, famílias e comparações, erros frequentes, matriz de competências, fichas |
 | [`trilhas/`](trilhas/README.md) | exercícios por trilha |
 | [`cenarios/`](cenarios/troubleshooting/README.md) | cenários de troubleshooting |

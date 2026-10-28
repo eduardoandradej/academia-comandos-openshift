@@ -1,0 +1,68 @@
+# Trilha 09 (STO-013): StatefulSet com um PVC por réplica. REQUER PREPARAÇÃO (docs/10-preparacao-storage.md).
+# AC09_SC é trocado pela classe da preparação:
+#   sed "s/AC09_SC/$SC/" manifests/apps-exemplo/statefulset-mini.yaml | oc apply --dry-run=server -n ac09-storage -f -
+#   sed "s/AC09_SC/$SC/" manifests/apps-exemplo/statefulset-mini.yaml | oc apply -n ac09-storage -f -
+# Limpeza: apague o StatefulSet, o Service e os PVCs dados-ac09-sts-0/1 (os PVCs não somem sozinhos).
+apiVersion: v1
+kind: Service
+metadata:
+  name: ac09-sts
+  labels:
+    app: ac09-sts
+    academy.openshift.dev/managed-by: academia
+spec:
+  clusterIP: None
+  selector:
+    app: ac09-sts
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ac09-sts
+  labels:
+    app: ac09-sts
+    academy.openshift.dev/managed-by: academia
+spec:
+  serviceName: ac09-sts
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ac09-sts
+  template:
+    metadata:
+      labels:
+        app: ac09-sts
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: dados
+              mountPath: /dados
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+  volumeClaimTemplates:
+    - metadata:
+        name: dados
+        labels:
+          academy.openshift.dev/managed-by: academia
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: AC09_SC
+        resources:
+          requests:
+            storage: 200Mi

@@ -1,0 +1,28 @@
+# Trilha 09 (STO-005, TS-030): pod que grava 32 MiB com limite de ephemeral-storage de 16Mi -> Evicted.
+# Grava pouco de propósito (SSD do HomeLab); os dados somem com o pod.
+#   oc apply -f manifests/apps-exemplo/cenario-evicted-efemero.yaml -n ac09-storage
+# Limpeza: oc delete -f manifests/apps-exemplo/cenario-evicted-efemero.yaml -n ac09-storage
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac09-guloso
+  labels:
+    app: ac09-guloso
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/cenario: ts-030
+spec:
+  restartPolicy: Never
+  containers:
+    - name: guloso
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["/bin/sh", "-c", "dd if=/dev/zero of=/tmp/bloco bs=1M count=32; echo gravado; sleep 3600"]
+      resources:
+        requests: {cpu: 10m, memory: 16Mi, ephemeral-storage: 8Mi}
+        limits: {cpu: 50m, memory: 64Mi, ephemeral-storage: 16Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
