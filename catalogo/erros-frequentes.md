@@ -45,7 +45,10 @@
 | Job `Failed` / `BackoffLimitExceeded` | a tarefa falhou mais que o `backoffLimit` | `oc logs -l job-name=<job> --prefix` | aumentar o `backoffLimit` sem corrigir a causa | [TS-017](../cenarios/troubleshooting/TS-017.md) |
 | `FailedCreate ... exceeded quota` (eventos do ReplicaSet) | quota impediu criar pods | `oc describe rs -l app=<nome>` | pedir para remover a quota | [TS-018](../cenarios/troubleshooting/TS-018.md) |
 | `error: timed out waiting for the condition` | `oc wait` expirou | `oc rollout status ... --timeout=5s`; eventos `Warning` | remover o `--timeout` | CON-014 |
-| `the object has been modified` | `resourceVersion` antigo no manifesto | `grep resourceVersion <arquivo>` | `--force` | CON-013 |
+| `the object has been modified` | `resourceVersion` antigo no manifesto | `grep resourceVersion <arquivo>` | `--force` | CON-013, DCL-007 |
+| `field is immutable` | seletor, `clusterIP` ou outro campo imutável alterado | `oc diff -f <arquivo>` | `oc replace --force` sem janela | [TS-037](../cenarios/troubleshooting/TS-037.md) |
+| `strict decoding error: unknown field` | campo com nome errado | `oc explain <tipo>.<campo>` | `--validate=false` | DCL-002 |
+| `Apply failed with N conflict(s)` | server-side apply: campo de outro gerenciador | `--show-managed-fields` | `--force-conflicts` permanente | [TS-039](../cenarios/troubleshooting/TS-039.md) |
 | `field label not supported` | campo não indexado para `--field-selector` | use jsonpath/jq no cliente | — | CON-006 |
 | JSONPath sem saída e sem erro | caminho ou caixa errados; faltou `.items` | `-o json \| jq 'keys'` | — | [TS-008](../cenarios/troubleshooting/TS-008.md) |
 | Projeto em `Terminating` por muito tempo | conteúdo/finalizers ainda sendo removidos | condições do namespace (admin) | remover finalizers à mão | ORI-015, [TS-011](../cenarios/troubleshooting/TS-011.md) |

@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–11 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–12 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -216,16 +216,16 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 
 | # | Comando ou forma | Para que serve | Risco | Perfil | Trilha | Ficha | Nota |
 |---:|---|---|---|---|---|---|---|
-| 148 | `oc create deployment demo --image=<imagem> --dry-run=client -o yaml` | Produzir manifest sem instalar | VERDE | local | 12 | — |  |
-| 149 | `oc apply --dry-run=client -f ./manifest.yaml` | Validar preparação local, quando aplicável | VERDE | local | 12 | — |  |
-| 150 | `oc apply --dry-run=server -f ./manifest.yaml -n <ns>` | Pedir validação no servidor sem persistir, quando autorizado | VERDE | developer | 12 | — |  |
-| 151 | `oc diff -f ./manifest.yaml -n <ns>` | Comparar estado desejado x real | VERDE | developer | 12 | — |  |
-| 152 | `oc apply -f ./manifest.yaml -n <ns>` | Aplicar recurso no namespace de treino | AMARELO | developer | 12 | — |  |
-| 153 | `oc create -f ./manifest.yaml -n <ns>` | Criar recurso que não existe | AMARELO | developer | 12 | — |  |
-| 154 | `oc replace -f ./manifest.yaml -n <ns>` | Substituir recurso existente (avaliar perda de fields) | AMARELO | developer | 12 | — |  |
-| 155 | `oc patch deployment demo -n <ns> --type=merge -p '{"spec":{"replicas":1}}'` | Aplicar patch merge em objeto de treino | AMARELO | developer | 12 | — |  |
-| 156 | `oc get deployment demo -n <ns> -o yaml` | Ver configuração resultante | VERDE | developer | 12 | [oc-get](fichas/oc-get.md) | duplicata intencional do 088, após patch |
-| 157 | `oc delete -f ./manifest.yaml -n <ns>` | Limpar exatamente recursos declarados no arquivo de treino | AMARELO | developer | 12 | — |  |
+| 148 | `oc create deployment demo --image=<imagem> --dry-run=client -o yaml` | Produzir manifest sem instalar | VERDE | local | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 149 | `oc apply --dry-run=client -f ./manifest.yaml` | Validar preparação local, quando aplicável | VERDE | local | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 150 | `oc apply --dry-run=server -f ./manifest.yaml -n <ns>` | Pedir validação no servidor sem persistir, quando autorizado | VERDE | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 151 | `oc diff -f ./manifest.yaml -n <ns>` | Comparar estado desejado x real | VERDE | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 152 | `oc apply -f ./manifest.yaml -n <ns>` | Aplicar recurso no namespace de treino | AMARELO | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 153 | `oc create -f ./manifest.yaml -n <ns>` | Criar recurso que não existe | AMARELO | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 154 | `oc replace -f ./manifest.yaml -n <ns>` | Substituir recurso existente (avaliar perda de fields) | AMARELO | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 155 | `oc patch deployment demo -n <ns> --type=merge -p '{"spec":{"replicas":1}}'` | Aplicar patch merge em objeto de treino | AMARELO | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
+| 156 | `oc get deployment demo -n <ns> -o yaml` | Ver configuração resultante | VERDE | developer | [12](../trilhas/12-declarativo/README.md) | [oc-get](fichas/oc-get.md) | duplicata intencional do 088, após patch |
+| 157 | `oc delete -f ./manifest.yaml -n <ns>` | Limpar exatamente recursos declarados no arquivo de treino | AMARELO | developer | [12](../trilhas/12-declarativo/README.md) | [oc-apply-patch-diff](fichas/oc-apply-patch-diff.md) |  |
 
 ## 12 — Templates, Kustomize e Helm
 

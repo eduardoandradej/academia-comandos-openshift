@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 180 | 300+ |
-| Cenários de troubleshooting | 36 | 40+ |
-| Fichas de comando | 33 | uma por família de comando |
-| Trilhas completas | 12 de 21 | 21 |
+| Microexercícios originais | 195 | 300+ |
+| Cenários de troubleshooting | 39 | 40+ |
+| Fichas de comando | 34 | uma por família de comando |
+| Trilhas completas | 13 de 21 | 21 |
 
 ## Matriz por família
 
@@ -41,7 +41,8 @@
 | Storage | STO-001, STO-007, STO-011 | STO-006 | STO-002 a STO-005; STO-008 a STO-013 (REQUER PREPARAÇÃO) | STO-014, TS-028 a TS-030 | STO-015 | PV/PVC: **REQUER PREPARAÇÃO** (docs/10) | AMARELO |
 | Imagens e registry | IMG-001, IMG-003, IMG-005 | IMG-002, IMG-010, IMG-011 | IMG-004 a IMG-009, IMG-012, IMG-013 | IMG-014, TS-031 a TS-033 | IMG-015 | registry interno desligado: `Local`/builds REQUER PREPARAÇÃO | AMARELO |
 | Resiliência e HPA | RES-001, RES-004, RES-007 | RES-002, RES-003, RES-012 | RES-004 a RES-011, RES-013 | RES-014, TS-034 a TS-036 | RES-015 | Metrics API (HPA) | AMARELO |
-| Declarativo, Kustomize, Helm | parcial: ORI-012, ORI-014 | — | — | — | — | `helm` (REQUER PREPARAÇÃO) | AMARELO |
+| Manifestos declarativos | DCL-003, DCL-005, DCL-008 | DCL-004, DCL-006 | DCL-001 a DCL-013 | DCL-014, TS-037 a TS-039 | DCL-015 | — | AMARELO |
+| Kustomize, Templates, Helm | parcial: DCL-009, DCL-013 | — | — | — | — | `helm` (REQUER PREPARAÇÃO) | AMARELO |
 | RBAC e identidade | parcial: ORI-003 | — | — | — | — | `admin`; usuários DO280 só no exercício | AMARELO/VERMELHO |
 | Rede e isolamento | parcial: CLI-014 | — | — | — | — | — | AMARELO |
 | Operadores e manutenção | parcial: ORI-007 | ORI-007 | — (somente observação) | — | — | — | VERDE |
@@ -52,7 +53,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-11]
+    ID --> T00[Trilhas 00-12]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]

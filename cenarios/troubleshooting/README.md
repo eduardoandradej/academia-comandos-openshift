@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 36 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 39 de 40 cenários planejados · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -43,5 +43,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-034](TS-034.md) | Reinícios em série: a liveness que mata o que está saudável | 11 | MUTAÇÃO LOCAL |
 | [TS-035](TS-035.md) | HPA com TARGETS `<unknown>` | 11 | MUTAÇÃO LOCAL |
 | [TS-036](TS-036.md) | Evicção recusada: o PDB que trava a manutenção | 11 | MUTAÇÃO LOCAL |
+| [TS-037](TS-037.md) | field is immutable: mudei o seletor do Deployment | 12 | LEITURA |
+| [TS-038](TS-038.md) | O apply desfaz a escala (e briga com o HPA) | 12 | MUTAÇÃO LOCAL |
+| [TS-039](TS-039.md) | Conflito de server-side apply entre duas ferramentas | 12 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

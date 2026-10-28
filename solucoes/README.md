@@ -17,7 +17,8 @@
 | [`09-storage/`](09-storage/) | STO-001 a STO-015 |
 | [`10-imagens/`](10-imagens/) | IMG-001 a IMG-015 |
 | [`11-resiliencia/`](11-resiliencia/) | RES-001 a RES-015 |
-| [`cenarios/`](cenarios/) | TS-001 a TS-036 |
+| [`12-declarativo/`](12-declarativo/) | DCL-001 a DCL-015 |
+| [`cenarios/`](cenarios/) | TS-001 a TS-039 |
 
 `scripts/academy where <ID>` mostra o caminho do enunciado e do gabarito sem exibir o conteúdo. Um gabarito traz
 **uma** solução possível; alternativas válidas são bem-vindas.

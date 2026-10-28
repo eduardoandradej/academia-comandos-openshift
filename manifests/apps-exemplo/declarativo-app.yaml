@@ -1,0 +1,92 @@
+# Trilha 12: aplicação completa em um único arquivo (ConfigMap, Deployment, Service, Route).
+# É o "estado desejado" dos exercícios DCL; copie para /tmp/ac12/app.yaml e edite a cópia.
+#   oc apply --dry-run=server -f manifests/apps-exemplo/declarativo-app.yaml -n ac12-declarativo
+#   oc apply -f manifests/apps-exemplo/declarativo-app.yaml -n ac12-declarativo
+# Limpeza: oc delete -f manifests/apps-exemplo/declarativo-app.yaml -n ac12-declarativo
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ac12-pagina
+  labels:
+    app: ac12-web
+    academy.openshift.dev/managed-by: academia
+data:
+  index.html: |
+    versao 1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac12-web
+  labels:
+    app: ac12-web
+    academy.openshift.dev/managed-by: academia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac12-web
+  template:
+    metadata:
+      labels:
+        app: ac12-web
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MODO
+              value: treino
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      volumes:
+        - name: pagina
+          configMap:
+            name: ac12-pagina
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ac12-web
+  labels:
+    app: ac12-web
+    academy.openshift.dev/managed-by: academia
+spec:
+  selector:
+    app: ac12-web
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ac12-web
+  labels:
+    app: ac12-web
+    academy.openshift.dev/managed-by: academia
+spec:
+  to:
+    kind: Service
+    name: ac12-web
+  port:
+    targetPort: http

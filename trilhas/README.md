@@ -1,6 +1,6 @@
 # Trilhas
 
-> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 11. As demais são **planejadas**: as pastas só passam a
+> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 12. As demais são **planejadas**: as pastas só passam a
 > existir quando o conteúdo estiver escrito — nada aqui finge estar pronto.
 
 | ID | Trilha | Status | Foco | Dependências do HomeLab |
@@ -17,7 +17,7 @@
 | 09 | [Storage](09-storage/README.md) | **disponível** (15) | emptyDir, efêmero, PVC, modos de acesso, expansão, StatefulSet | PV/PVC: **REQUER PREPARAÇÃO** ([docs/10](../docs/10-preparacao-storage.md)) |
 | 10 | [Imagens e registries](10-imagens/README.md) | **disponível** (15) | image info, digest, pull policy, ImageStreams, tag, image-lookup, gatilhos | registry interno desligado (Source) |
 | 11 | [Resiliência](11-resiliencia/README.md) | **disponível** (15) | requests/limits, probes, autocura, preStop, rollout sem queda, HPA, PDB | Metrics API (HPA) |
-| 12 | Manifestos declarativos | planejada | create/apply/replace/patch, diff, dry-run | — |
+| 12 | [Manifestos declarativos](12-declarativo/README.md) | **disponível** (15) | gerar, validar, apply, diff, 3 vias, SSA, replace, patch, prune | — |
 | 13 | Kustomize e Templates | planejada | bases, overlays, oc process | — |
 | 14 | Helm | planejada | template, install, upgrade, rollback | cliente `helm` |
 | 15 | Usuários, identidade e RBAC | planejada | HTPasswd, grupos, roles, can-i | perfil admin |
