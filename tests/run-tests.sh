@@ -111,6 +111,11 @@ has "filtro por trilha mostra a trilha pedida" "ORI-001"
 run "academy list --trilha 99 (vazia)" 0 "$ROOT/scripts/academy" list --trilha 99
 hasnt "filtro por trilha exclui outras trilhas" "ORI-001"
 run "academy list --trilha inválida" 2 "$ROOT/scripts/academy" list --trilha 1
+run "academy list --trilha 01" 0 "$ROOT/scripts/academy" list --trilha 01
+has "trilha 01 lista CLI-015" "CLI-015"
+hasnt "trilha 01 não lista ORI" "ORI-001"
+run "academy review CLI-004" 0 "$ROOT/scripts/academy" review CLI-004
+has "review CLI-004 mostra a ficha" "Ficha de revisão"
 run "academy show ORI-001" 0 "$ROOT/scripts/academy" show ORI-001
 has "show imprime o enunciado" "## Desafio sem pista"
 hasnt "show não imprime o gabarito" "# Gabarito ORI-001"
