@@ -22,6 +22,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [14 — Helm](14-helm.md) | identidade do Helm, chart, `template`, `install`, `upgrade`, valores, `rollback`, `test`, `--atomic` |
 | [15 — Usuários, identidade e RBAC](15-rbac.md) | `can-i`, papéis, Roles mínimas, bindings, grupos, tokens de SA, SCC, ler um Forbidden |
 | [16 — Rede e isolamento](16-rede.md) | NetworkPolicy de entrada e saída, AND × OR, router, DNS, TLS por SNI, certificados de serviço |
+| [17 — Administração de recursos](17-admin.md) | capacidade do nó, quotas, LimitRange, cota multiprojeto, prioridade, varredura, logs do nó, coleta |
 
 Regras rápidas:
 

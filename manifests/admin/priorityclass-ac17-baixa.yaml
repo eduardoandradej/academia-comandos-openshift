@@ -1,0 +1,13 @@
+# ADM-009: prioridade BAIXA para pods de treino (nunca alta: pods de alta prioridade podem despejar outros).
+# Objeto de cluster: aplicar como admin; remover no ADM-015. preemptionPolicy Never: não desaloja ninguém.
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ac17-baixa
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "17"
+value: -10
+globalDefault: false
+preemptionPolicy: Never
+description: "Prioridade baixa para pods de treino da Academia (Trilha 17)."

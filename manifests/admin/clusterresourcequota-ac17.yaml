@@ -1,0 +1,19 @@
+# ADM-007: cota compartilhada por TODOS os projetos com o rótulo academy.openshift.dev/equipe=ac17.
+# Objeto de cluster: aplicar como admin; remover no ADM-015.
+apiVersion: quota.openshift.io/v1
+kind: ClusterResourceQuota
+metadata:
+  name: ac17-equipe
+  labels:
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/trilha: "17"
+spec:
+  selector:
+    labels:
+      matchLabels:
+        academy.openshift.dev/equipe: ac17
+  quota:
+    hard:
+      pods: "3"
+      requests.cpu: "200m"
+      requests.memory: 256Mi

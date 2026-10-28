@@ -136,6 +136,8 @@ has "list mostra RBC-015" "RBC-015"
 has "list mostra cenário TS-048" "TS-048"
 has "list mostra NET-015" "NET-015"
 has "list mostra cenário TS-051" "TS-051"
+has "list mostra ADM-015" "ADM-015"
+has "list mostra cenário TS-054" "TS-054"
 run "academy list --trilha 00" 0 "$ROOT/scripts/academy" list --trilha 00
 has "filtro por trilha mostra a trilha pedida" "ORI-001"
 run "academy list --trilha 99 (vazia)" 0 "$ROOT/scripts/academy" list --trilha 99
@@ -190,6 +192,8 @@ run "academy where RBC-005" 0 "$ROOT/scripts/academy" where RBC-005
 has "where aponta gabarito da trilha 15" "solucoes/15-rbac/RBC-005.md"
 run "academy where NET-005" 0 "$ROOT/scripts/academy" where NET-005
 has "where aponta gabarito da trilha 16" "solucoes/16-rede/NET-005.md"
+run "academy where ADM-004" 0 "$ROOT/scripts/academy" where ADM-004
+has "where aponta gabarito da trilha 17" "solucoes/17-admin/ADM-004.md"
 run "academy start não implementado" 3 "$ROOT/scripts/academy" start ORI-001
 run "academy comando desconhecido" 2 "$ROOT/scripts/academy" xyz
 : >"$MOCK_LOG"

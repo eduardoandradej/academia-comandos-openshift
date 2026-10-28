@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 51 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 54 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -58,5 +58,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-049](TS-049.md) | Isolei o projeto e a Route caiu: 503 com pods saudáveis | 16 | MUTAÇÃO LOCAL |
 | [TS-050](TS-050.md) | Depois da política de saída, nenhum nome resolve | 16 | MUTAÇÃO LOCAL |
 | [TS-051](TS-051.md) | A política liberou demais: o OR escondido na lista from | 16 | MUTAÇÃO LOCAL |
+| [TS-052](TS-052.md) | failed quota: must specify — o pod sem resources | 17 | MUTAÇÃO LOCAL |
+| [TS-053](TS-053.md) | Projeto novo e vazio, mas sem cota: a ClusterResourceQuota compartilhada | 17 | MUTAÇÃO DE CLUSTER |
+| [TS-054](TS-054.md) | Pending por Insufficient cpu com o nó ocioso | 17 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

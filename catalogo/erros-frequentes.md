@@ -23,6 +23,9 @@
 | `x509: certificate signed by unknown authority` | CA não informada/errada | `openssl s_client ... \| openssl x509 -noout -issuer` | `--insecure-skip-tls-verify` fora do HomeLab | ORI-004 |
 | `localhost:8080 was refused` / `Missing or incomplete configuration` | sem kubeconfig válido | `printenv KUBECONFIG`; `oc config get-contexts` | copiar o kubeconfig do instalador para `~/.kube/config` | [TS-004](../cenarios/troubleshooting/TS-004.md) |
 | `AlreadyExists` | `create` repetido | `oc get <tipo> <nome> -o yaml` | `delete` + `create` sem verificar dono | ORI-014 |
+| `failed quota: ... must specify limits.cpu` | quota de computação sem LimitRange com padrões | `oc get limitrange -n <ns>` | remover a quota | [TS-052](../cenarios/troubleshooting/TS-052.md) |
+| `exceeded quota: <nome>` sem ResourceQuota no projeto | ClusterResourceQuota compartilhada | `oc describe appliedclusterresourcequota -n <ns>` | — | [TS-053](../cenarios/troubleshooting/TS-053.md) |
+| `Insufficient cpu` com uso baixo no nó | requests reservados esgotaram o alocável | `oc describe node` (Allocated resources) | reduzir requests de componentes do sistema | [TS-054](../cenarios/troubleshooting/TS-054.md) |
 | `exceeded quota: ac-quota` | admissão de quota recusou | `oc describe quota -n <ns>` | pedir para remover a quota | ORI-013 |
 | `ErrImagePull` / `ImagePullBackOff` | tag/repo inexistente, registry inacessível ou sem credencial | `oc describe pod <pod> \| sed -n '/Events:/,$p'` | trocar para imagem aleatória "que funciona" sem entender | [TS-009](../cenarios/troubleshooting/TS-009.md) |
 | `CrashLoopBackOff` | o processo do contêiner termina repetidamente | `oc logs <pod> --previous` | aumentar limites às cegas | [TS-013](../cenarios/troubleshooting/TS-013.md), POD-003 |

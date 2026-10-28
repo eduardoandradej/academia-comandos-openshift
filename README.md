@@ -31,6 +31,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [14 — Helm](guia/14-helm.md) | identidade do Helm, chart, `template`, `install`, `upgrade`, valores, `rollback`, `test`, `--atomic` |
 | [15 — Usuários, identidade e RBAC](guia/15-rbac.md) | `can-i`, papéis, Roles mínimas, bindings, grupos, tokens de SA, SCC, ler um Forbidden |
 | [16 — Rede e isolamento](guia/16-rede.md) | NetworkPolicy de entrada e saída, AND × OR, router, DNS, TLS por SNI, certificados de serviço |
+| [17 — Administração de recursos](guia/17-admin.md) | capacidade do nó, quotas, LimitRange, cota multiprojeto, prioridade, varredura, logs do nó, coleta |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -54,11 +55,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 17 (00 a 16) | 21 |
-| Microexercícios | 255 | 300+ |
-| Cenários de troubleshooting | 51 | 40+ ✔ |
+| Trilhas completas | 18 (00 a 17) | 21 |
+| Microexercícios | 270 | 300+ |
+| Cenários de troubleshooting | 54 | 40+ ✔ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 38 | — |
+| Fichas de comando | 39 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -114,7 +115,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 14 | [Helm](trilhas/14-helm/README.md) | disponível (cliente: REQUER PREPARAÇÃO) |
 | 15 | [Usuários, identidade e RBAC](trilhas/15-rbac/README.md) | disponível |
 | 16 | [Rede e isolamento](trilhas/16-rede/README.md) | disponível |
-| 17–20 | [Administração, Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 17 | [Administração de recursos](trilhas/17-admin/README.md) | disponível |
+| 18–20 | [Operadores, Troubleshooting, Desafios](trilhas/README.md) | planejadas |
 
 ## Restrições do HomeLab
 
