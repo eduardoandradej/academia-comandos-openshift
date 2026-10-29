@@ -63,6 +63,7 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 | Cenários de troubleshooting | 63 | 40+ ✔ |
 | Comandos e formas catalogados | 235 | 200+ |
 | Fichas de comando | 41 | — |
+| Simulados (autoavaliação, enunciado original) | 1 (SIM-01, 17 tarefas) | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -151,9 +152,10 @@ D+30). Veja [docs/05-metodologia-repeticao.md](docs/05-metodologia-repeticao.md)
 | [`catalogo/`](catalogo/indice-comandos.md) | índice de comandos, famílias e comparações, erros frequentes, matriz de competências, fichas |
 | [`trilhas/`](trilhas/README.md) | exercícios por trilha |
 | [`cenarios/`](cenarios/troubleshooting/README.md) | cenários de troubleshooting |
+| [`simulados/`](simulados/README.md) | simulados cronometrados com autoavaliação (SIM-01) |
 | [`solucoes/`](solucoes/README.md) | gabaritos (separados de propósito) |
 | [`manifests/`](manifests/README.md) | baseline de quota e alvos de observação |
-| [`scripts/`](scripts/README.md) | `academy`, preflight, status, safe-cleanup, perfis |
+| [`scripts/`](scripts/README.md) | `academy`, preflight, status, safe-cleanup, perfis, simulado |
 | [`templates/`](templates/exercicio.md) | modelos de exercício, gabarito, ficha e revisão |
 | [`progresso/`](progresso/README.md) | modelo de revisão (preencha fora do repositório) |
 | [`tests/`](tests/run-tests.sh) | testes offline dos scripts com `oc` simulado |

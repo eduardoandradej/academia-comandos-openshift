@@ -33,7 +33,7 @@ jobs:
         run: yamllint -c .yamllint.yaml .
 
       - name: Shell
-        run: shellcheck scripts/*.sh scripts/academy scripts/lib/common.sh scripts/dev/*.sh tests/run-tests.sh tests/mocks/oc
+        run: shellcheck -x scripts/*.sh scripts/academy scripts/lib/common.sh scripts/dev/*.sh scripts/simulado/*.sh tests/run-tests.sh tests/mocks/oc
 
       - name: Estrutura, links e segredos
         run: scripts/dev/check-repo.sh

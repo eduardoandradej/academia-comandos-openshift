@@ -1,0 +1,468 @@
+# Simulado 01 — preparação. Aplicado por scripts/simulado/sim-01-prepara.sh (perfil developer).
+# Objetos já existentes no início do simulado; alguns estão incompletos DE PROPÓSITO (tarefas 07, 09, 11, 12 e 13).
+# Não leia antes de fazer o simulado se quiser o efeito surpresa.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vitrine
+  namespace: ac-sim-vitrine
+  labels:
+    app: vitrine
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+data:
+  index.html: |
+    vitrine do simulado
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vitrine
+  namespace: ac-sim-vitrine
+  labels:
+    app: vitrine
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vitrine
+  template:
+    metadata:
+      labels:
+        app: vitrine
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+    spec:
+      containers:
+        - name: vitrine
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+      volumes:
+        - name: pagina
+          configMap:
+            name: vitrine
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vitrine
+  namespace: ac-sim-vitrine
+  labels:
+    app: vitrine
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  selector:
+    app: vitrine
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: vitrine
+  namespace: ac-sim-vitrine
+  labels:
+    app: vitrine
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  to:
+    kind: Service
+    name: vitrine
+  port:
+    targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: painel
+  namespace: ac-sim-painel
+  labels:
+    app: painel
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: painel
+  template:
+    metadata:
+      labels:
+        app: painel
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+    spec:
+      containers:
+        - name: painel
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo "${SAUDACAO:-painel sem configuração}" > /var/www/html/index.html
+              exec run-httpd
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+      volumes:
+        - name: pagina
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: painel
+  namespace: ac-sim-painel
+  labels:
+    app: painel
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  selector:
+    app: painel
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: painel
+  namespace: ac-sim-painel
+  labels:
+    app: painel
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  to:
+    kind: Service
+    name: painel
+  port:
+    targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cofre
+  namespace: ac-sim-cofre
+  labels:
+    app: cofre
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cofre
+  template:
+    metadata:
+      labels:
+        app: cofre
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+    spec:
+      containers:
+        - name: cofre
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              if [ -n "${CODIGO_ACESSO:-}" ]; then echo "cofre aberto"; else echo "acesso negado: variável CODIGO_ACESSO ausente"; fi > /var/www/html/index.html
+              exec run-httpd
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+      volumes:
+        - name: pagina
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cofre
+  namespace: ac-sim-cofre
+  labels:
+    app: cofre
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  selector:
+    app: cofre
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: cofre
+  namespace: ac-sim-cofre
+  labels:
+    app: cofre
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  to:
+    kind: Service
+    name: cofre
+  port:
+    targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raiz
+  namespace: ac-sim-raiz
+  labels:
+    app: raiz
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: raiz
+  template:
+    metadata:
+      labels:
+        app: raiz
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+    spec:
+      securityContext:
+        runAsUser: 0
+      containers:
+        - name: raiz
+          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              while true; do echo "processo rodando como uid $(id -u)"; sleep 30; done
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculo
+  namespace: ac-sim-memoria
+  labels:
+    app: calculo
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calculo
+  template:
+    metadata:
+      labels:
+        app: calculo
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+    spec:
+      containers:
+        - name: calculo
+          image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              dd if=/dev/zero of=/dev/null bs=48M count=1 2>/dev/null && echo "cálculo concluído"
+              exec sleep infinity
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 50m, memory: 32Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: banco
+  namespace: ac-sim-dados
+  labels:
+    app: banco
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+data:
+  index.html: |
+    banco do simulado
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banco
+  namespace: ac-sim-dados
+  labels:
+    app: banco
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: banco
+  template:
+    metadata:
+      labels:
+        app: banco
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+        papel: banco
+    spec:
+      containers:
+        - name: banco
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+      volumes:
+        - name: pagina
+          configMap:
+            name: banco
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: banco
+  namespace: ac-sim-dados
+  labels:
+    app: banco
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  selector:
+    app: banco
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consulta
+  namespace: ac-sim-cliente
+  labels:
+    app: consulta
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consulta
+  template:
+    metadata:
+      labels:
+        app: consulta
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+        acesso: leitura-banco
+    spec:
+      containers:
+        - name: consulta
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              while true; do
+                if timeout 3 bash -c "</dev/tcp/banco.ac-sim-dados.svc/8080" 2>/dev/null; then echo "$(date +%T) banco: conectado"; else echo "$(date +%T) banco: sem resposta"; fi
+                sleep 10
+              done
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curioso
+  namespace: ac-sim-intruso
+  labels:
+    app: curioso
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/simulado: sim-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curioso
+  template:
+    metadata:
+      labels:
+        app: curioso
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/simulado: sim-01
+        acesso: leitura-banco
+    spec:
+      containers:
+        - name: curioso
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              while true; do
+                if timeout 3 bash -c "</dev/tcp/banco.ac-sim-dados.svc/8080" 2>/dev/null; then echo "$(date +%T) banco: conectado"; else echo "$(date +%T) banco: sem resposta"; fi
+                sleep 10
+              done
+          resources:
+            requests: {cpu: 10m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

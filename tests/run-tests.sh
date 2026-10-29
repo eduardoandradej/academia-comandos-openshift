@@ -212,5 +212,23 @@ run "academy comando desconhecido" 2 "$ROOT/scripts/academy" xyz
 MOCK_PROFILE="developer" run "academy doctor delega ao preflight" 0 "$ROOT/scripts/academy" doctor
 no_mutation "academy doctor não faz chamadas mutáveis"
 
+echo "# simulado SIM-01"
+for s in prepara verifica certificado helm-repo limpa; do
+  run "sim-01-$s --help" 0 "$ROOT/scripts/simulado/sim-01-$s.sh" --help
+done
+: >"$MOCK_LOG"
+MOCK_PROFILE="developer" run "sim-01-prepara sem --execute só simula" 0 "$ROOT/scripts/simulado/sim-01-prepara.sh"
+has "prepara mostra o plano" "projeto ac-sim-vitrine"
+has "prepara avisa que nada foi alterado" "simulação: nada foi alterado"
+no_mutation "sim-01-prepara (simulação) não faz chamadas mutáveis"
+: >"$MOCK_LOG"
+MOCK_PROFILE="developer" run "sim-01-limpa sem --execute só simula" 0 "$ROOT/scripts/simulado/sim-01-limpa.sh"
+has "limpa imprime o roteiro manual de cluster" "Reversões de cluster"
+no_mutation "sim-01-limpa (simulação) não faz chamadas mutáveis"
+run "sim-01-verifica rejeita tarefa inválida" 2 "$ROOT/scripts/simulado/sim-01-verifica.sh" --tarefa x
+run "sim-01-certificado recusa CN diferente do host" 2 "$ROOT/scripts/simulado/sim-01-certificado.sh" a.example.lab "/O=Academia/CN=b.example.lab" "$TMP/certs"
+run "sim-01-certificado recusa diretório dentro do repositório" 2 "$ROOT/scripts/simulado/sim-01-certificado.sh" a.example.lab "/O=Academia/CN=a.example.lab" "$ROOT/tmp-certs"
+if [[ -e "$ROOT/tmp-certs" ]]; then fail "certificado não cria nada dentro do repositório"; rm -rf "$ROOT/tmp-certs"; else pass "certificado não cria nada dentro do repositório"; fi
+
 printf '\n%d passaram, %d falharam\n' "$PASS" "$FAIL"
 [[ "$FAIL" -eq 0 ]]

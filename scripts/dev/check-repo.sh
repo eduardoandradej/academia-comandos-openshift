@@ -86,7 +86,7 @@ if git ls-files --cached --others --exclude-standard | grep -Ei '(kubeconfig$|pu
 fi
 
 echo "# scripts"
-for s in scripts/*.sh scripts/academy scripts/dev/*.sh tests/run-tests.sh tests/mocks/oc; do
+for s in scripts/*.sh scripts/academy scripts/dev/*.sh scripts/simulado/*.sh tests/run-tests.sh tests/mocks/oc; do
   [[ "$s" == scripts/perfis.sh ]] && continue   # carregado com source: sem set -e nem bit de execução
   grep -q '^set -euo pipefail' "$s" || err "$s: falta 'set -euo pipefail'"
   [[ -x "$s" ]] || err "$s: sem permissão de execução"
