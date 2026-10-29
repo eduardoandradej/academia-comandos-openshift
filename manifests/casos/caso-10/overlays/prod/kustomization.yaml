@@ -1,0 +1,14 @@
+# Caso 10 (Trilha 19): "o overlay de produção não entrega o que promete". Renderize antes de aplicar.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+namespace: ac19-casos-prod
+replicas:
+  - name: ac19-c10
+    count: 2
+images:
+  - name: registry.access.redhat.com/ubi9/httpd-24:latest
+    digest: sha256:0000000000000000000000000000000000000000000000000000000000000000
+patches:
+  - path: recursos.yaml

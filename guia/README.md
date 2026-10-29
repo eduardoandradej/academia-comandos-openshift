@@ -24,6 +24,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [16 — Rede e isolamento](16-rede.md) | NetworkPolicy de entrada e saída, AND × OR, router, DNS, TLS por SNI, certificados de serviço |
 | [17 — Administração de recursos](17-admin.md) | capacidade do nó, quotas, LimitRange, cota multiprojeto, prioridade, varredura, logs do nó, coleta |
 | [18 — Operadores e manutenção](18-operadores.md) | ClusterVersion, ClusterOperators, OLM, CRDs, MachineConfig, planejar atualização, alertas (só leitura) |
+| [19 — Troubleshooting transversal](19-troubleshooting.md) | método dos sete andares, triagem, 10 casos com vários defeitos, linha do tempo, pós-incidente |
 
 Regras rápidas:
 

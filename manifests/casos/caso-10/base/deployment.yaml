@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac19-c10
+  labels:
+    app: ac19-c10
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "10"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac19-c10
+  template:
+    metadata:
+      labels:
+        app: ac19-c10
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

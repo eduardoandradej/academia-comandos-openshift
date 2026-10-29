@@ -33,6 +33,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [16 — Rede e isolamento](guia/16-rede.md) | NetworkPolicy de entrada e saída, AND × OR, router, DNS, TLS por SNI, certificados de serviço |
 | [17 — Administração de recursos](guia/17-admin.md) | capacidade do nó, quotas, LimitRange, cota multiprojeto, prioridade, varredura, logs do nó, coleta |
 | [18 — Operadores e manutenção](guia/18-operadores.md) | ClusterVersion, ClusterOperators, OLM, CRDs, MachineConfig, planejar atualização, alertas (só leitura) |
+| [19 — Troubleshooting transversal](guia/19-troubleshooting.md) | método dos sete andares, triagem, 10 casos com vários defeitos, linha do tempo, pós-incidente |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -56,11 +57,11 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 19 (00 a 18) | 21 |
-| Microexercícios | 285 | 300+ |
-| Cenários de troubleshooting | 57 | 40+ ✔ |
+| Trilhas completas | 20 (00 a 19) | 21 |
+| Microexercícios | 300 | 300+ |
+| Cenários de troubleshooting | 60 | 40+ ✔ |
 | Comandos e formas catalogados | 235 | 200+ |
-| Fichas de comando | 40 | — |
+| Fichas de comando | 41 | — |
 
 Status dos exercícios: **proposto** — escritos e revisados estaticamente (Markdown, YAML, shell, links, testes
 offline), mas **ainda não executados contra o cluster** pelo autor. A validação acontece quando você os executa.
@@ -118,7 +119,8 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 16 | [Rede e isolamento](trilhas/16-rede/README.md) | disponível |
 | 17 | [Administração de recursos](trilhas/17-admin/README.md) | disponível |
 | 18 | [Operadores e manutenção](trilhas/18-operadores/README.md) | disponível (somente leitura) |
-| 19–20 | [Troubleshooting, Desafios](trilhas/README.md) | planejadas |
+| 19 | [Troubleshooting transversal](trilhas/19-troubleshooting/README.md) | disponível |
+| 20 | [Desafios integradores](trilhas/README.md) | planejada |
 
 ## Restrições do HomeLab
 

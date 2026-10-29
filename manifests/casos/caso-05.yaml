@@ -1,0 +1,79 @@
+# Caso 05 (Trilha 19): o robô de escala recebe Forbidden.
+# Aplicar SEM ler o resto do arquivo (o diagnóstico é o exercício):
+#   oc apply -f manifests/casos/caso-05.yaml -n ac19-casos
+# Limpeza: oc delete -f manifests/casos/caso-05.yaml -n ac19-casos --ignore-not-found
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ac19-c5-robo
+  labels:
+    app: ac19-c5
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "05"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ac19-c5-escalador
+  labels:
+    app: ac19-c5
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "05"
+rules:
+  - apiGroups: [""]
+    resources: ["deployments", "deployments/scale"]
+    verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ac19-c5-escalador
+  labels:
+    app: ac19-c5
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "05"
+subjects:
+  - kind: ServiceAccount
+    name: ac19-c5-robot
+    namespace: ac19-casos
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ac19-c5-escalador
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac19-c5
+  labels:
+    app: ac19-c5
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "05"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac19-c5
+  template:
+    metadata:
+      labels:
+        app: ac19-c5
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/caso: "05"
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

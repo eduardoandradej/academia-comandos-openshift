@@ -1,0 +1,122 @@
+# Caso 06 (Trilha 19): depois do "endurecimento", nada fala com nada.
+# Aplicar SEM ler o resto do arquivo (o diagnóstico é o exercício):
+#   oc apply -f manifests/casos/caso-06.yaml -n ac19-rede
+# Limpeza: oc delete -f manifests/casos/caso-06.yaml -n ac19-rede --ignore-not-found
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac19-c6
+  labels:
+    app: ac19-c6
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "06"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac19-c6
+  template:
+    metadata:
+      labels:
+        app: ac19-c6
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/caso: "06"
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ac19-c6
+  labels:
+    app: ac19-c6
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "06"
+spec:
+  selector:
+    app: ac19-c6
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ac19-c6
+  labels:
+    app: ac19-c6
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "06"
+spec:
+  to:
+    kind: Service
+    name: ac19-c6
+  port:
+    targetPort: http
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ac19-c6-cliente
+  labels:
+    app: ac19-c6-cliente
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "06"
+spec:
+  containers:
+    - name: cliente
+      image: registry.access.redhat.com/ubi9/httpd-24:latest
+      command: ["sleep", "86400"]
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 50m, memory: 64Mi}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac19-c6-trava-tudo
+  labels:
+    app: ac19-c6
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "06"
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac19-c6-mesmo-projeto
+  labels:
+    app: ac19-c6
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "06"
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector: {}

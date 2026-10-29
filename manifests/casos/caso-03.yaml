@@ -1,0 +1,76 @@
+# Caso 03 (Trilha 19): a Route da loja responde "Application is not available".
+# Aplicar SEM ler o resto do arquivo (o diagnóstico é o exercício):
+#   oc apply -f manifests/casos/caso-03.yaml -n ac19-casos
+# Limpeza: oc delete -f manifests/casos/caso-03.yaml -n ac19-casos --ignore-not-found
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac19-c3
+  labels:
+    app: ac19-c3
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "03"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac19-c3
+  template:
+    metadata:
+      labels:
+        app: ac19-c3
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/caso: "03"
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ac19-c3
+  labels:
+    app: ac19-c3
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "03"
+spec:
+  selector:
+    app: ac19-c3
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8000
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ac19-c3
+  labels:
+    app: ac19-c3
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "03"
+spec:
+  to:
+    kind: Service
+    name: ac19-c3
+  port:
+    targetPort: http

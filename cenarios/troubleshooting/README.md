@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 57 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 60 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -64,5 +64,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-055](TS-055.md) | Depois de religar o SNO, operadores em Progressing e Degraded | 18 | LEITURA |
 | [TS-056](TS-056.md) | MachineConfigPool travado em Updating | 18 | LEITURA |
 | [TS-057](TS-057.md) | O operador não atualiza: InstallPlan esperando aprovação | 18 | LEITURA |
+| [TS-058](TS-058.md) | Tudo verde, mas a resposta está errada: o Service que pega duas versões | 19 | MUTAÇÃO LOCAL |
+| [TS-059](TS-059.md) | Funciona pelo IP do pod, falha pelo Service: a porta nomeada | 19 | MUTAÇÃO LOCAL |
+| [TS-060](TS-060.md) | Falha intermitente: uma réplica intrusa atrás do Service | 19 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).

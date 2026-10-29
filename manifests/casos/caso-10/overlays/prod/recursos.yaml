@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac19-c10-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: web
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}

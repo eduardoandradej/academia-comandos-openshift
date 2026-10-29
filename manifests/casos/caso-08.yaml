@@ -1,0 +1,41 @@
+# Caso 08 (Trilha 19): o fechamento diário "não roda".
+# Aplicar SEM ler o resto do arquivo (o diagnóstico é o exercício):
+#   oc apply -f manifests/casos/caso-08.yaml -n ac19-casos
+# Limpeza: oc delete -f manifests/casos/caso-08.yaml -n ac19-casos --ignore-not-found
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ac19-c8-fechamento
+  labels:
+    app: ac19-c8
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "08"
+spec:
+  schedule: "30 2 * * *"
+  suspend: true
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 120
+      template:
+        metadata:
+          labels:
+            app: ac19-c8
+            academy.openshift.dev/managed-by: academia
+            academy.openshift.dev/caso: "08"
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: fechamento
+              image: registry.access.redhat.com/ubi9/httpd-24:latest
+              command: ["/bin/sh", "-c", "test -n \"$DESTINO\" || { echo 'DESTINO não definido' >&2; exit 3; }; echo fechado em $DESTINO"]
+              resources:
+                requests: {cpu: 10m, memory: 16Mi}
+                limits: {cpu: 50m, memory: 64Mi}
+              securityContext:
+                allowPrivilegeEscalation: false
+                runAsNonRoot: true
+                capabilities:
+                  drop: ["ALL"]
+                seccompProfile:
+                  type: RuntimeDefault

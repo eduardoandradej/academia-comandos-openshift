@@ -10,7 +10,7 @@ VERMELHO = sensível, demonstrativo ou proibido de automatizar (5).
 
 **Perfil:** `local` = sem cluster · `developer` = padrão · `admin` = administração de treino · `kvm-server`/`core@ocp-sno` = fora da `ocp-admin`, só leitura.
 
-**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–18 estão disponíveis; as demais são planejadas
+**Trilha:** onde o comando é (ou será) praticado. Trilhas 00–19 estão disponíveis; as demais são planejadas
 (veja [trilhas/README.md](../trilhas/README.md)). Placeholders como `<ns>`, `<pod>` e `<nome>` devem ser substituídos.
 
 Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05: 20, 06: 10, 07: 8, 08: 12, 09: 10, 10: 8, 11: 10, 12: 10, 13: 6, 14: 12, 15: 15, 16: 15, 17: 1, 18: 14, 19: 2.
@@ -323,8 +323,8 @@ Distribuição por trilha de destino: 00: 23, 01: 15, 02: 19, 03: 11, 04: 14, 05
 | 227 | `ip route` | Tabela de rotas local | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
 | 228 | `ss -tln` | Sockets TCP localmente | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
 | 229 | `chronyc tracking` | Condição de sincronização NTP local | VERDE | local | [16](../trilhas/16-rede/README.md) | — |  |
-| 230 | `journalctl -b -u kubelet -n 50 --no-pager` | Logs kubelet quando conectado ao RHCOS | VERDE | core@ocp-sno (leitura) | 19 | — |  |
-| 231 | `sudo crictl ps` | Contêineres CRI-O no RHCOS, somente leitura | VERDE | core@ocp-sno (leitura) | 19 | — |  |
+| 230 | `journalctl -b -u kubelet -n 50 --no-pager` | Logs kubelet quando conectado ao RHCOS | VERDE | core@ocp-sno (leitura) | [19](../trilhas/19-troubleshooting/README.md) | — |  |
+| 231 | `sudo crictl ps` | Contêineres CRI-O no RHCOS, somente leitura | VERDE | core@ocp-sno (leitura) | [19](../trilhas/19-troubleshooting/README.md) | — |  |
 | 232 | `virsh domstate ocp-sno` | Estado VM (executar no kvm-server) | VERDE | kvm-server | [00](../trilhas/00-orientacao/README.md) | — |  |
 | 233 | `virsh domblklist ocp-sno` | Discos anexados à VM (kvm-server) | VERDE | kvm-server | [00](../trilhas/00-orientacao/README.md) | — |  |
 | 234 | `df -h /var` | Espaço no SSD do host (kvm-server) | VERDE | kvm-server | [00](../trilhas/00-orientacao/README.md) | — |  |

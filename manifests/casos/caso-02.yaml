@@ -1,0 +1,63 @@
+# Caso 02 (Trilha 19): o pod do catálogo nunca fica estável.
+# Aplicar SEM ler o resto do arquivo (o diagnóstico é o exercício):
+#   oc apply -f manifests/casos/caso-02.yaml -n ac19-casos
+# Limpeza: oc delete -f manifests/casos/caso-02.yaml -n ac19-casos --ignore-not-found
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ac19-c2-cfg
+  labels:
+    app: ac19-c2
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "02"
+data:
+  modo: producao
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac19-c2
+  labels:
+    app: ac19-c2
+    academy.openshift.dev/managed-by: academia
+    academy.openshift.dev/caso: "02"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ac19-c2
+  template:
+    metadata:
+      labels:
+        app: ac19-c2
+        academy.openshift.dev/managed-by: academia
+        academy.openshift.dev/caso: "02"
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: MODO
+              valueFrom:
+                configMapKeyRef:
+                  name: ac19-c2-cfg
+                  key: MODO
+          livenessProbe:
+            exec:
+              command: ["cat", "/tmp/pronto"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 2
+          resources:
+            requests: {cpu: 25m, memory: 48Mi}
+            limits: {cpu: 100m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault

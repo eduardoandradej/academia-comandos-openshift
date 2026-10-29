@@ -8,10 +8,10 @@
 | Meta | Atual | Alvo |
 |---|---:|---:|
 | Comandos e formas catalogados | 235 (231 distintos) | 200+ ✔ |
-| Microexercícios originais | 285 | 300+ |
-| Cenários de troubleshooting | 57 | 40+ ✔ |
-| Fichas de comando | 40 | uma por família de comando |
-| Trilhas completas | 19 de 21 | 21 |
+| Microexercícios originais | 300 | 300+ |
+| Cenários de troubleshooting | 60 | 40+ ✔ |
+| Fichas de comando | 41 | uma por família de comando |
+| Trilhas completas | 20 de 21 | 21 |
 
 ## Matriz por família
 
@@ -47,6 +47,7 @@
 | RBAC e identidade | RBC-001, RBC-003, RBC-012 | RBC-010, RBC-011, RBC-013 | RBC-002 a RBC-008 | RBC-014, TS-046 a TS-048 | RBC-015 | `admin`; usuários DO280 só via docs/12 | AMARELO/VERMELHO |
 | Rede e isolamento | NET-001, NET-005, NET-011 | NET-010, NET-012 | NET-002 a NET-009, NET-013 | NET-014, TS-049 a TS-051 | NET-015 | — | AMARELO |
 | Administração de recursos | ADM-001, ADM-005, ADM-006 | ADM-002, ADM-010 a ADM-012 | ADM-003 a ADM-009, ADM-013 | ADM-014, TS-052 a TS-054 | ADM-015 | perfil `admin` | AMARELO |
+| Troubleshooting transversal | DIA-001, DIA-013 | DIA-002 | DIA-003 a DIA-012 (correção) | DIA-003 a DIA-015, TS-058 a TS-060 | DIA-015 | — | AMARELO |
 | Operadores e manutenção | OPS-001, OPS-003, OPS-009 | OPS-002, OPS-005, OPS-006, OPS-013 | — (somente observação; OPS-007 em dry-run) | OPS-014, TS-055 a TS-057 | OPS-015 | perfil `admin` (leitura) | VERDE |
 
 ## Mapa de dependências do HomeLab
@@ -55,7 +56,7 @@
 flowchart LR
   subgraph disponivel[Disponível hoje]
     API[API e OAuth] --> ID[admin e developer via HTPasswd]
-    ID --> T00[Trilhas 00-18]
+    ID --> T00[Trilhas 00-19]
     IMG[Pull de registries externos] --> T02[Alvo de observação]
   end
   subgraph condicionado[Condicionado ou ausente]
