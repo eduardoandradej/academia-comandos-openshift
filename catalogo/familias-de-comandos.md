@@ -1,7 +1,7 @@
 # Famílias de comandos
 
 > Mapa das famílias do catálogo, com as comparações que mais confundem. Cada família aponta para a trilha onde é
-> praticada. Trilhas 00–19 estão disponíveis; as demais são planejadas.
+> praticada. Todas as trilhas (00–20) estão disponíveis.
 
 ## Visão geral
 

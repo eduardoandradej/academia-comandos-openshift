@@ -15,6 +15,7 @@ dizem só o **sintoma**; os defeitos e as correções ficam nos gabaritos (`solu
 | `caso-08.yaml` | o fechamento diário "não roda" | `ac19-casos` | DIA-010 |
 | `caso-09.yaml` | duas aplicações reiniciam ou somem sozinhas | `ac19-casos` | DIA-011 |
 | `caso-10/` | o overlay de produção não entrega o que promete (renderização) | — | DIA-012 |
+| `desafio-11.yaml` | a loja nova não funciona de jeito nenhum (sete defeitos) | `ac20-cego` | DES-011 (Trilha 20) |
 
 Aplique **sem ler** o resto do arquivo; corrija na cópia (`/tmp/ac19`) ou no cluster, nunca no repositório.
 Limpeza geral: `oc delete all,cm,sa,role,rolebinding,networkpolicy,cronjob,job -l academy.openshift.dev/managed-by=academia -n <projeto>`.

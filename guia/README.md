@@ -25,6 +25,7 @@ Cada página vai do básico ao avançado e termina com a limpeza do projeto de t
 | [17 — Administração de recursos](17-admin.md) | capacidade do nó, quotas, LimitRange, cota multiprojeto, prioridade, varredura, logs do nó, coleta |
 | [18 — Operadores e manutenção](18-operadores.md) | ClusterVersion, ClusterOperators, OLM, CRDs, MachineConfig, planejar atualização, alertas (só leitura) |
 | [19 — Troubleshooting transversal](19-troubleshooting.md) | método dos sete andares, triagem, 10 casos com vários defeitos, linha do tempo, pós-incidente |
+| [20 — Desafios integradores](20-desafios.md) | 15 missões com requisitos e autoavaliação, caso cego de sete defeitos, simulado final |
 
 Regras rápidas:
 

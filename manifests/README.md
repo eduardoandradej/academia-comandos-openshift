@@ -31,7 +31,7 @@ Todos os manifestos são pequenos, rotulados com `academy.openshift.dev/managed-
 | [`helm/ac14-loja/`](helm/ac14-loja/README.md) | chart Helm de treino (valores, schema, helpers, teste) | developer | Trilha 14 |
 | [`networkpolicies/`](networkpolicies/README.md) | políticas de entrada e saída para os projetos `ac16-*` | developer | Trilha 16 |
 | [`admin/`](admin/README.md) | quotas, LimitRange, ClusterResourceQuota e PriorityClass de treino | admin | Trilha 17 |
-| [`casos/`](casos/README.md) | 10 casos com defeitos para diagnóstico cego | developer | Trilha 19 |
+| [`casos/`](casos/README.md) | 10 casos e 1 desafio com defeitos para diagnóstico cego | developer | Trilhas 19 e 20 |
 | [`preparacao/storage-nfs-pv.yaml`](preparacao/storage-nfs-pv.yaml) | 3 PVs NFS estáticos (opção A da preparação de storage) | admin | docs/10 |
 | [`preparacao/quota-storage-ac09.yaml`](preparacao/quota-storage-ac09.yaml) | quota do `ac09-storage` liberando 3 PVCs / 3Gi | admin | docs/10 |
 

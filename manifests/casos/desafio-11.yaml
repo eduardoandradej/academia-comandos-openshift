@@ -1,0 +1,109 @@
+# Desafio 11 (Trilha 20): "a loja nova não funciona de jeito nenhum". Sete defeitos, várias camadas.
+# Aplicar SEM ler o resto do arquivo:
+#   oc new-project ac20-cego && oc apply -f manifests/casos/desafio-11.yaml -n ac20-cego
+# Limpeza: oc delete project ac20-cego
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ac20-pagina
+  labels:
+    app: ac20-loja
+    academy.openshift.dev/managed-by: academia
+data:
+  indice.html: |
+    loja ac20 no ar
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ac20-loja
+  labels:
+    app: ac20-loja
+    academy.openshift.dev/managed-by: academia
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ac20-loja
+  template:
+    metadata:
+      labels:
+        app: ac20-loja
+        academy.openshift.dev/managed-by: academia
+    spec:
+      containers:
+        - name: web
+          image: registry.access.redhat.com/ubi9/httpd-24:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ac20-api
+                  key: token
+          volumeMounts:
+            - name: pagina
+              mountPath: /var/www/html
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 25m, memory: 16Mi}
+            limits: {cpu: 100m, memory: 20Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+      volumes:
+        - name: pagina
+          configMap:
+            name: ac20-pagina
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ac20-loja
+  labels:
+    app: ac20-loja
+    academy.openshift.dev/managed-by: academia
+spec:
+  selector:
+    app: ac20-shop
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8443
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ac20-loja
+  labels:
+    app: ac20-loja
+    academy.openshift.dev/managed-by: academia
+spec:
+  to:
+    kind: Service
+    name: ac20-lojas
+  port:
+    targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ac20-somente-projeto
+  labels:
+    academy.openshift.dev/managed-by: academia
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector: {}

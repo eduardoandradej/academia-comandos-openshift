@@ -47,7 +47,8 @@ antes de continuar: o ORI-004 cria os perfis `developer` e `admin` em kubeconfig
 18. [Trilha 17](../trilhas/17-admin/README.md) — Administração de recursos (perfil admin).
 19. [Trilha 18](../trilhas/18-operadores/README.md) — Operadores e manutenção (somente leitura).
 20. [Trilha 19](../trilhas/19-troubleshooting/README.md) — Troubleshooting transversal.
-21. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-060 intercalados, conforme a trilha.
+21. [Trilha 20](../trilhas/20-desafios/README.md) — Desafios integradores (missões e simulado final).
+22. [Cenários](../cenarios/troubleshooting/README.md) TS-001 a TS-063 intercalados, conforme a trilha.
 
 ## Como estudar cada exercício
 

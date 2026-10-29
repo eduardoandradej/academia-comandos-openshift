@@ -25,6 +25,7 @@
 | [`17-admin/`](17-admin/) | ADM-001 a ADM-015 |
 | [`18-operadores/`](18-operadores/) | OPS-001 a OPS-015 |
 | [`19-troubleshooting/`](19-troubleshooting/) | DIA-001 a DIA-015 (inclui os defeitos dos casos) |
+| [`20-desafios/`](20-desafios/) | DES-001 a DES-015 (uma solução possível por missão; inclui os defeitos do desafio 11) |
 | [`cenarios/`](cenarios/) | TS-001 a TS-060 |
 
 `scripts/academy where <ID>` mostra o caminho do enunciado e do gabarito sem exibir o conteúdo. Um gabarito traz

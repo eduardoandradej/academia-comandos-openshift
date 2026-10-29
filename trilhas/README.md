@@ -1,7 +1,7 @@
 # Trilhas
 
-> 21 trilhas progressivas (00 a 20). **Disponíveis:** 00 a 19. As demais são **planejadas**: as pastas só passam a
-> existir quando o conteúdo estiver escrito — nada aqui finge estar pronto.
+> 21 trilhas progressivas (00 a 20). **Disponíveis:** todas (00 a 20). Cada trilha só foi publicada depois de
+> escrita e revisada — nada aqui finge estar pronto, e o status dos exercícios continua **proposto**.
 
 | ID | Trilha | Status | Foco | Dependências do HomeLab |
 |---|---|---|---|---|
@@ -25,7 +25,7 @@
 | 17 | [Administração de recursos](17-admin/README.md) | **disponível** (15) | capacidade, quotas, LimitRange, CRQ, prioridade, varredura, node-logs, inspect | perfil admin |
 | 18 | [Operadores e manutenção](18-operadores/README.md) | **disponível** (15) | CVO, CO, OLM, CRDs, MCP, atualização e backup planejados, alertas — somente observação | perfil admin |
 | 19 | [Troubleshooting transversal](19-troubleshooting/README.md) | **disponível** (15) | método dos 7 andares, triagem, 10 casos multicausa, linha do tempo, pós-incidente | trilhas anteriores |
-| 20 | Desafios integradores | planejada | casos com 6–12 recursos, diagnóstico cego | trilhas anteriores |
+| 20 | [Desafios integradores](20-desafios/README.md) | **disponível** (15) | missões com requisitos e autoavaliação, caso cego de sete defeitos, maratona, auditoria, migração, simulado final | trilhas anteriores |
 
 Convenções comuns a todas as trilhas: projeto `acNN-<tema>`, rótulo `academy.openshift.dev/managed-by=academia`,
 perfil `developer` por padrão, gabaritos em [`solucoes/`](../solucoes/README.md) e limpeza com

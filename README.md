@@ -34,6 +34,7 @@ cada bloco de comandos seguido de uma tabela curta explicando o que cada um faz.
 | [17 — Administração de recursos](guia/17-admin.md) | capacidade do nó, quotas, LimitRange, cota multiprojeto, prioridade, varredura, logs do nó, coleta |
 | [18 — Operadores e manutenção](guia/18-operadores.md) | ClusterVersion, ClusterOperators, OLM, CRDs, MachineConfig, planejar atualização, alertas (só leitura) |
 | [19 — Troubleshooting transversal](guia/19-troubleshooting.md) | método dos sete andares, triagem, 10 casos com vários defeitos, linha do tempo, pós-incidente |
+| [20 — Desafios integradores](guia/20-desafios.md) | 15 missões com requisitos e autoavaliação, caso cego de sete defeitos, simulado final |
 
 O restante do repositório (trilhas com desafios, falhas provocadas, gabaritos e scripts) é para a prática aprofundada.
 
@@ -57,9 +58,9 @@ comentada, repetições, **desafio sem pista**, **diagnóstico controlado**, val
 
 | Item | Atual | Meta |
 |---|---:|---:|
-| Trilhas completas | 20 (00 a 19) | 21 |
-| Microexercícios | 300 | 300+ |
-| Cenários de troubleshooting | 60 | 40+ ✔ |
+| Trilhas completas | 21 (00 a 20) | 21 ✔ |
+| Microexercícios | 315 | 300+ ✔ |
+| Cenários de troubleshooting | 63 | 40+ ✔ |
 | Comandos e formas catalogados | 235 | 200+ |
 | Fichas de comando | 41 | — |
 
@@ -120,7 +121,7 @@ kubeconfigs próprios — o kubeconfig do instalador (`system:admin`) fica reser
 | 17 | [Administração de recursos](trilhas/17-admin/README.md) | disponível |
 | 18 | [Operadores e manutenção](trilhas/18-operadores/README.md) | disponível (somente leitura) |
 | 19 | [Troubleshooting transversal](trilhas/19-troubleshooting/README.md) | disponível |
-| 20 | [Desafios integradores](trilhas/README.md) | planejada |
+| 20 | [Desafios integradores](trilhas/20-desafios/README.md) | disponível |
 
 ## Restrições do HomeLab
 

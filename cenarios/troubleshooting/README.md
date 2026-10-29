@@ -1,6 +1,6 @@
 # Cenários de troubleshooting
 
-> **Progresso:** 60 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
+> **Progresso:** 63 cenários (meta inicial de 40 atingida) · cada um com sintoma, reprodução segura, hipóteses, investigação e gabarito separado.
 
 Modo incidente: você recebe o sintoma, formula hipóteses e as testa com comandos de leitura. A reprodução é sempre
 restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e limpeza descrita.
@@ -67,5 +67,8 @@ restrita a um único comando ou a um projeto `acNN-*`, com rótulo da Academia e
 | [TS-058](TS-058.md) | Tudo verde, mas a resposta está errada: o Service que pega duas versões | 19 | MUTAÇÃO LOCAL |
 | [TS-059](TS-059.md) | Funciona pelo IP do pod, falha pelo Service: a porta nomeada | 19 | MUTAÇÃO LOCAL |
 | [TS-060](TS-060.md) | Falha intermitente: uma réplica intrusa atrás do Service | 19 | MUTAÇÃO LOCAL |
+| [TS-061](TS-061.md) | HTTPS responde, HTTP diz "Application is not available" | 20 | MUTAÇÃO LOCAL |
+| [TS-062](TS-062.md) | Depois da migração, o Deployment tem 0 pods e nenhum evento no pod | 20 | MUTAÇÃO LOCAL |
+| [TS-063](TS-063.md) | O Job de manutenção expira com DeadlineExceeded depois do isolamento de rede | 20 | MUTAÇÃO LOCAL |
 
 Gabaritos: [`solucoes/cenarios/`](../../solucoes/cenarios/). Biblioteca de mensagens: [`catalogo/erros-frequentes.md`](../../catalogo/erros-frequentes.md).
